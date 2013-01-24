@@ -68,7 +68,7 @@ expect({ a: 'b' }).to.eql({ a: 'b' });
 expect(1).to.eql('1');
 ```
 
-**a**/ **an**: 断言类型，支持 `array` 类型判断，也支持 `instanceof` 判断
+**a** / **an**: 断言类型，支持 `array` 类型判断，也支持 `instanceof` 判断
 
 ```js
 // typeof with optional `array`
@@ -121,7 +121,7 @@ expect(window).to.have.property('expect', expect)
 expect({a: 'b'}).to.have.property('a');
 ```
 
-**key**/ **keys**: 断言键是否存在. 支持 `only` 装饰器。
+**key** / **keys**: 断言键是否存在. 支持 `only` 装饰器。
 
 ```js
 expect({ a: 'b' }).to.have.key('a');
@@ -147,14 +147,14 @@ expect(fn2).to.not.throwException();
 expect(1).to.be.within(0, Infinity);
 ```
 
-**greaterThan**/ **above**: 断言 `>`
+**greaterThan** / **above**: 断言 `>`
 
 ```js
 expect(3).to.be.above(0);
 expect(5).to.be.greaterThan(3);
 ```
 
-**lessThan**/ **below**: 断言 `<`
+**lessThan** / **below**: 断言 `<`
 
 ```js
 expect(0).to.be.below(3);
