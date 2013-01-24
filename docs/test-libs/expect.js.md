@@ -68,7 +68,7 @@ expect({ a: 'b' }).to.eql({ a: 'b' });
 expect(1).to.eql('1');
 ```
 
-**a**/**an**: 断言类型，支持 `array` 类型判断，也支持 `instanceof` 判断
+**a**/ **an**: 断言类型，支持 `array` 类型判断，也支持 `instanceof` 判断
 
 ```js
 // typeof with optional `array`
@@ -113,7 +113,7 @@ expect({ my: 'object' }).to.not.be.empty();
 expect([1,2,3]).to.not.be.empty();
 ```
 
-**property**:断言own属性是否存在，以及这个属性是否是指定值
+**property**：断言own属性是否存在，以及这个属性是否是指定值
 
 ```js
 expect(window).to.have.property('expect')
@@ -121,7 +121,7 @@ expect(window).to.have.property('expect', expect)
 expect({a: 'b'}).to.have.property('a');
 ```
 
-**key**/**keys**: 断言键是否存在. 支持 `only` 装饰器。
+**key**/ **keys**: 断言键是否存在. 支持 `only` 装饰器。
 
 ```js
 expect({ a: 'b' }).to.have.key('a');
@@ -130,7 +130,7 @@ expect({ a: 'b', c: 'd' }).to.only.have.keys(['a', 'c']);
 expect({ a: 'b', c: 'd' }).to.not.only.have.key('a');
 ```
 
-**throwException**/**throwError**: 断言方法调用时是否抛错
+**throwException**/ **throwError**: 断言方法调用时是否抛错
 
 ```js
 expect(fn).to.throwError(); // synonym of throwException
@@ -147,14 +147,14 @@ expect(fn2).to.not.throwException();
 expect(1).to.be.within(0, Infinity);
 ```
 
-**greaterThan**/**above**: 断言 `>`
+**greaterThan**/ **above**: 断言 `>`
 
 ```js
 expect(3).to.be.above(0);
 expect(5).to.be.greaterThan(3);
 ```
 
-**lessThan**/**below**: 断言 `<`
+**lessThan**/ **below**: 断言 `<`
 
 ```js
 expect(0).to.be.below(3);
@@ -221,7 +221,7 @@ cd expect && npm install
 
 `make test-browser`
 
-然后打开你想测试的浏览器访问： `http://localhost:3000/test/`
+然后打开你想测试的浏览器访问： `http://localhost:3000/ test/`
 
 ## 证书
 
