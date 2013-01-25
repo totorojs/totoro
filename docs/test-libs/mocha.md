@@ -16,9 +16,9 @@ Mocha 是一个能同时在 [node](http://nodejs.org) 端和浏览器端运行�
   - [接口](#interfaces)
   - [测试报告](#reporters)
   - [浏览器支持](#browser-support)
-  - [mocha 选项](#mocha.opts)
-  - [套件指定超时时长](#suite-specific-timeouts)
-  - [测试指定超时时长](#test-specific-timeouts)
+  - [mocha.opts](#mocha.opts)
+  - [套件指定超时](#suite-specific-timeouts)
+  - [测试指定超时](#test-specific-timeouts)
   - [最佳实践](#best-practices)
   - [编辑器](#editors)
   - [测试套件范例](#example-test-suites)
@@ -224,7 +224,7 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
       -h, --help                      输出帮助信息
       -V, --version                   输出版本号
-      -r, --require <name>            require the given module
+      -r, --require <name>            必须的给定模块
       -R, --reporter <name>           指定测试报告工具
       -u, --ui <name>                 指定编写的测试用例使用的接口 (bdd|tdd|exports)
       -g, --grep <pattern>            仅运行匹配 <pattern> 的测试
@@ -251,51 +251,49 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
 <h3 id="compilers-option">--compilers</h3>
 
-  coffee-script is no longer supported out of the box. CS and similar transpilers
-  may be used by mapping the file extensions (for use with --watch) and the module
-  name. For example `--compilers coffee:coffee-script`.
+coffee-script 不再是开箱即用的支持。CS 和类似的 transpilers 可以通过映射文件扩展名和模块名来使用。例如 `--compilers coffee:coffee-script`。
 
 <h3 id="bail-option">-b, --bail</h3>
 
-  Only interested in the first exception? use `--bail` !
+只对第一个异常感兴趣? 那就用 `--bail` !
 
 <h3 id="debug-option">-d, --debug</h3>
 
-  Enables node's debugger support, this executes your script(s) with `node debug <file ...>` allowing you to step through code and break with the __debugger__ statement.
+启用 node 的调试支持，通过 `node debug <file ...>` 运行脚本使你可以单步执行代码或者设置断电。
 
 <h3 id="globals-option">--globals &lt;names&gt;</h3>
 
-  Accepts a comma-delimited list of accepted global variable names. For example suppose your app deliberately exposes a global named `app` and `YUI`, you may want to add `--globals app,YUI`.
+接收以逗号分隔的被允许的全局变量名。例如你的应用暴露了 `app` 和 `YUI` 两个全局变量，你可以添加参数  `--globals app,YUI`.
 
 <h3 id="ignore-leaks-option">--ignore-leaks</h3>
 
-  By default Mocha will fail when global variables are introduced, you may use `--globals` to specify a few, or use `--ignore-leaks` to disable this functionality. 
+默认如果 Mocha 检测到自定义的全局变量测试就会失败，你可以使用 `--globals` 指定允许使用的全局变量，或者使用 `--ignore-leaks` 来禁用该功能。
 
 <h3 id="require-option">-r, --require &lt;name&gt;</h3>
 
-  The `--require` option is useful for libraries such as [should.js](http://github.com/visionmedia/should.js), so you may simply `--require should` instead of manually invoking `require('should')` within each test file. Note that this works well for `should` as it augments `Object.prototype`, however if you wish to access a module's exports you will have to require them, for example `var should = require('should')`.
+`--require` 选项在需要某些库时非常有用，例如 [should.js](http://github.com/visionmedia/should.js)，所以你可以简单的使用 `--require should` 来代替在每个文件中手工引入 `require('should')`。注意，`should` 虽然对 `Object.prototype` 进行了混入，但也能工作良好。但是，当你需要访问一个模块的 exports 时，你还是需要在文件中 require 它们，例如 `var should = require('should')`。
 
 <h3 id="ui-option">-u, --ui &lt;name&gt;</h3>
 
-  The `--ui` option lets you specify the interface to use, defaulting to "bdd".
+指定要使用的接口，默认是 "bdd"。
   
 <h3 id="reporter-option">-R, --reporter &lt;name&gt;</h3>
 
-  The `--reporter` option allows you to specify the reporter that will be used, defaulting to "dot". This flag may also be used to utilize third-party reporters. For example if you `npm install mocha-lcov-reporter` you may then do `--reporter mocha-lcov-reporter`.
+指定要使用的报告器，默认为 "dot"。这个标记也可以使用第三方的报告器。例如安装 `npm install mocha-lcov-reporter` 后，你可以使用 `--reporter mocha-lcov-reporter`。
   
 <h3 id="timeout-option">-t, --timeout &lt;ms&gt;</h3>
 
-  Specifies the test-case timeout, defaulting to 2 seconds. To override you may pass the timeout in milliseconds, or a value with the `s` suffix, ex: `--timeout 2s` or `--timeout 2000` would be equivalent.
+指定测试超时，默认为2秒。你可以自己指定超时时间，单位为毫秒，或者为这个数值添加一个后缀 `s`，则为秒。例如 `--timeout 2s` 和 `--timeout 2000` 是一样的。
 
 <h3 id="slow-option">-s, --slow &lt;ms&gt;</h3>
 
-  Specify the "slow" test threshold, defaulting to 75ms. Mocha uses this to highlight test-cases that are taking too long.
+设置运行得 "慢" 的测试的阈值，默认为 75 毫秒。Mocha 将高亮显示那些运行得慢的测试。 
 
 <h3 id="grep-option">-g, --grep &lt;pattern&gt;</h3>
 
-  The `--grep` option when specified will trigger mocha to only run tests matching the given `pattern` which is internally compiled to a `RegExp`. 
-  
-  Suppose for example you have "api" related tests, as well as "app" related tests, as shown in the following snippet; One could use `--grep api` or `--grep app` to run one or the other. The same goes for any other part of a suite or test-case title, `--grep users` would be valid as well, or even `--grep GET`.
+指定该选项，Mocha 将仅运行跟给定模式正则匹配的测试。
+
+假定你有一些 "api" 相关的测试，还有一些 "app" 相关的测试，代码如下。你可以使用 `--grep api` 或 `--grep app` 来运行其中一个测试。这个匹配也作用于嵌套的套件和测试用例的标题，因此 `--grep users` 和 `--grep GET`都能工作良好。
 
     describe('api', function(){
       describe('GET /api/users', function(){
@@ -309,13 +307,13 @@ To make things even easier, the `done()` callback accepts an error, so we may us
       })
     })
 
-<h2 id="interfaces">Interfaces</h2>
+<h2 id="interfaces">接口</h2>
 
-  Mocha "interface" system allows developers to choose their style of DSL. Shipping with __BDD__, __TDD__, and __exports__ flavoured interfaces.
+Mocha "接口" 系统允许开发者选择自己的风格或 DSL。默认支持  __BDD__, __TDD__, 和 __exports__ 风格的接口。
 
 <h3 id="bdd-interface">BDD</h3>
 
-  The "__BDD__" interface provides `describe()`, `it()`, `before()`, `after()`, `beforeEach()`, and `afterEach()`: 
+"__BDD__" 接口提供 `describe()`, `it()`, `before()`, `after()`, `beforeEach()`, 和 `afterEach()`: 
 
     describe('Array', function(){
       before(function(){
@@ -331,7 +329,7 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
 <h3 id="tdd-interface">TDD</h3>
 
-  The "__TDD__" interface provides `suite()`, `test()`, `setup()`, and `teardown()`.
+"__TDD__" 接口提供 `suite()`, `test()`, `setup()`, 和 `teardown()`.
 
     suite('Array', function(){
       setup(function(){
@@ -347,8 +345,7 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
 <h3 id="exports-interface">Exports</h3>
 
-  The "__exports__" interface is much like Mocha's predecessor [expresso](http://github.com/visionmedia/expresso). The keys `before`, `after`, `beforeEach`, and `afterEach` are special-cased, object values
-  are suites, and function values are test-cases.
+"__exports__" 接口非常像 Mocha 的前身 [expresso](http://github.com/visionmedia/expresso)。关键字 `before`, `after`, `beforeEach`, 和 `afterEach` 是特殊保留的，值为对象时是一个测试套件，为函数时则是一个测试用例。
 
     module.exports = {
       before: function(){
@@ -366,8 +363,8 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
 <h3 id="qunit-interface">QUnit</h3>
 
-  The qunit-inspired interface matches the "flat" look of QUnit where the test suite title is simply defined before the test-cases.
-  
+使用这种接口使得测试代码看起来像 Qunit 一样是扁平的，测试套件的标题只要写在测试用例前面即可。
+
     function ok(expr, msg) {
       if (!expr) throw new Error(msg);
     }
@@ -392,104 +389,91 @@ To make things even easier, the `done()` callback accepts an error, so we may us
       ok('foo'.length == 3);
     });
 
-<h2 id="reporters">Reporters</h2>
+<h2 id="reporters">报告器</h2>
 
-  Mocha reporters adjust to the terminal window,
-  and always disable ansi-escape colouring when
-  the stdio streams are not associated with a tty.
+Mocha 的报告器适配各种终端窗口，并且当标准IO流没有关联 tty 时总是禁用字符彩色显示。
 
 <h3 id="dot-matrix-reporter">Dot Matrix</h3>
 
-  The "dot" matrix reporter is simply a series of dots
-  that represent test cases, failures highlight in red,
-  pending in blue, slow as yellow.
+使用一行点来显示测试结果，失败的高亮为红色，挂起的为蓝色，慢的为换色。 
 
-   ![dot matrix reporter](images/reporter-dot.png)
+   ![dot matrix reporter](http://visionmedia.github.com/mocha/images/reporter-dot.png)
 
 <h3 id="spec-reporter">Spec</h3>
 
-  The "spec" reporter outputs a hierarchical view
-  nested just as the test cases are.
+输出层级嵌套的结果，就像测试用例写的那样。
 
-   ![spec reporter](images/reporter-spec.png)
-   ![spec reporter with failure](images/reporter-spec-fail.png)
+   ![spec reporter](http://visionmedia.github.com/mocha/images/reporter-spec.png)
+   ![spec reporter with failure](http://visionmedia.github.com/mocha/images/reporter-spec-fail.png)
 
 <h3 id="nyan-reporter">Nyan</h3>
 
-  The "nyan" reporter is exactly what you might expect:
+这可能就是你想要的！
   
   ![js nyan cat reporter](http://f.cl.ly/items/3f1P1d2U1y1E0K1W1M0m/Screen%20Shot%202012-08-22%20at%203.59.08%20PM.png)
 
 <h3 id="tap-reporter">TAP</h3>
 
-  The TAP reporter emits lines for a [Test-Anything-Protocol](http://en.wikipedia.org/wiki/Test_Anything_Protocol) consumer.
+其遵循 [Test-Anything-Protocol](http://en.wikipedia.org/wiki/Test_Anything_Protocol) 。
 
-  ![test anything protocol](images/reporter-tap.png)
+  ![test anything protocol](http://visionmedia.github.com/mocha/images/reporter-tap.png)
 
 <h3 id="landing-strip-reporter">Landing Strip</h3>
 
-  The Landing Strip reporter is a gimmicky test reporter simulating
-  a plane landing :) unicode ftw
+这个报告器看起来像是一个正在着陆的飞机：）
 
-  ![landing strip plane reporter](images/reporter-landing.png)
-  ![landing strip with failure](images/reporter-landing-fail.png)
+  ![landing strip plane reporter](http://visionmedia.github.com/mocha/images/reporter-landing.png)
+  ![landing strip with failure](http://visionmedia.github.com/mocha/images/reporter-landing-fail.png)
 
 <h3 id="list-reporter">List</h3>
 
-  The "List" reporter outputs a simple specifications list as
-  test cases pass or fail, outputting the failure details at 
-  the bottom of the output.
+输出格式化的列表显示测试通过或失败，失败的细节信息在输入的底部显示。
 
-  ![list reporter](images/reporter-list.png)
+  ![list reporter](http://visionmedia.github.com/mocha/images/reporter-list.png)
 
 <h3 id="progress-reporter">Progress</h3>
 
-  The progress reporter implements a simple progress-bar:
+进度条
 
-  ![progress bar](images/reporter-progress.png)
+  ![progress bar](http://visionmedia.github.com/mocha/images/reporter-progress.png)
 
 <h3 id="json-reporter">JSON</h3>
 
-  The JSON reporter outputs a single large JSON object when
-  the tests have completed (failures or not).
+JSON 报告器会在测试结束时返回一个 JSON 对象，不管是不是失败。
   
-  ![json reporter](images/reporter-json.png)
+  ![json reporter](http://visionmedia.github.com/mocha/images/reporter-json.png)
 
 <h3 id="json-stream-reporter">JSON Stream</h3>
 
-  The JSON Stream reporter outputs newline-delimited JSON "events" as they occur, beginning with a "start" event, followed by test passes or failures, and then the final "end" event.
+当 JSON “事件” 触发时，报告器将在新的一行输出结果。这些输出从 “start” 事件开始，中间跟随着测试通过或者失败的事件，终止于 “end” 事件。
 
-  ![json stream reporter](images/reporter-json-stream.png)
+  ![json stream reporter](http://visionmedia.github.com/mocha/images/reporter-json-stream.png)
 
 <h3 id="jsoncov-reporter">JSONCov</h3>
 
-  The JSONCov reporter is similar to the JSON reporter, however when run against a library instrumented by [node-jscoverage](https://github.com/visionmedia/node-jscoverage) it will produce coverage output.
+和 JSON 报告器非常像，不同的是会运行 [node-jscoverage](https://github.com/visionmedia/node-jscoverage) ，将输出测试覆盖率。
 
 <h3 id="htmlcov-reporter">HTMLCov</h3>
 
-  The HTMLCov reporter extends the JSONCov reporter. The library being tested should first be instrumented by [node-jscoverage](https://github.com/visionmedia/node-jscoverage), this allows Mocha to capture the coverage information necessary to produce a single-page HTML report.
+HTMLCov 报告器扩展了 JSONCov 报告器。Mocha 可以截获必须的覆盖率信息来产生一个单页面的 HTML 报告。
 
-  Click to view the current [Express test coverage](coverage.html) report. For an integration example view the mcoha test coverage support [commit](https://github.com/visionmedia/express/commit/b6ee5fafd0d6c79cf7df5560cb324ebee4fe3a7f) for Express.
+点击查看当前 [Express test coverage](coverage.html) 报告。作为一个集成的例子，Mocha 测试覆盖率报告支持 express 的 [commit](https://github.com/visionmedia/express/commit/b6ee5fafd0d6c79cf7df5560cb324ebee4fe3a7f) 。
 
   ![code coverage reporting](http://f.cl.ly/items/3T3G1h1d3Z2i3M3Y1Y0Y/Screen%20Shot%202012-02-23%20at%208.37.13%20PM.png)
 
 <h3 id="min-reporter">Min</h3>
 
-  The "min" reporter displays the summary only, while still outputting errors
-  on failure. This reporter works great with `--watch` as it clears the terminal
-  in order to keep your test summary at the top.
+“min” 报告器仅显示概要，包括错误或者失败信息。 这个报告器和 `--watch` 配合使用非常好，它总是会清屏，使你的测试概要始终保持在最上面。
   
   ![](http://f.cl.ly/items/460B2r3p3M3k2D3J250m/Screen%20Shot%202012-03-24%20at%2010.46.01%20AM.png)
 
 <h3 id="doc-reporter">Doc</h3>
 
- The "doc" reporter outputs a hierarchical HTML body representation
- of your tests, wrap it with a header, footer, some styling and you
- have some fantastic documentation!
+“dot” 报告器输出有层级结构的 HTML 内容来显示你的测试结果，包装一下套头、套尾再添加一些样式，你会得到一个很棒的文档。
 
-  ![doc reporter](images/reporter-doc.png)
+  ![doc reporter](http://visionmedia.github.com/mocha/images/reporter-doc.png)
 
- For example suppose you have the following JavaScript:
+假定你的测试代码如下：
 
     describe('Array', function(){
       describe('#indexOf()', function(){
@@ -500,7 +484,7 @@ To make things even easier, the `done()` callback accepts an error, so we may us
       })
     })
 
- The command `mocha --reporter doc array` would yield:
+运行 `mocha --reporter doc array` 会输出：
 
     <section class="suite">
       <h1>Array</h1>
@@ -516,14 +500,14 @@ To make things even easier, the `done()` callback accepts an error, so we may us
       </dl>
     </section>
 
-  The SuperAgent request library [test documentation](http://visionmedia.github.com/superagent/docs/test.html) was generated with Mocha's doc reporter using this simple make target:
+SuperAgent request 库的测试页面 [test documentation](http://visionmedia.github.com/superagent/docs/test.html) 就是使用 Mocha 的这个报告器生作为一个 make 目标成的：
   
     test-docs:
         make test REPORTER=doc \
             | cat docs/head.html - docs/tail.html \
             > docs/test.html
 
-  View the entire [Makefile](https://github.com/visionmedia/superagent/blob/master/Makefile) for reference.
+查看更多 [Makefile](https://github.com/visionmedia/superagent/blob/master/Makefile) 参考信息。
 
 <h3 id="xunit-reporter">XUnit</h3>
 
@@ -535,21 +519,19 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
 <h3 id="markdown-reporter">Markdown</h3>
 
-  The "markdown" reporter generates a markdown TOC and body for your
-  test suite. This is great if you want to use the tests as documentation
-  within a Github wiki page, or a markdown file in the repository that
-  Github can render. For example here is the Connect [test output](https://github.com/senchalabs/connect/blob/90a725343c2945aaee637e799b1cd11e065b2bff/tests.md).
+"markdown" 报告器将为你的测试套件创建一个 markdown TOC 和内容。如果你想把这个测试作为文档放在 Github 的 wiki 页面中，这是一个不错的选择，Github 能直接渲染仓库中的 markdown 文件。这是一个范例链接： [test output](https://github.com/senchalabs/connect/blob/90a725343c2945aaee637e799b1cd11e065b2bff/tests.md).
 
 <h3 id="html-reporter">HTML</h3>
 
- The __HTML__ reporter is currently the only browser reporter
- supported by Mocha, and it looks like this:
+ __HTML__ 报告器是目前 Mocha 唯一支持的浏览器端报告器，看起来如下：
  
- ![HTML test reporter](images/reporter-html.png)
+ ![HTML test reporter](http://visionmedia.github.com/mocha/images/reporter-html.png)
 
-<h2 id="browser-support">Browser support</h2>
+<h2 id="browser-support">浏览器支持</h2>
 
- Mocha runs in the browser. Every release of Mocha will have new builds of _./mocha.js_ and _./mocha.css_ for use in the browser. To setup Mocha for browser use all you have to do is include the script, stylesheet, tell Mocha which interface you wish to use, and then run the tests. A typical setup might look something like the following, where we call `mocha.setup('bdd')` to use the __BDD__ interface before loading the test scripts, running them `onload` with `mocha.run()`.
+Mocha 可以在浏览器中运行。每个 Mocha 的发布版本都有新构建的  _./mocha.js_ 和 _./mocha.css_ 可用于浏览器。
+为了在浏览器中运行，你所需要做的就是引入 Mocha 的脚本和样式，告诉 Mocha 你使用的接口，然后运行测试。
+一个典型的设置过程可能如下所示，在加载测试脚本前，我们调用 `mocha.setup('bdd')` 来使用 __BDD__ 接口，然后通过 `mocha.run()` 来运行测试。 
 
     <html>
     <head>
@@ -574,28 +556,24 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
 <h3 id="grep-query">grep</h3>
 
-  The client-side may utilize `--grep` as well, however you use the query-string, for example `?grep=api`.
+浏览器端页可以使用 `--grep` 选项，你可以通过在使用查询字符串来调用，例如 `?grep=api`。
 
 <h2 id="mocha.opts">mocha.opts</h2>
 
- Mocha will attempt to load `./test/mocha.opts`, these are concatenated with `process.argv`, though command-line args will take precedence. For example suppose you have the following _mocha.opts_ file:
+Mocha 将尝试加载 `./test/mocha.opts`, 然后和 `process.argv` 进行合并，当然命令行参数将具有更高的优先级。例如假定你有一个如下的 _mocha.opts_ 文件：
 
     --require should
     --reporter dot
     --ui bdd
 
-  This will default the reporter to `dot`, require the `should` library,
-  and use `bdd` as the interface. With this you may then invoke `mocha(1)`
-  with additional arguments, here enabling growl support and changing
-  the reporter to `spec`:
+这将指定 `dot` 为默认的报告器，需要使用 `should` 库，使用 `bdd` 作为接口。
+同时你还可以在调用 `mocha` 时附加各种参数，以下命令将启用 growl 支持，并且将报告器设置为 `spec`。
 
     $ mocha --reporter list --growl
 
-<h2 id="suite-specific-timeouts">Suite specific timeouts</h2>
+<h2 id="suite-specific-timeouts">套件指定超时</h2>
 
-  Suite-level timeouts may be applied to entire test "suites", or disabled
-  via `this.timeout(0)`. This will be inherited by all nested suites and test-cases
-  that do not override the value.
+套件级别的超时设置可应用于整个“测试套件”，你可以通过调用 `this.timeout(0)` 来禁用这个指定。该指定能被所有嵌套的但未覆盖该值的套件和测试用例继承。
 
     describe('a suite of tests', function(){
       this.timeout(500);
@@ -610,27 +588,24 @@ To make things even easier, the `done()` callback accepts an error, so we may us
     })
 
 
-<h2 id="test-specific-timeouts">Test specific timeouts</h2>
+<h2 id="test-specific-timeouts">测试指定超时</h2>
 
-  Test-specific timeouts may also be applied, or the use of `this.timeout(0)`
-  to disable timeouts all together:
+也可以单独指定测试超时，你可以通过 `this.timeout(0)` 来禁用这个指定。
 
     it('should take less than 500ms', function(done){
       this.timeout(500);
       setTimeout(done, 300);
     })
 
-<h2 id="best-practices">Best practices</h2>
+<h2 id="best-practices">最佳实践</h2>
 
-<h3 id="test-directory">test/*</h3>
+<h3 id="test-directory">test/* 目录</h3>
 
- By default `mocha(1)` will use the pattern `./test/*.js`, so
- it's usually a good place to put your tests.
+默认 `mocha` 将查找路径匹配 `./test/*.js` 的文件执行。总是把你的测试文件放在这个文件夹是个不错的主意。
 
 <h3 id="makefiles">Makefiles</h3>
 
- Be kind and don't make developers hunt around in your docs to figure
- out how to run the tests, add a `make test` target to your _Makefile_:
+添加一个 `make test` 目标到你的 _Makefile_ 可以使测试运行的更友好，不需要用户遍历文档以找出如何运行测试。
 
      test:
        ./node_modules/.bin/mocha \
@@ -638,7 +613,7 @@ To make things even easier, the `done()` callback accepts an error, so we may us
      
      .PHONY: test
 
-<h2 id="editors">Editors</h2>
+<h2 id="editors">编辑器</h2>
 
   The following editor-related packages are available:
 
@@ -650,31 +625,40 @@ To make things even easier, the `done()` callback accepts an error, so we may us
 
       $ make tm
 
-<h2 id="example-test-suites">Example test suites</h2>
+<h2 id="example-test-suites">测试套件范例</h2>
 
-  The following test suites are from real projects putting Mocha to use,
-  so they serve as good examples:
-  
+以下测试套件是使用 Mocha 的进行测试的真实项目，所以他们是很好的例子：
+
    - [Express](https://github.com/visionmedia/express/tree/master/test)
    - [Connect](https://github.com/senchalabs/connect/tree/master/test)
    - [SuperAgent](https://github.com/visionmedia/superagent/tree/master/test/node)
    - [WebSocket.io](https://github.com/LearnBoost/websocket.io/tree/master/test)
    - [Mocha](https://github.com/visionmedia/mocha/tree/master/test)
 
-<h2 id="running-mochas-tests">Running mocha's tests</h2>
+<h2 id="running-mochas-tests">运行 mocha 测试</h2>
 
- Run the tests:
+运行测试:
 
        $ make test
 
- Run all tests, including interfaces:
+运行所有测试，包括接口:
 
        $ make test-all
 
- Alter the reporter:
+选择报告器:
 
        $ make test REPORTER=list
 
-<h2 id="more-information">More information</h2>
+<h2 id="more-information">更多信息</h2>
 
-  For additional information such as using spies, mocking, and shared behaviours be sure to check out the [Mocha Wiki](https://github.com/visionmedia/mocha/wiki) on GitHub. For discussions join the [Google Group](http://groups.google.com/group/mochajs). For a running example of mocha view [example/tests.html](example/tests.html).
+  
+关注监视、桩和共享行为等知识请查看 [Mocha Wiki](https://github.com/visionmedia/mocha/wiki)。
+
+你可以加入 [Google Group](http://groups.google.com/group/mochajs) 进行讨论。
+
+访问 [example/tests.html](example/tests.html) 可以查看测试运行的范例。
+
+
+
+
+
