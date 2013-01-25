@@ -1,30 +1,5 @@
 Mocha 是一个能同时在 [node](http://nodejs.org) 端和浏览器端运行的特性丰富的测试框架，它使得异步测试简单而有趣。Mocha 通过串行的方式运行测试，通过将未捕获的异常映射到正确的测试用例，它能支持灵活而精确的测试报告，。项目托管在 [GitHub](http://github.com/visionmedia/mocha)。
 
-<h2 id="table-of-contents">目录</h2>
-
-  - [安装](#installation)
-  - [快速上手](#getting-started)
-  - [断言](#assertions)
-  - [同步代码](#synchronous-code)
-  - [异步代码](#asynchronous-code)
-  - [测试占位](#pending-tests)
-  - [仅执行指定测试](#exclusive-tests)
-  - [忽略指定测试](#inclusive-tests)
-  - [测试持续时间](#test-duration)
-  - [字符串差异](#string-diffs)
-  - [Mocha 命令行参数](#usage)
-  - [接口](#interfaces)
-  - [测试报告](#reporters)
-  - [浏览器支持](#browser-support)
-  - [mocha.opts](#mocha.opts)
-  - [套件指定超时](#suite-specific-timeouts)
-  - [测试指定超时](#test-specific-timeouts)
-  - [最佳实践](#best-practices)
-  - [编辑器](#editors)
-  - [测试套件范例](#example-test-suites)
-  - [运行 mocha 测试](#running-mochas-tests)
-  - [更多信息](#more-information)
-
 <h2 id="installation">安装</h2>
 
   通过 [npm](http://npmjs.org) 安装:
