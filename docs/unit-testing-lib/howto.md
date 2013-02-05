@@ -46,7 +46,7 @@
 
 编写单元测试是件非常容易上手的事情，以 [arale.event](https://github.com/aralejs/events) 为例:
 
-**目录结构**
+### 目录结构
 
     events/
         dist/
@@ -58,7 +58,7 @@
 
 测试代码就放在 tests/ 文件夹中
 
-**测试脚本**
+### 测试脚本
 
 events-spec.js
 
@@ -115,25 +115,63 @@ events-spec.js
 
 - **mock、桩和监视**
 
-    可能你的代码中有用到 Ajax 请求，但你肯定不想还要搭建一个服务才能进行测试，这个时候需要有库帮你模拟这个 Ajax 请求的返回结果。
+    可能你的代码中有用到外部库提供的 Ajax 功能，但你肯定不想还要搭建一个能真正处理 Ajax 请求的服务才能进行测试，这个时候需要有库帮你模拟这个 Ajax 请求的返回结果。
     
-    又或者你希望监视某个函数被调用的次数。
+    又或者你希望监视某个函数是否被调用或被调用的次数。
     
-    这些类似的功能我们推荐使用 [sinon](http://sinonjs.org/) 。
+    此类功能我们推荐使用 [sinon](http://sinonjs.org/) 。
 
 - **事件模拟**
 
     作为前端，写的代码免不了会包含各种浏览器端的操作，包括键盘、鼠标和触摸手势。我们需要触发响应的事件以确定绑定的方法是否正常工作。
     
-    关于这项功能我们推荐使用 (沉鱼正在认真筛选中…)
+    该项功能我们推荐使用 (沉鱼正在认真筛选中…)
 
 # 运行单元测试
 
 ### 手工运行测试
 
-**编写 runner.html**
+**编写 runner**
+
+runner.html
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>Events Runner</title>
+            <link href="static/mocha.css" type="text/css" rel="stylesheet" charset="utf-8">
+            <script src="http://static.alipayobjects.com/seajs/1.2.1/sea.js"></script>
+            <script src="static/es5-safe.js"></script>
+            <script src="static/test-suite.js"></script>
+        </head>
+        <body>
+            <div id="mocha"></div>
+            <script>
+                (function() {
+                    mocha.setup('bdd');
+                    puerh.use('expect');
+    
+                    seajs.config({
+                        alias : {
+                            // 这里配置你的测试代码中用到的依赖
+                        }
+                    })
+    
+                    seajs.use(['./events-spec'], function() {
+                        mocha.run()
+                    })
+                })();
+            </script>
+        </body>
+    </html>
 
 **在你需要测试的浏览器中打开运行**
+
+你将看到如下运行结果
+
+![Screen Shot 2013-02-05 at 4 19 38 PM](https://f.cloud.github.com/assets/340282/126681/e178b6d4-6f6c-11e2-837d-07f2c9c3abc5.png)
 
 ### 自动运行测试（实现中）
 
