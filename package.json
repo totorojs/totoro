@@ -1,0 +1,30 @@
+{
+    "name"          : "totoro",
+    "version"       : "0.0.1-dev",
+    "description"   : "test tools",
+    "homepage"      : "https://github.com/alipay/totoro",
+    "keywords"      : ["qc", "test", "tool"],
+    "author"        : "kangpangpang <kangpangpang@gmail.com>",
+    "contributors"  : ["fool2fish <fool2fish@gmail.com>"], 
+    "engines"       : {"node": ">= 0.8.17"},
+    "dependencies"  : {
+        "semver": "~1.0.14"
+    },
+    "devDependencies": {
+      "jasmine-node": "~1.0.26",
+      "mocha": "*",
+      "should": "*"
+    },
+    "repository"    : {
+        "type": "git",
+        "url": "git://github.com/alipay/totoro.git"
+    },
+    "main"          : "./lib/main.js",
+    "bin"           : {
+        "totoro": "./bin/main"
+    },
+    "scripts"       : {
+        "test": "make test"
+    },
+    "preferGlobal"  : true
+}
