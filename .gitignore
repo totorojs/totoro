@@ -1,4 +1,4 @@
 .project
 .settings
 .DS_Store
-ignored-assets/
+node_modules/
