@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Events Mocha Runner</title>
+        <link href="static/mocha.css" type="text/css" rel="stylesheet" charset="utf-8">
+        <script src="http://static.alipayobjects.com/seajs/1.2.1/sea.js"></script>
+        <script src="static/es5-safe.js"></script>
+        <script src="static/mocha-suite.js"></script>
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script>
+            (function() {
+                mocha.setup('bdd');
+                puerh.use('expect');
+
+                seajs.config({
+                    alias : {
+                        // 这里配置你的测试代码中用到的依赖
+                    }
+                })
+
+                seajs.use(['./events-spec'], function() {
+                    mocha.run()
+                })
+            })();
+        </script>
+    </body>
+</html>
