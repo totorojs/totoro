@@ -11,7 +11,9 @@
         "semver": "~1.0.14",
         "its":"*",
         "underscore":"*",
-        "thrill":"*"
+        "thrill":"*",
+        "winston": "~0.6.2",
+        "swig": "~0.13.5"
     },
     "devDependencies": {
       "jasmine-node": "~1.0.26",
