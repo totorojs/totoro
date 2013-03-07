@@ -12,8 +12,9 @@
         "its":"*",
         "underscore":"*",
         "thrill":"*",
-        "winston": "~0.6.2",
-        "swig": "~0.13.5"
+        "hogan.js": "~2.0.0",
+        "swig": "~0.13.5",
+        "uglify-js": "~2.2.5"
     },
     "devDependencies": {
       "jasmine-node": "~1.0.26",
