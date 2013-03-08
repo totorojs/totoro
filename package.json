@@ -16,6 +16,7 @@
         "winston": "~0.6.2"
     },
     "devDependencies": {
+      "grunt-contrib-jshint": "~0.1.1",
       "jasmine-node": "~1.0.26",
       "mocha": "*",
       "should": "*"
@@ -27,9 +28,6 @@
     "main"          : "./lib/main.js",
     "bin"           : {
         "totoro": "./bin/main"
-    },
-    "scripts"       : {
-        "test": "make test"
     },
     "preferGlobal"  : true
 }
