@@ -9,7 +9,7 @@
         <link type="text/css" rel="stylesheet" charset="utf-8" href="http://modules.spmjs.org/gallery/mocha/mocha.css" />
         <script src="http://static.alipayobjects.com/seajs/1.3.1/sea.js"></script>
         <script src="http://modules.spmjs.org/gallery/mocha/mocha.js"></script>
-        <script src="http://modules.spmjs.org/gallery/mocha/expect.js"></script>
+        <script src="http://modules.spmjs.org/gallery/puerh/puerh.js"></script>
         <script src="http://sinonjs.org/releases/sinon-1.5.2.js"></script>
         {{/testFrames.mocha}}
         
@@ -19,6 +19,12 @@
         <script src="http://pivotal.github.com/jasmine/lib/jasmine.js"></script>
         <script src="http://pivotal.github.com/jasmine/lib/jasmine-html.js"></script>
         {{/testFrames.jasmine}}
+
+        <script>
+            seajs.config({
+                preload: ['seajs/plugin-text']
+            });
+        </script>
         
     </head>
     <body>
@@ -26,6 +32,7 @@
         <div id="mocha"></div>
         <script>
             (function() {
+                puerh.use('expect');
                 mocha.setup('{{testStyle}}');
                 
                 {{&alias}}
