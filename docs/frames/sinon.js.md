@@ -389,97 +389,70 @@ Test stubs 是一类预编码行为的函数（也是一种 spy）。除了改�
 ### Stub API
 
 - **var stub = sinon.stub();**
+    
     创建一个匿名的 stub 函数。
 
 - **var stub = sinon.stub(object, "method");**
-    使用一个 stub 函数替代 object.method。原函数可以通过调用 object.method.restore() （或 stub.restore()）方法来还原。
-Replaces object.method with a stub function. The original function can be restored by calling object.method.restore(); (or stub.restore();). An exception is thrown if the property is not already a function, to help avoid typos when stubbing methods.
-var stub = sinon.stub(object, "method", func);
-Replaces object.method with a func, wrapped in a spy. As usual, object.method.restore(); can be used to restore the original method.
-var stub = sinon.stub(obj);
-Stubs all the object's methods.
-stub.withArgs(arg1[, arg2, ...]);
-Stubs the method only for the provided arguments. This is useful to be more expressive in your assertions, where you can access the spy with the same call. It is also useful to create a stub that can act differently in response to different arguments:
-"test should stub method differently based on arguments": function () {
-    var callback = sinon.stub();
-    callback.withArgs(42).returns(1);
-    callback.withArgs(1).throws("TypeError");
+    
+    使用一个 stub 函数替代 object.method。原函数可以通过调用 object.method.restore() （或 stub.restore()）方法来还原。如果 object.method 不是一个函数，则会抛出一个异常来帮助你避免类型错误。
 
-    callback(); // No return value, no exception
-    callback(42); // Returns 1
-    callback(1); // Throws TypeError
-}
-stub.returns(obj);
-Makes the stub return the provided value.
-stub.returnsArg(index);
-Causes the stub to return the argument at the provided index. stub.returnsArg(0); causes the stub to return the first argument.
-stub.throws();
-Causes the stub to throw an exception (Error).
-stub.throws("TypeError");
-Causes the stub to throw an exception of the provided type.
-stub.throws(obj);
-Causes the stub to throw the provided exception object.
-stub.callsArg(index);
-Causes the stub to call the argument at the provided index as a callback function. stub.callsArg(0); causes the stub to call the first argument as a callback.
-stub.callsArgOn(index, context);
-Like above but with an additional parameter to pass the this context.
-stub.callsArgWith(index, arg1, arg2, ...);
-Like callsArg, but with arguments to pass to the callback.
-stub.callsArgOnWith(index, context, arg1, arg2, ...);
-Like above but with an additional parameter to pass the this context.
-stub.yields([arg1, arg2, ...])
-Almost like callsArg. Causes the stub to call the first callback it receives with the provided arguments (if any). If a method accepts more than one callback, you need to use callsArg to have the stub invoke other callbacks than the first one.
-stub.yieldsOn(context, [arg1, arg2, ...])
-Like above but with an additional parameter to pass the this context.
-stub.yieldsTo(property, [arg1, arg2, ...])
-Causes the spy to invoke a callback passed as a property of an object to the spy. Like yields, yieldsTo grabs the first matching argument, finds the callback and calls it with the (optional) arguments:
-stub.yieldsToOn(property, context, [arg1, arg2, ...])
-Like above but with an additional parameter to pass the this context.
-"test should fake successful ajax request": function () {
-    sinon.stub(jQuery, "ajax").yieldsTo("success", [1, 2, 3]);
+- **var stub = sinon.stub(object, "method", func);**
+    
+    使用 func 来替换 object.method，并且被包装在一个 spy 中。object.method.restore() 可以恢复原方法。
 
-    jQuery.ajax({
-        success: function (data) {
-            assertEquals([1, 2, 3], data);
-        }
-    });
-}
-spy.yield([arg1, arg2, ...])
-Invoke callbacks passed to the spy with the given arguments. If the spy was never called with a function argument, yield throws an error. Also aliased as invokeCallback.
-spy.yieldTo(callback, [arg1, arg2, ...])
-Invokes callbacks passed as a property of an object to the spy. Like yield, yieldTo grabs the first matching argument, finds the callback and calls it with the (optional) arguments:
-"calling callbacks": function () {
-    var callback = sinon.stub();
-    callback({
-        "success": function () {
-            console.log("Success!");
-        },
-        "failure": function () {
-            console.log("Oh noes!");
-        }
-    });
+- **var stub = sinon.stub(obj);**
 
-    callback.yieldTo("failure"); // Logs "Oh noes!"
-}
-spy.callArg(argNum)
-Like yield, but with an explicit argument number specifying which callback to call. Useful if a function is called with more than one callback, and simply calling the first callback is not desired.
-"calling the last callback": function () {
-    var callback = sinon.stub();
-    callback(function () {
-        console.log("Success!");
-    },
-    function () {
-        console.log("Oh noes!");
-    });
+    stub 该对象的所有方法。
 
-    callback.callArg(1); // Logs "Oh noes!"
-}
-spy.callArgWith(argNum, [arg1, arg2, ...])
-Like callArg, but with arguments.
+- **stub.withArgs(arg1[, arg2, ...]);**
+    
+    仅当传入给定参数时，stub 该方法。这使得你的断言更富有表现力，你可以使用这个调用访问到 spy 对象。创建的这个 stub，对于不同的传入参数可以有不同的表现。。
+    
+    "test should stub method differently based on arguments": function () {
+        var callback = sinon.stub();
+        callback.withArgs(42).returns(1);
+        callback.withArgs(1).throws("TypeError");
+    
+        callback(); // No return value, no exception
+        callback(42); // Returns 1
+        callback(1); // Throws TypeError
+    }
+    
+- **stub.returns(obj);**
 
+    返回给定对象。
 
+- **stub.returnsArg(index);**
 
+    返回指定索引位置的参数。stub.returnsArg(0) 返回 stub 的第一个参数。
 
+- **stub.throws();**
+
+    抛出一个异常（错误）。
+    
+- **stub.throws("TypeError");**
+
+    抛出一个给定类型的异常。
+
+- **stub.throws(obj);**
+
+    抛出一个给定的异常对象。
+
+- **stub.callsArg(index);**
+
+    告诉 stub，方法调用时索引位置的参数是一个回调函数。stub.callsArg(0) 使得 stub 知道调用时传入的第一个参数是回调函数。
+
+- **stub.callsArgOn(index, context);**
+
+    类似于上一个方法，第二个参数指明了回调函数的 this 对象。
+
+- **stub.callsArgWith(index, arg1, arg2, ...);**
+
+    类似 callsArg，调用回调函数时，将传入给定参数。。
+    
+- **stub.callsArgOnWith(index, context, arg1, arg2, ...);**
+
+    参考上面的方法。
 
 
 
