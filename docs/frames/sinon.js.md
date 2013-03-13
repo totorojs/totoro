@@ -408,16 +408,16 @@ Test stubs 是一类预编码行为的函数（也是一种 spy）。除了改�
     
     仅当传入给定参数时，stub 该方法。这使得你的断言更富有表现力，你可以使用这个调用访问到 spy 对象。创建的这个 stub，对于不同的传入参数可以有不同的表现。。
     
-    "test should stub method differently based on arguments": function () {
-        var callback = sinon.stub();
-        callback.withArgs(42).returns(1);
-        callback.withArgs(1).throws("TypeError");
-    
-        callback(); // No return value, no exception
-        callback(42); // Returns 1
-        callback(1); // Throws TypeError
-    }
-    
+        "test should stub method differently based on arguments": function () {
+            var callback = sinon.stub();
+            callback.withArgs(42).returns(1);
+            callback.withArgs(1).throws("TypeError");
+        
+            callback(); // No return value, no exception
+            callback(42); // Returns 1
+            callback(1); // Throws TypeError
+        }
+        
 - **stub.returns(obj);**
 
     返回给定对象。
@@ -440,22 +440,76 @@ Test stubs 是一类预编码行为的函数（也是一种 spy）。除了改�
 
 - **stub.callsArg(index);**
 
-    告诉 stub，方法调用时索引位置的参数是一个回调函数。stub.callsArg(0) 使得 stub 知道调用时传入的第一个参数是回调函数。
+    使得 stub 将其调用时接收的索引位置的参数当做一个回调函数进行调用。stub.callsArg(0) 使得 stub 将其调用时接收的第一个参数作为回调函数进行调用。
 
 - **stub.callsArgOn(index, context);**
 
-    类似于上一个方法，第二个参数指明了回调函数的 this 对象。
+    类似于上一个方法，context 作为回调函数运行时的 this 对象。
 
 - **stub.callsArgWith(index, arg1, arg2, ...);**
 
-    类似 callsArg，调用回调函数时，将传入给定参数。。
+    类似 callsArg，传入给定参数来调用回调函数时。
     
 - **stub.callsArgOnWith(index, context, arg1, arg2, ...);**
 
     参考上面的方法。
 
+- **stub.yields([arg1, arg2, ...])**
 
+    类似于 callsArg，使得 stub 调用第一个回调函数（通过接收参数的类型匹配判定么？），并传入给定的参数（如果有的话）。如果这个方法有多余一个回调函数，你还是需要使用 callsArg 来让 stub 调用这些回调函数。
 
+- **stub.yieldsOn(context, [arg1, arg2, ...])**
+
+    类似 yields，context 作为回调函数运行时的 this 对象。
+
+- **stub.yieldsTo(property, [arg1, arg2, ...])**
+
+    当 stub 仅接收一个 object 类型的参数时，指明这个参数的 property 属性是一个回调函数。类似 yields，yieldsTo 抓取第一个匹配的参数，找到回调函数，并使用给定的参数（可选）来调用它。
+
+        "test should fake successful ajax request": function () {
+            sinon.stub(jQuery, "ajax").yieldsTo("success", [1, 2, 3]);
+        
+            jQuery.ajax({
+                success: function (data) {
+                    assertEquals([1, 2, 3], data);
+                }
+            });
+        }
+        
+- **stub.yieldsToOn(property, context, [arg1, arg2, ...])**
+
+    类似上述方法，只是增加了 context 参数作为回调函数运行时的 this 对象。
+
+- **spy.callArg(argNum)**
+
+    类似 yield，但是提供了一个参数用于指定调用第几个回调函数。如果一个函数接收不只一个回调函数时非常有用。在以下例子中，第一个回调参数就不会被调用。
+
+    "calling the last callback": function () {
+        var callback = sinon.stub();
+        callback(function () {
+            console.log("Success!");
+        },
+        function () {
+            console.log("Oh noes!");
+        });
+    
+        callback.callArg(1); // Logs "Oh noes!"
+    }
+
+- **spy.callArgWith(argNum, [arg1, arg2, ...])**
+
+    类似 callArg，但给定回调参数。
+
+- **stub.callsArgAsync(index);**
+- **stub.callsArgOnAsync(index, context);**
+- **stub.callsArgWithAsync(index, arg1, arg2, ...);**
+- **stub.callsArgOnWithAsync(index, context, arg1, arg2, ...);**
+- **stub.yieldsAsync([arg1, arg2, ...])**
+- **stub.yieldsOnAsync(context, [arg1, arg2, ...])**
+- **stub.yieldsToAsync(property, [arg1, arg2, ...])**
+- **stub.yieldsToOnAsync(property, context, [arg1, arg2, ...])**
+
+类似对应的非异步方法，区别在于回调函数的调用被推迟了（没有立即执行，而是通过一个短暂的 timeout 在另一个线程中执行）。
 
 
 
