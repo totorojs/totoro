@@ -1,6 +1,6 @@
 {
     "name"          : "totoro",
-    "version"       : "0.0.1-dev",
+    "version"       : "0.0.1",
     "description"   : "test tools",
     "homepage"      : "https://github.com/alipay/totoro",
     "keywords"      : ["qc", "test", "tool"],
