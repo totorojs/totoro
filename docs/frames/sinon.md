@@ -1,4 +1,4 @@
-# Sinon.js
+# Sinon
 
 用于 JavaScript 的测试监视(spy)、桩(stub)和仿制(mock)功能。不依赖其他类库，兼容任何单元测试框架。
 
