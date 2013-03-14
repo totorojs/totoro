@@ -158,7 +158,7 @@ runner.html
                             "$":"gallery/jquery/1.7.2/jquery",
                             "expect":"gallery/expect/0.2.0/expect.js",
                             "sinon":"gallery/sinon/1.6.0/sinon.js",
-                            "event-silumate":"arale/event-simulate/1.0.0/event-simulate"}}
+                            "event-simulate":"arale/event-simulate/1.0.0/event-simulate"}}
                     )
                     seajs.use(["./events-spec.js"], function() {
                         mocha.run()
