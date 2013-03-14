@@ -13,7 +13,10 @@
         "underscore":"*",
         "thrill":"*",
         "hogan.js": "~2.0.0",
-        "winston": "~0.6.2"
+        "winston": "~0.6.2",
+        "colorful": "~1.2.0",
+        "win-spawn": "~1.1.0",
+        "commander": "~1.1.1"
     },
     "devDependencies": {
       "grunt-contrib-jshint": "~0.1.1",
@@ -25,9 +28,8 @@
         "type": "git",
         "url": "git://github.com/alipay/totoro.git"
     },
-    "main"          : "./lib/main.js",
     "bin"           : {
-        "totoro": "./bin/main"
+        "totoro": "./bin/totoro"
     },
     "preferGlobal"  : true
 }

@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+var commander = require('commander');
+require('colorful').colorful();
+var test = require('../lib/test-run');
+
+commander.usage('[options]');
+
+commander
+  .option('-r, --run <filename>', '指定测试页: [run]')
+  .option('-f, --force', '重新生成测试页');
+
+
+commander.on('--help', function() {
+  console.log();
+  console.log('  ' + 'Examples:'.to.bold.blue.color);
+  console.log();
+  console.log('   测试标准的 cmd 模块');
+  console.log();
+  console.log('   $ ' + 'totoro test'.to.magenta.color);
+  console.log();
+  console.log('   运行指定的测试页面');
+  console.log();
+  console.log('   $ ' + 'totoro test '.to.magenta.color + ' ' + '-r'.to.cyan.color + ' path/runner.html');
+  console.log();
+  console.log('   重新生成测试页面');
+  console.log();
+  console.log('   $ ' + 'totoro test '.to.magenta.color + ' ' + '-f'.to.cyan.color);
+  console.log();
+  console.log('   For more information: ' + 'https://github.com/alipay/totoro/wiki'.to.underline.color);
+  console.log();
+});
+
+
+commander.parse(process.argv);
+
+console.log();
+test(commander);
