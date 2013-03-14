@@ -34,5 +34,4 @@ commander.on('--help', function() {
 
 commander.parse(process.argv);
 
-console.log();
 test(commander);
