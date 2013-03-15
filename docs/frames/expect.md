@@ -2,6 +2,8 @@
 
 基于 [should.js](http://github.com/visionmedia/should.js) 的轻量的 BDD 断言工具
 
+------
+
 ```js
 expect(window.r).to.be(undefined);
 expect({ a: 'b' }).to.eql({ a: 'b' })
