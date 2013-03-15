@@ -12,6 +12,7 @@
         "its":"*",
         "underscore":"*",
         "thrill":"*",
+        "queen-remote":"*",
         "hogan.js": "~2.0.0",
         "winston": "~0.6.2",
         "colorful": "~1.2.0",

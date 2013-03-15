@@ -8,7 +8,8 @@ commander.usage('[options]');
 
 commander
   .option('-r, --run <filename>', '指定测试页: [run]')
-  .option('-f, --force', '重新生成测试页');
+  .option('-f, --force', '重新生成测试页')
+  .option('-b, --browsers [browser name]', '获取服务浏览器列表: [browsers]');
 
 
 commander.on('--help', function() {
