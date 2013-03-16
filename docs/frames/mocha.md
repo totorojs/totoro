@@ -1,5 +1,7 @@
 # Mocha
 
+-----
+
 Mocha 是一个能同时在 [node](http://nodejs.org) 端和浏览器端运行的特性丰富的测试框架，它使得异步测试简单而有趣。Mocha 通过串行的方式运行测试，通过将未捕获的异常映射到正确的测试用例，它能支持灵活而精确的测试报告。项目托管在 [GitHub](http://github.com/visionmedia/mocha)。
 
 <h2 id="installation">安装</h2>
