@@ -18,7 +18,7 @@
                 mocha.setup('{{testStyle}}');
                 
                 seajs.config({
-                    preload: ['seajs/plugin-text','seajs/plugin-json'],
+                    preload: ['seajs/plugin-text','seajs/plugin-json', 'expect'],
                     alias:{{&alias}}}
                 )
                 seajs.use({{&useDeps}}, function() {
