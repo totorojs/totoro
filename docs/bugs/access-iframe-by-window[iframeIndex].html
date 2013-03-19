@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Access Iframe by window[iframeIndex]</title>
+    </head>
+    <body>
+        <h1>Access Iframe by window[iframeIndex]</h1>
+        <p>all browsers can access iframe by window[iframeIndex], but only ie6,7,8 and opera can get this iframeIndex by for in.</p>
+        <script>
+            (function(){
+                var a = window[0]
+                alert('at first, window[0] is ' + a)
+                
+                var ifm = document.createElement('iframe')
+                document.body.appendChild(ifm)
+                var b = window[0]
+                alert('after insert an iframe, window[0] is ' + b)
+                
+                var iframeIndexCanAccessByForIn = false
+                for(var i in window){
+                    if(i == 0){
+                        iframeIndexCanAccessByForIn = true
+                        break
+                    }
+                }
+                alert('iframe index can access by for in: ' + iframeIndexCanAccessByForIn)
+            })()
+        </script>
+    </body>
+</html>
