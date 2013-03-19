@@ -6,6 +6,9 @@
         <title>Runner</title>
         <link type="text/css" rel="stylesheet" charset="utf-8" href="http://modules.spmjs.org/gallery/mocha/1.8.1/mocha.css" />
         <script src="http://modules.spmjs.org/seajs/1.3.1/sea.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            window.getInterface = window.getInterface;
+        </script>
         <script src="http://modules.spmjs.org/gallery/mocha/1.8.1/mocha.js"></script>
     </head>
     <body>
@@ -15,7 +18,7 @@
                 mocha.setup('{{testStyle}}');
                 
                 seajs.config({
-                    preload: ['seajs/plugin-text','seajs/plugin-json'],
+                    preload: ['seajs/plugin-text','seajs/plugin-json', 'expect'],
                     alias:{{&alias}}}
                 )
                 seajs.use({{&useDeps}}, function() {
