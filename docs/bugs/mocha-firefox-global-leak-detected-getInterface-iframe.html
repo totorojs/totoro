@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mocha Firefox Global Leak Detected getInterface</title>
+    </head>
+    <body>
+        <p>I am an iframe.</p>
+        <script>
+            (function(){
+                var start = new Date().getTime()
+                var t = setInterval(function(){
+                    if(window.getInterface){
+                        var end = new Date().getTime()
+                        clearInterval(t)
+                        alert('in iframe, window.getInterface is avilable in ' + (end-start) + ' miniseconds.')
+                    }
+                },20)
+            })()
+        </script>
+    </body>
+</html>
