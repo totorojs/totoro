@@ -45,7 +45,7 @@ var options = {
     autoAdapt : false,
     stream : true,
     verbose : true,
-    host : 'localhost:9200' 
+    host : '10.15.52.87:9200' 
 }
 
 var optionActionsBaseDir = path.join(path.dirname(module.filename), '../lib/test-action')
