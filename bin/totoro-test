@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
 var commander = require('commander');
+var async = require('async');
+var path = require('path')
 require('colorful').colorful();
+
 var test = require('../lib/test-run');
+var fsExt = require('../lib/utils/fs_ext')
 
 commander.usage('[options]');
 
@@ -35,4 +39,38 @@ commander.on('--help', function() {
 
 commander.parse(process.argv);
 
-test(commander);
+// 解析参数
+
+var options = {
+    autoAdapt : false,
+    stream : true,
+    verbose : true,
+    host : 'localhost:9200' 
+}
+
+var optionActionsBaseDir = path.join(path.dirname(module.filename), '../lib/test-action')
+var getActionMod = function(name) {
+    return path.join(optionActionsBaseDir, name)
+}
+
+// 这两个需要顺序保证
+var optionActions = [getActionMod('browsers.js'), getActionMod('run.js')]
+
+var optionActions = fsExt.findFiles(optionActionsBaseDir, 
+        function(f) {
+            return optionActions.indexOf(f) < 0
+        }, optionActions).map(function(f) {
+            return require(f) 
+        });
+
+async.forEachSeries(optionActions, function(action, cb) {
+    action(commander, options, cb)
+}, function(stop) {
+    if (!stop) {
+        test(commander, options)
+    } else {
+        process.exit(0)
+    }
+
+});
+
