@@ -3,7 +3,7 @@
   "forin": false,
   "latedef": false,
   "newcap": true,
-  "quotmark": false,
+  "quotmark": true,
   "undef": false,
   "unused": false,
   "trailing": true,
