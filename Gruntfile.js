@@ -14,18 +14,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       all: [
-        'Gruntfile.js',
-        'lib/**/*.js'
+          'Gruntfile.js',
+          'lib/**/*.js'
       ],
       options: {
-          'node': true,
-          'bitwise': true,
-          'camelcase': true,
-          'strict': true,
-          'trailing': true,
-          'quotmark': 'single',
-          'undef': true,
-          'asi': true
+          'jshintrc': '.jshintrc'
       }
     }
 
