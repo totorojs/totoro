@@ -15,11 +15,18 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'lib/*.js'
+        'lib/**/*.js'
       ],
       options: {
-        jshintrc: '.jshintrc',
-      },
+          'node': true,
+          'bitwise': true,
+          'camelcase': true,
+          'strict': true,
+          'trailing': true,
+          'quotmark': 'single',
+          'undef': true,
+          'asi': true
+      }
     }
 
   });
