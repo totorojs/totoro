@@ -19,7 +19,7 @@
         "semver": "~1.0.14",
         "its": "*",
         "underscore": "*",
-        "totoro-thrill": "*",
+        "totoro-thrill": "~0.5.0",
         "totoro-queen-remote": "*",
         "hogan.js": "~2.0.0",
         "winston": "~0.6.2",
