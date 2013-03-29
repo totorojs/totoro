@@ -11,9 +11,10 @@ var fsExt = require('../lib/utils/fs_ext')
 commander.usage('[options]');
 
 commander
-  .option('-r, --run <filename>', '指定测试页: [run]')
+  .option('--runner <filename>', '指定测试页: [run]')
   .option('-f, --force', '重新生成测试页')
-  .option('-b, --browsers [browser name]', '获取服务浏览器列表: [browsers]');
+  .option('--browsers [browser name]', '获取服务浏览器列表: [browsers]')
+  .option('--mapping [adapt mapping]', '测试适配映射: [mapping]');
 
 
 commander.on('--help', function() {
@@ -62,7 +63,6 @@ var optionActions = fsExt.findFiles(optionActionsBaseDir,
         }, optionActions).map(function(f) {
             return require(f) 
         });
-
 async.forEachSeries(optionActions, function(action, cb) {
     action(commander, options, cb)
 }, function(stop) {
