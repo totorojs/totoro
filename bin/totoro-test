@@ -14,7 +14,7 @@ commander
   .option('--runner <filename>', '指定测试页: [run]')
   .option('-f, --force', '重新生成测试页')
   .option('--browsers [browser name]', '获取服务浏览器列表: [browsers]')
-  .option('--mapping [adapt mapping]', '测试适配映射: [mapping]');
+  .option('--adaptor [specify adaptor]', '指定测试适配器: [adaptor]');
 
 
 commander.on('--help', function() {
