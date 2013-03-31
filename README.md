@@ -15,7 +15,7 @@ npm install totoro -g
 ```
 totoro --verson
 ```
-能够现实出正确的信息，说明已经安装成功，目前最新的版本是 0.0.5
+能够现实出正确的信息，说明已经安装成功，目前最新的版本是 0.0.6
 
 ## 使用
 **主要有两种使用方式**
@@ -56,13 +56,11 @@ PASSED on all browsers
 
 看到上面的内容就说明你已经会使用 totoro 了，是不是很简单。
 
-#### 注意事项（v0.0.5）
+#### 注意事项（v0.0.6）
 1. 只支持标准的 cmd 模块，具体的模块样本可以参考 [arale](http://aralejs.org) 相关模块
 2. 只支持 [mocha](https://github.com/totorojs/totoro-test/blob/master/docs/test-frames/mocha.md) 测试套件。其中如果使用到 expect 需要在测试用例中 `require('expect)`
 3. 目前模块中单元测试用例需要在 **test** 或 **tests** 目录中
 4. 目前测试用例 totoro 只能识别 __*-spec.js__ 和 __*-test.js__ 这两种形式的测试文件.
-5. 执行完 totoro 命令后会在 tests 目录中会自动生成一个 runner.html. 这个是为了加载测试用例，生成的页面。这个不需要添加到版本控制中。
-  
 
 ### 指定测试页
 如果我们的模块已经有了一个可以运行的测试页，我我们可以通过下面的命令 totoro 就会自动把你的测试页面在指定的刘浏览器中运行，并返回测试结果.
@@ -71,7 +69,7 @@ PASSED on all browsers
 totoro test -r _site/tests/runner.html
 ```
 
-#### 注意事项(v0.0.5)
+#### 注意事项(v0.0.6)
 1. 我们目前支持下面集中测试套件:
     * mocha
     * jasmine
