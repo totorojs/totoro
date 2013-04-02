@@ -12,7 +12,7 @@
         <div id="mocha"></div>
         <script>
             (function() {
-                mocha.setup('{{testStyle}}');
+                mocha.ui('{{testStyle}}')
                 
                 seajs.config({
                     preload: ['seajs/plugin-text','seajs/plugin-json', 'expect'],
