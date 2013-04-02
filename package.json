@@ -19,6 +19,7 @@
         "winston": "~0.6.2",
         "express": "~3.1.0",
         "underscore": "*",
+        "socket.io": "*",
 
     
         "semver": "~1.0.14",
