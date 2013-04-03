@@ -2,7 +2,8 @@ define(function(require) {
 
     var $ = require('$')
     //var Class = require('class')
-    require('sinon')
+    var expect = require('expect')
+    var sinon = require('sinon')
     var eventSimulate = require('event-simulate')
 
     
