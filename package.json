@@ -18,8 +18,10 @@
     "dependencies": {
         "winston": "~0.6.2",
         "express": "~3.1.0",
-        "underscore": "*",
-        "socket.io": "*",
+        "underscore": "~1.4.4",
+        "socket.io": "~0.9.14",
+        
+        "useragent":"~2.0.3",
 
     
         "semver": "~1.0.14",
