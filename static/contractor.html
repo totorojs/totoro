@@ -12,10 +12,10 @@
             (function() {
                 var socket = io.connect('/labor')
                 socket.on('connect', function () {
-                    console.log('labor')
+                    socket.emit('ready', navigator.userAgent)
                 })
                 socket.on('disconnect', function(){
-                    console.log('disconnected')
+                    
                 })
             })()
         </script>
