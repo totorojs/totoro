@@ -14,8 +14,11 @@
                 socket.on('connect', function () {
                     socket.emit('ready', navigator.userAgent)
                 })
+                socket.on('addTask', function(data){
+                    console.log(data)
+                })
                 socket.on('disconnect', function(){
-                    
+                    console.log('disconnect')
                 })
             })()
         </script>
