@@ -10,7 +10,7 @@
         <h1>Totoro Test</h1>
         <script>
             (function() {
-                var socket = io.connect('/labor')
+                var socket = io.connect('/')
                 socket.on('connect', function () {
                     socket.emit('ready', navigator.userAgent)
                 })
