@@ -10,14 +10,22 @@
         <h1>Totoro Test</h1>
         <script>
             (function() {
-                var socket = io.connect('/')
-                socket.on('connect', function () {
+                var timer
+                var socket =  io.connect('/')
+                socket.on('connect', function(){
                     socket.emit('ready', navigator.userAgent)
+                    console.log('connected')
+                })
+                socket.on('ping', function(){
+                    clearInterval(timer)
                 })
                 socket.on('addTask', function(data){
                     console.log(data)
                 })
                 socket.on('disconnect', function(){
+                    timer = setInterval(function(){
+                        socket.emit('ping')
+                    }, 2000)
                     console.log('disconnect')
                 })
             })()
