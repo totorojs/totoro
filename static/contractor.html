@@ -20,7 +20,10 @@
                     clearInterval(timer)
                 })
                 socket.on('addTask', function(data){
-                    console.log(data)
+                    var ifm = document.createElement('iframe')
+                    ifm.id = data.match(/runner\/([^/]+)\//)[1]
+                    ifm.src = data
+                    document.body.appendChild(ifm)
                 })
                 socket.on('disconnect', function(){
                     timer = setInterval(function(){
