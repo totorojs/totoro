@@ -19,7 +19,7 @@
                 socket.on('ping', function(){
                     clearInterval(timer)
                 })
-                socket.on('addTask', function(data){
+                socket.on('newTask', function(data){
                     var ifm = document.createElement('iframe')
                     ifm.id = data.orderId
                     ifm.src = 'runner/' + data.orderId + '/' + data.runner
