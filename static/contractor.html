@@ -32,9 +32,24 @@
                     console.log('disconnect')
                 })
                 
+                var reports = []
                 window.report = function(opts){
-                    socket.emit('report', opts)
+                    reports.push(opts)
+                    if(opts.action === 'end'){
+                        var orderId = opts.orderId
+                        document.body.removeChild(document.getElementById(orderId))
+                        console.log('finish test: ' + orderId)
+                    }
                 }
+                setInterval(function(){
+                    if(reports.length){
+                        var temp = reports
+                        reports = []
+                        socket.emit('report', temp)
+                        console.log('emit report:')
+                        console.log(temp)
+                    }
+                }, 1000)
                 
             })()
         </script>
