@@ -11,7 +11,7 @@
         <script>
             (function() {
                 var timer
-                var socket =  io.connect('/')
+                var socket = io.connect('/')
                 socket.on('connect', function(){
                     socket.emit('ready', navigator.userAgent)
                     console.log('connected')
@@ -21,8 +21,8 @@
                 })
                 socket.on('addTask', function(data){
                     var ifm = document.createElement('iframe')
-                    ifm.id = data.match(/runner\/([^/]+)\//)[1]
-                    ifm.src = data
+                    ifm.id = data.orderId
+                    ifm.src = 'runner/' + data.orderId + '/' + data.runner
                     document.body.appendChild(ifm)
                 })
                 socket.on('disconnect', function(){
@@ -31,6 +31,11 @@
                     }, 2000)
                     console.log('disconnect')
                 })
+                
+                window.report = function(opts){
+                    socket.emit('report', opts)
+                }
+                
             })()
         </script>
     </body>
