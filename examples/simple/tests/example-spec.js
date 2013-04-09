@@ -9,13 +9,14 @@ define(function(require) {
     
     describe('测试套件', function() {
 
-        it('测试用例', function() {
+        it.skip('测试用例', function() {
             expect('断言').to.be.a('string')
         })
         
         describe('子测试套件', function() {
             it('子测试用例', function() {
-                expect('子断言').to.be.a('string')
+                expect('子断言').to.be.a('number')
+                expect('子断言').to.be.a('array')
             })
         })
     })
