@@ -19,11 +19,19 @@
                 socket.on('ping', function(){
                     clearInterval(timer)
                 })
-                socket.on('newTask', function(data){
+                socket.on('addOrder', function(data){
                     var ifm = document.createElement('iframe')
                     ifm.id = data.orderId
                     ifm.src = 'runner/' + data.orderId + '/' + data.runner
                     document.body.appendChild(ifm)
+                    console.log('add order: ' + data.orderId)
+                })
+                socket.on('delOrder', function(orderId){
+                    var ifm = document.getElementById(orderId)
+                    if(ifm){
+                        document.body.removeChild(ifm)
+                        console.log('delete order: ' + orderId)
+                    }
                 })
                 socket.on('disconnect', function(){
                     timer = setInterval(function(){
@@ -37,7 +45,7 @@
                     if(data.action === 'end'){
                         var orderId = data.orderId
                         document.body.removeChild(document.getElementById(orderId))
-                        console.log('finish test: ' + orderId)
+                        console.log('finish order: ' + orderId)
                     }
                 }
                 
