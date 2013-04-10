@@ -182,7 +182,7 @@ define(function(require) {
         
         it('脚本执行效率', function(){
             var startTime = new Date().getTime()
-            for(var j=0; j<10000; j++){
+            for(var j=0; j<100000; j++){
                 fn()
             }
             var endTime = new Date().getTime()
