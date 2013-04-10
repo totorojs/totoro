@@ -13,7 +13,7 @@
                 var timer
                 var socket = io.connect('/labor')
                 socket.on('connect', function(){
-                    socket.emit('ready', navigator.userAgent)
+                    socket.emit('init', navigator.userAgent)
                     console.log('connected')
                 })
                 socket.on('ping', function(){
