@@ -30,14 +30,19 @@
                     var ifm = document.getElementById(orderId)
                     if(ifm){
                         document.body.removeChild(ifm)
-                        console.log('delete order: ' + orderId)
+                        console.log('delete not finished order: ' + orderId)
                     }
                 })
                 socket.on('disconnect', function(){
+                    console.log('disconnect')
+                    var ifms = document.getElementsByTagName('iframe')
+                    for(var i = 0; i < ifms.length; i++){
+                        console.log('delete not finished order: ' + ifms[i])
+                        document.body.removeChild(ifms[i])
+                    }
                     timer = setInterval(function(){
                         socket.emit('ping')
                     }, 2000)
-                    console.log('disconnect')
                 })
                 
                 window.report = function(data){
