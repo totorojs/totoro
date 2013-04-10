@@ -23,14 +23,14 @@
         "uuid": "~1.4.1",
         "useragent":"~2.0.3",
         "socket.io-client": "~0.9.11",
-
+        "colorful": "~2.0.2",
     
         "semver": "~1.0.14",
         "its": "*",
         "totoro-thrill": "~0.5.0",
         "totoro-queen-remote": "*",
         "hogan.js": "~2.0.0",
-        "colorful": "~1.2.0",
+        
         "win-spawn": "~1.1.0",
         "commander": "~1.1.1",
         "async": "~0.2.6"

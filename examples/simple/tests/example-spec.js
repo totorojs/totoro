@@ -15,8 +15,7 @@ define(function(require) {
         
         describe('子测试套件', function() {
             it('子测试用例', function() {
-                expect('子断言').to.be.a('number')
-                expect('子断言').to.be.a('array')
+                expect('子断言').to.be.a('string')
             })
         })
     })
