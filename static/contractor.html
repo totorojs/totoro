@@ -29,16 +29,14 @@
                 socket.on('delOrder', function(orderId){
                     var ifm = document.getElementById(orderId)
                     if(ifm){
-                        document.body.removeChild(ifm)
-                        console.log('delete not finished order: ' + orderId)
+                        delIfm(ifm)
                     }
                 })
                 socket.on('disconnect', function(){
                     console.log('disconnect')
                     var ifms = document.getElementsByTagName('iframe')
                     for(var i = 0; i < ifms.length; i++){
-                        console.log('delete not finished order: ' + ifms[i])
-                        document.body.removeChild(ifms[i])
+                        delIfm(ifms[i])
                     }
                     timer = setInterval(function(){
                         socket.emit('ping')
@@ -52,6 +50,11 @@
                         document.body.removeChild(document.getElementById(orderId))
                         console.log('finish order: ' + orderId)
                     }
+                }
+                
+                function delIfm(ifm){
+                    console.log('delete not finished order: ' + ifm.id)
+                    document.body.removeChild(ifm)
                 }
                 
             })()
