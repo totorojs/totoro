@@ -10,7 +10,10 @@
         <h1>Totoro Test</h1>
         <script>
             (function() {
-                console = console || {log:function(){}}
+                if (typeof console === 'undefined') {
+                    console = {log:function(){}}
+                }
+
                 var timer
                 var socket = io.connect('/labor')
                 socket.on('connect', function(){
