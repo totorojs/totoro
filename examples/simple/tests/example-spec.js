@@ -173,7 +173,7 @@ define(function(require) {
     })
     
     
-    describe('性能测试', function(){
+    describe.skip('性能测试', function(){
         function fn(){
             for(var i = 0; i<10000; i++){
                 var a
