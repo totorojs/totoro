@@ -58,9 +58,12 @@
                     }
                 }
                 setInterval(function(){
-                    var data = reports
-                    reports = []
-                    socket.emit('report', data)
+                    if(reports.length){
+                        var data = reports
+                        reports = []
+                        socket.emit('report', data)
+                        console.log('emit report data')
+                    }
                 },1000)
                 
                 function removeIfm(ifm){
