@@ -47,14 +47,21 @@
                     }, 2000)
                 })
                 
+                var reports = []
                 window.report = function(data){
-                    socket.emit('report', data)
+                    reports.push(data)
+                    
                     if(data.action === 'end'){
                         var orderId = data.orderId
                         document.body.removeChild(document.getElementById(orderId))
                         console.log('finish order: ' + orderId)
                     }
                 }
+                setInterval(function(){
+                    var data = reports
+                    reports = []
+                    socket.emit('report', data)
+                },1000)
                 
                 function removeIfm(ifm){
                     console.log('remove not finished order: ' + ifm.id)
