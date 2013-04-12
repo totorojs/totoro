@@ -1,20 +1,44 @@
 #!/usr/bin/env node
 
-var commander = require('commander');
-var async = require('async');
+var fs = require('fs')
+var commander = require('commander')
+var async = require('async')
 var path = require('path')
-require('colorful').colorful();
+require('colorful').colorful()
 
-var test = require('../lib/test-run');
-var fsExt = require('../lib/utils/fs_ext')
+var program = require('../lib/utils/program')
 
-commander.usage('[options]');
+var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
+var pkg = JSON.parse(pkgStr)
+
+commander.helpInformation = function() {
+  return [
+    '',
+    '  totoro-test 支付宝前端测试框架'.to.bold.color,
+    '',
+    '  Usage: ' + this._name + ' ' + this.usage(),
+    '' + this.commandHelp(),
+    '  Options:',
+    '',
+    '' + this.optionHelp().replace(/^/gm, '    '),
+    '',
+    ''
+  ].join('\n');
+}
 
 commander
-  .option('--runner <filename>', '指定测试页: [run]')
-  .option('-f, --force', '重新生成测试页')
-  .option('--browsers [browser name]', '获取服务浏览器列表: [browsers]')
-  .option('--adaptor [specify adaptor]', '指定测试适配器: [adaptor]');
+  .version(pkg.version)
+  .usage('[options]')
+
+commander
+  .option('-v, --verbose', 'show more logs')
+  .option('--runner <filename>', '指定测试页.')
+  .option('--platforms [ff,ie,ie/7]', '获取服务浏览器列表.')
+  .option('--adapter [seajs, mocha]', '测试适配映射.')
+  .option('--server', '启动服务: [server]')
+  .option('--serverHost [server host]', '服务地址.')
+  .option('--serverPort [9999]', '服务端口.')
+  .option('--list[platforms list]', '浏览器列表.');
 
 
 commander.on('--help', function() {
@@ -23,54 +47,26 @@ commander.on('--help', function() {
   console.log();
   console.log('   测试标准的 cmd 模块');
   console.log();
-  console.log('   $ ' + 'totoro test'.to.magenta.color);
+  console.log('   $ ' + 'totoro-test'.to.magenta.color);
   console.log();
   console.log('   运行指定的测试页面');
   console.log();
-  console.log('   $ ' + 'totoro test '.to.magenta.color + ' ' + '-r'.to.cyan.color + ' path/runner.html');
+  console.log('   $ ' + 'totoro-test '.to.magenta.color + ' ' + '--runner'.to.cyan.color + ' path/runner.html');
   console.log();
-  console.log('   重新生成测试页面');
+  console.log('   查看浏览器列表');
   console.log();
-  console.log('   $ ' + 'totoro test '.to.magenta.color + ' ' + '-f'.to.cyan.color);
+  console.log('   $ ' + 'totoro-test '.to.magenta.color + ' ' + '--list'.to.cyan.color);
   console.log();
-  console.log('   For more information: ' + 'https://github.com/alipay/totoro/wiki'.to.underline.color);
+  console.log('   启动测试服务器');
+  console.log();
+  console.log('   $ ' + 'totoro-test '.to.magenta.color + ' ' + '--server'.to.cyan.color);
+  console.log();
+
+  console.log('   For more information: ' + 'https://github.com/totorojs/totoro-test/wiki'.to.underline.color);
   console.log();
 });
 
 
 commander.parse(process.argv);
 
-// 解析参数
-
-var options = {
-    autoAdapt : false,
-    stream : true,
-    verbose : true,
-    queenHost : '10.15.52.87:9200' 
-}
-
-var optionActionsBaseDir = path.join(path.dirname(module.filename), '../lib/test-action')
-var getActionMod = function(name) {
-    return path.join(optionActionsBaseDir, name)
-}
-
-// 这两个需要顺序保证
-var optionActions = [getActionMod('browsers.js'), getActionMod('run.js')]
-
-var optionActions = fsExt.findFiles(optionActionsBaseDir, 
-        function(f) {
-            return optionActions.indexOf(f) < 0
-        }, optionActions).map(function(f) {
-            return require(f) 
-        });
-async.forEachSeries(optionActions, function(action, cb) {
-    action(commander, options, cb)
-}, function(stop) {
-    if (!stop) {
-        test(commander, options)
-    } else {
-        process.exit(0)
-    }
-
-});
-
+require('../lib/actions/actions')(commander)

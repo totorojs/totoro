@@ -1,5 +1,5 @@
 {
-    "name": "totoro",
+    "name": "totoro-test",
     "version": "0.1.1",
     "description": "test tools",
     "homepage": "https://github.com/alipay/totoro",
@@ -16,14 +16,21 @@
         "node": ">= 0.8.17"
     },
     "dependencies": {
+        "winston": "~0.6.2",
+        "express": "~3.1.0",
+        "underscore": "~1.4.4",
+        "socket.io": "~0.9.14",
+        "uuid": "~1.4.1",
+        "useragent":"~2.0.3",
+        "socket.io-client": "~0.9.11",
+        "colorful": "~2.0.2",
+
         "semver": "~1.0.14",
         "its": "*",
         "underscore": "*",
-        "totoro-thrill": "~0.5.2",
         "totoro-queen-remote": "*",
         "hogan.js": "~2.0.0",
-        "winston": "~0.6.2",
-        "colorful": "~1.2.0",
+
         "win-spawn": "~1.1.0",
         "commander": "~1.1.1",
         "async": "~0.2.6"
@@ -40,7 +47,7 @@
         "url": "git://github.com/alipay/totoro.git"
     },
     "bin": {
-        "totoro": "./bin/totoro"
+        "totoro": "./bin/totoro-test"
     },
     "preferGlobal": true
 }

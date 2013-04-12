@@ -1,4 +1,4 @@
-# totoro test
+# TOTORO-TEST
 
 命令行前端测试工具。
 

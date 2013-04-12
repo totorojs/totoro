@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Totoro Test</title>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <h1>Totoro Test</h1>
+        <script>
+            (function() {
+                if (typeof console === 'undefined') {
+                    console = {log:function(){}}
+                }
+
+                var timer
+                var socket = io.connect('/labor')
+                socket.on('connect', function(){
+                    socket.emit('init', navigator.userAgent)
+                    console.log('connected')
+                })
+                socket.on('ping', function(){
+                    clearInterval(timer)
+                })
+                socket.on('addOrder', function(data){
+                    var ifm = document.createElement('iframe')
+                    ifm.id = data.orderId
+                    ifm.src = 'runner/' + data.orderId + '/' + data.runner
+                    document.body.appendChild(ifm)
+                    console.log('add order: ' + data.orderId)
+                })
+                socket.on('removeOrder', function(orderId){
+                    var ifm = document.getElementById(orderId)
+                    if(ifm){
+                        removeIfm(ifm)
+                    }
+                })
+                socket.on('disconnect', function(){
+                    console.log('disconnect')
+                    var ifms = document.getElementsByTagName('iframe')
+                    for(var i = 0; i < ifms.length; i++){
+                        removeIfm(ifms[i])
+                    }
+                    timer = setInterval(function(){
+                        socket.emit('ping')
+                    }, 2000)
+                })
+                
+                var reports = []
+                window.report = function(data){
+                    reports.push(data)
+                    
+                    if(data.action === 'end'){
+                        var orderId = data.orderId
+                        document.body.removeChild(document.getElementById(orderId))
+                        console.log('finish order: ' + orderId)
+                    }
+                }
+                setInterval(function(){
+                    if(reports.length){
+                        var data = reports
+                        reports = []
+                        socket.emit('report', data)
+                        console.log('emit report data')
+                    }
+                },1000)
+                
+                function removeIfm(ifm){
+                    console.log('remove not finished order: ' + ifm.id)
+                    document.body.removeChild(ifm)
+                }
+                
+            })()
+        </script>
+    </body>
+</html>
