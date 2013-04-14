@@ -13,7 +13,8 @@
                 if (typeof console === 'undefined') {
                     console = {log:function(){}}
                 }
-
+                
+                var orders = {}
                 var timer
                 var socket = io.connect('/labor')
                 socket.on('connect', function(){
@@ -24,23 +25,31 @@
                     clearInterval(timer)
                 })
                 socket.on('addOrder', function(data){
-                    var ifm = document.createElement('iframe')
-                    ifm.id = data.orderId
-                    ifm.src = 'runner/' + data.orderId + '/' + data.runner
-                    document.body.appendChild(ifm)
-                    console.log('add order: ' + data.orderId)
+                     var orderId = data.orderId
+                    var src = 'runner/' + data.orderId + '/' + data.runner
+                    var runInWindow = data.runInWindow
+                    if(runInWindow){
+                        var element = window.open(src, null, 'top=200,left=400,width=400,height=300')
+                    }else{
+                        var element = document.createElement('iframe')
+                        element.src = src
+                        document.body.appendChild(element)
+                    }
+                    orders[orderId] = {
+                        runInWindow: runInWindow,
+                        element: element
+                    }
+                    console.log('add order: ' + orderId + ' run in ' +
+                             (runInWindow ? 'new window' : 'iframe'))
                 })
                 socket.on('removeOrder', function(orderId){
-                    var ifm = document.getElementById(orderId)
-                    if(ifm){
-                        removeIfm(ifm)
-                    }
+                    console.log('order interrupted: ' + orderId)
+                    removeOrder(orderId)
                 })
                 socket.on('disconnect', function(){
-                    console.log('disconnect')
-                    var ifms = document.getElementsByTagName('iframe')
-                    for(var i = 0; i < ifms.length; i++){
-                        removeIfm(ifms[i])
+                    console.log('disconnected')
+                    for(var i in orders){
+                        removeOrder(i)
                     }
                     timer = setInterval(function(){
                         socket.emit('ping')
@@ -53,8 +62,8 @@
                     
                     if(data.action === 'end'){
                         var orderId = data.orderId
-                        document.body.removeChild(document.getElementById(orderId))
                         console.log('finish order: ' + orderId)
+                        removeOrder(orderId)
                     }
                 }
                 setInterval(function(){
@@ -66,10 +75,18 @@
                     }
                 },1000)
                 
-                function removeIfm(ifm){
-                    console.log('remove not finished order: ' + ifm.id)
-                    document.body.removeChild(ifm)
-                }
+                function removeOrder(orderId){
+                    var order = orders[orderId]
+                    delete orders[orderId]
+                    var runInWindow = order.runInWindow
+                    var element = order.element
+                    if(runInWindow){
+                        element.close()
+                    }else{
+                        document.body.removeChild(element)
+                    }
+                    console.log('remove order: ' + orderId)
+                 }
                 
             })()
         </script>

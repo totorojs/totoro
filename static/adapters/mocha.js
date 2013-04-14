@@ -1,6 +1,7 @@
 (function() {
     mocha.reporter(function(runner) {
-        var report = top.report
+        var labor = window.opener || window.parent
+        var report = labor.report
         var id = location.href.match(/runner\/([^/]+)\//)[1]
         var stats = {
             suites : 0,
