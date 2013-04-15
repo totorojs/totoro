@@ -38,7 +38,7 @@ commander
   .option('--server', '启动服务: [server]')
   .option('--serverHost [server host]', '服务地址')
   .option('--serverPort [9999]', '服务端口')
-  .option('--list[platforms list]', '浏览器列表');
+  .option('--list [platforms list]', '浏览器列表');
 
 
 commander.on('--help', function() {
