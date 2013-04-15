@@ -25,22 +25,13 @@
                     clearInterval(timer)
                 })
                 socket.on('addOrder', function(data){
-                     var orderId = data.orderId
+                    var orderId = data.orderId
                     var src = 'runner/' + data.orderId + '/' + data.runner
-                    var runInWindow = data.runInWindow
-                    if(runInWindow){
-                        var element = window.open(src, null, 'top=200,left=400,width=400,height=300')
-                    }else{
-                        var element = document.createElement('iframe')
-                        element.src = src
-                        document.body.appendChild(element)
-                    }
-                    orders[orderId] = {
-                        runInWindow: runInWindow,
-                        element: element
-                    }
-                    console.log('add order: ' + orderId + ' run in ' +
-                             (runInWindow ? 'new window' : 'iframe'))
+                    var element = document.createElement('iframe')
+                    element.src = src
+                    document.body.appendChild(element)
+                    orders[orderId] = element
+                    console.log('add order: ' + orderId)
                 })
                 socket.on('removeOrder', function(orderId){
                     console.log('order interrupted: ' + orderId)
@@ -76,15 +67,9 @@
                 },1000)
                 
                 function removeOrder(orderId){
-                    var order = orders[orderId]
+                    var element = orders[orderId]
+                    document.body.removeChild(element)
                     delete orders[orderId]
-                    var runInWindow = order.runInWindow
-                    var element = order.element
-                    if(runInWindow){
-                        element.close()
-                    }else{
-                        document.body.removeChild(element)
-                    }
                     console.log('remove order: ' + orderId)
                  }
                 
