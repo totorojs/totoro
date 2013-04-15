@@ -1,6 +1,6 @@
 {
     "name": "totoro-test",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "test tools",
     "homepage": "https://github.com/alipay/totoro",
     "keywords": [
@@ -47,7 +47,7 @@
         "url": "git://github.com/alipay/totoro.git"
     },
     "bin": {
-        "totoro": "./bin/totoro-test"
+        "totoro-test": "./bin/totoro-test"
     },
     "preferGlobal": true
 }
