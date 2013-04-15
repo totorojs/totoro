@@ -35,7 +35,6 @@ commander
   .option('--runner <filename>', '指定测试页')
   .option('--platforms [ff,ie,ie/7]', '获取服务浏览器列表')
   .option('--adapter [seajs, mocha]', '测试适配映射')
-  .option('--runInWindow', '在新窗口中运行测试')
   .option('--server', '启动服务: [server]')
   .option('--serverHost [server host]', '服务地址')
   .option('--serverPort [9999]', '服务端口')
