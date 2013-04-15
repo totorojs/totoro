@@ -32,7 +32,7 @@ commander
 
 commander
     .option('-v, --verbose', 'show debug log')
-    .option('--runner [s]', 'runner path [auto])
+    .option('--runner [s]', 'runner path [auto]')
     .option('--platforms [s]', 'specify platforms to run test [*]')
     .option('--adapter [s]', 'specify report adapter [auto]')
     .option('--timeout [n]', 'client timeout [5]')
