@@ -4,7 +4,7 @@
 
 工具可以自动生成runner，发送到多个浏览器中进行测试，返回测试结果。
 
-最新版本：v0.1.4 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
+最新版本：v0.1.5 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
 
 ---
 
@@ -21,7 +21,7 @@ npm install totoro-test -g
 ```
 totoro-test --verson
 ```
-输出 **0.1.4**，说明已经安装成功。
+输出 **0.1.5**，说明已经安装成功。
 
 
 ## 使用
