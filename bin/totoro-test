@@ -14,7 +14,7 @@ var pkg = JSON.parse(pkgStr)
 commander.helpInformation = function() {
     return [
         '',
-        '  A simple, easy-to-use and stable JavaScript unit testing tool'.to.bold.color,
+        '  A simple, easy-to-use and stable front-end unit testing tool'.to.bold.color,
         '',
         '  Usage: ' + this._name + ' ' + this.usage(),
         '' + this.commandHelp(),
