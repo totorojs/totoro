@@ -50,7 +50,7 @@ commander.on('--help', function() {
     console.log()
     console.log('   $ ' + 'totoro-test'.to.magenta.color)
     console.log()
-    console.log('   2. test specied runner')
+    console.log('   2. test specified runner')
     console.log()
     console.log('   $ ' + 'totoro-test '.to.magenta.color + ' ' + '--runner'.to.cyan.color + ' path/to/runner.html')
     console.log()
