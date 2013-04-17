@@ -54,7 +54,9 @@
                     if(data.action === 'end'){
                         var orderId = data.orderId
                         console.log('finish order: ' + orderId)
-                        removeOrder(orderId)
+                        setTimeout(function() {
+                            removeOrder(orderId)
+                        }, 0)
                     }
                 }
                 setInterval(function(){
