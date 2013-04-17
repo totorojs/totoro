@@ -50,13 +50,10 @@
                 var reports = []
                 window.report = function(data){
                     reports.push(data)
-                    
                     if(data.action === 'end'){
                         var orderId = data.orderId
                         console.log('finish order: ' + orderId)
-                        setTimeout(function() {
-                            removeOrder(orderId)
-                        }, 0)
+                        removeOrder(orderId)
                     }
                 }
                 setInterval(function(){
@@ -70,8 +67,21 @@
                 
                 function removeOrder(orderId){
                     var element = orders[orderId]
-                    document.body.removeChild(element)
                     delete orders[orderId]
+                    /*
+                     * NOTE:
+                     * 
+                     * if removeChild() is not wrapped in setTimout()
+                     * this method will cause error in ie9
+                     * a very short time after iframe be removed
+                     * test frameworks seems still working, cause unreasonable error and report it
+                     * 
+                     * as report data was cached in JSON form
+                     * these errors will change 'end' report's value
+                     */
+                    setTimeout(function(){
+                        document.body.removeChild(element)
+                    }, 0)
                     console.log('remove order: ' + orderId)
                  }
                 
