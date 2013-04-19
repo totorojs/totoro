@@ -1,86 +1,86 @@
-# TOTORO-TEST
+![totoro - front-end quality assurance toolset](https://f.cloud.github.com/assets/340282/401517/4563cedc-a8dd-11e2-814d-36494351adfa.jpg)
 
-命令行前端测试工具。
+# totoro-test
 
-工具可以自动生成runner，发送到多个浏览器中进行测试，返回测试结果。
+A simple, easy-to-use and stable front-end unit testing tool.
 
-最新版本：v0.1.5 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
+Latest version：v0.1.5 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
+
+[中文版使用文档](README.cn.md)
 
 ---
 
-## 安装
+## 1. Installation
 
-### 从 npm 安装
+### Install From npm
 
-```
-npm install totoro-test -g
+    sudo npm install totoro-test -g
 
-```
-安装完毕后，运行
+### Install From Github
 
-```
-totoro-test --verson
-```
-输出 **0.1.5**，说明已经安装成功。
+to get the latest function
 
+    git clone git@github.com:totorojs/totoro-test.git
+    cd totoro-test
+    sudo npm install -g
 
-## 使用
+## 2. Quick Start
 
-### 标准方式
+1. gitclone
 
-以 https://github.com/aralejs/base.git 为例
+2. Run
 
-```
-git clone https://github.com/aralejs/base.git
-cd base
-totoro-test
-```
-然后就会看到下面类似的结果
+        totoro-test
 
-```
-Firefox 19.0.0 (Windows 7) PASSED 20 tests
-IE 7.0.0 (Windows XP) PASSED 20 tests
-IE 8.0.0 (Windows 7) PASSED 20 tests
-Chrome 25.0.1364 (Windows 7) PASSED 20 tests
-IE 9.0.0 (Windows 7) PASSED 20 tests
-IE 6.0.0 (Windows XP) PASSED 20 tests
-Opera 12.14.0 (Windows XP) PASSED 20 tests
-Safari 5.1.7 (Windows 7) PASSED 20 tests
-PASSED on all browsers
-```
+    Then you should see a report like the image below:
 
-看到上面的内容就说明你已经会使用 totoro-test 了，是不是很简单。
+    
+## 3. Usage
 
-#### 注意事项
-1. 目前只支持 CMD 模块。
-2. 测试脚本需放在 tests 或 test 文件夹中。
-3. 工具可以自动生成runner.html，test/tests 文件夹中，文件名包含 __spec__ 或 __test__ 字段的均视为测试脚本。
-4. 测试类库目前支持 [mocha](https://github.com/totorojs/totoro-test/wiki/mocha) 、[expect](https://github.com/totorojs/totoro-test/wiki/expect) 、 [sinon](https://github.com/totorojs/totoro-test/wiki/sinon) 和 [eventSimulate](https://github.com/aralejs/event-simulate)组合。除mocha外，其他均需要通过 `require` 引入。
-
-### 指定 runner 进行测试
-
-如果我们的模块已经有了一个可以运行的测试页，我我们可以通过下面的命令 totoro 就会自动把你的测试页面在指定的刘浏览器中运行，并返回测试结果.
-
-```
-totoro-test -runner _site/tests/runner.html
-```
-
-### 自定义测试适配器
-```
-totoro-test --adapter=tests/totoro-adapter.js
-```
-
-
-#### 注意事项
-
-1. 我们目前支持 mocha 种测试套件:
-2. 在测试页面中对这些测试套件的引用必须单独且不更改名称，比如:
-
-```
-    <script src='../mocha.js'></script>
-```
+### Specify Platforms
 
 
 
-更多文档和介绍详见 [wiki](https://github.com/totorojs/totoro-test/wiki)
+### Specify Runner Path
+
+    totoro-test --runner customs
+
+### Custom Adapter
+
+Adapter is used to report testing progress and result. Mocha, jasmine, yuitest and qunit adapters are built in. It is very easy to write a adapter for your own test framework.
+
+### View Avilable Browsers
+
+    totoro-test --list
+
+![totoro-test --list](https://f.cloud.github.com/assets/340282/401524/8bf080fc-a8dd-11e2-9188-5b0ff30280bb.png)
+
+### Auto Generate Runner For CMD Module
+
+
+## 4. More Examples
+
+### Official Examples
+
+### Examples From totoro-test's Users
+
+- SeaJS
+- Arale
+- Handy
+
+## 5. Launch Your Own Server
+
+    totoro-test --server
+
+## 6. Features
+
+- Tests run in real browsers
+- Support all test frameworks
+- Real-time progress feedback
+- Well formed tesging report
+
+## 7. About totoro-test
+
+totoro-test takes it's name from animated fantasy film "My Neighbor Totoro" directed by [Hayao Miyazaki](http://en.wikipedia.org/wiki/Hayao_Miyazaki).
+
 
