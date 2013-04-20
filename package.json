@@ -2,10 +2,10 @@
     "name": "totoro-test",
     "version": "0.1.5",
     "description": "test tools",
-    "homepage": "https://github.com/alipay/totoro",
+    "homepage": "https://github.com/totorojs/totoro-test",
     "keywords": [
-        "qc",
-        "test",
+        "front-end",
+        "unit test",
         "tool"
     ],
     "author": "kangpangpang <kangpangpang@gmail.com>",
@@ -16,35 +16,23 @@
         "node": ">= 0.8.17"
     },
     "dependencies": {
+        "commander": "~1.1.1",
+        "async": "~0.2.7",
         "winston": "~0.6.2",
         "express": "~3.1.0",
         "underscore": "~1.4.4",
         "socket.io": "~0.9.14",
-        "uuid": "~1.4.1",
-        "useragent":"~2.0.3",
         "socket.io-client": "~0.9.11",
+        "useragent":"~2.0.3",
         "colorful": "~2.0.2",
-
-        "semver": "~1.0.14",
-        "its": "*",
-        "underscore": "*",
-        "totoro-queen-remote": "*",
-        "hogan.js": "~2.0.0",
-
-        "win-spawn": "~1.1.0",
-        "commander": "~1.1.1",
-        "async": "~0.2.6"
+        "hogan.js": "~2.0.0"
     },
     "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-contrib-jshint": "~0.3.0",
-        "jasmine-node": "~1.0.26",
-        "mocha": "*",
-        "should": "*"
+        
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/alipay/totoro.git"
+        "url": "git@github.com:totorojs/totoro-test.git"
     },
     "bin": {
         "totoro-test": "./bin/totoro-test"
