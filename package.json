@@ -1,12 +1,12 @@
 {
     "name": "totoro-test",
-    "version": "0.1.5",
-    "description": "test tools",
+    "version": "0.1.6",
+    "description": "A simple, easy-to-use and stable front-end unit testing tool.",
     "homepage": "https://github.com/totorojs/totoro-test",
     "keywords": [
         "front-end",
         "unit test",
-        "tool"
+        "automation"
     ],
     "author": "kangpangpang <kangpangpang@gmail.com>",
     "contributors": [
