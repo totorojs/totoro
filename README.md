@@ -1,6 +1,6 @@
 ![totoro - front-end quality assurance toolset](https://f.cloud.github.com/assets/340282/401517/4563cedc-a8dd-11e2-814d-36494351adfa.jpg)
 
-# totoro-test
+# totoro-test (will be finished in April 25)
 
 A simple, easy-to-use and stable front-end unit testing tool.
 
