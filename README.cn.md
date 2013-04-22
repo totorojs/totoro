@@ -1,6 +1,6 @@
 ![totoro - 前端质量保证工具集](https://f.cloud.github.com/assets/340282/401517/4563cedc-a8dd-11e2-814d-36494351adfa.jpg)
 
-# totoro-test （将在4月25日完成）
+# totoro-test （文档将在4月25日完成）
 
 简单、易用和稳定的前端单元测试工具。
 
