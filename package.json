@@ -27,10 +27,10 @@
         "hogan.js": "~2.0.0",
         "tracer": "~0.5.1",
         "colors": ">=0.6.0"
-
     },
     "devDependencies": {
-
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.3.0"
     },
     "repository": {
         "type": "git",
