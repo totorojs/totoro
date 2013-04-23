@@ -85,11 +85,6 @@
                     var self = this
                     var element = self.orders[orderId]
                     
-                    /*
-                     * need to see if element exists
-                     * this method will trigger server.labor.removeOrder()
-                     * and it will emit a 'removeOrder' event which labor is listening
-                     */
                     if (element){
                         delete self.orders[orderId]
                         /*
