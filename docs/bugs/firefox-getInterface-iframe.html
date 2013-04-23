@@ -6,7 +6,7 @@
     </head>
     <body>
         <p>I am an iframe.</p>
-        <p>When window.getInterface is avilable, an alert will be triggered.</p>
+        <p>When window.getInterface is available, an alert will be triggered.</p>
         <script>
             (function(){
                 var start = new Date().getTime()
@@ -14,7 +14,7 @@
                     if(window.getInterface){
                         var end = new Date().getTime()
                         clearInterval(t)
-                        alert('in iframe, window.getInterface is avilable in ' + (end-start) + ' miniseconds.')
+                        alert('in iframe, window.getInterface is available in ' + (end-start) + ' miniseconds.')
                     }
                 },20)
             })()
