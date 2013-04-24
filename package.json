@@ -25,9 +25,7 @@
         "useragent":"~2.0.3",
         "colorful": "~2.0.2",
         "hogan.js": "~2.0.0",
-        "tracer": "~0.5.1",
-        "colors": ">=0.6.0",
-        "dateformat": "1.0.2-1.2.3",
+        "totoro-log": "~0.1.0",
         "when": "~2.0.1"
     },
     "devDependencies": {
