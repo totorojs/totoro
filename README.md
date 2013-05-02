@@ -1,29 +1,36 @@
 ![totoro - front-end quality assurance toolset](https://f.cloud.github.com/assets/340282/401517/4563cedc-a8dd-11e2-814d-36494351adfa.jpg)
 
-# totoro-test (this doc will be finished in April 25)
+# totoro
 
 A simple, easy-to-use and stable front-end unit testing tool.
 
-Latest version：v0.1.5 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
+Latest version：v0.1.7 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
 
 [中文版使用文档](README.cn.md)
 
 ---
 
+## 0. Features
+
+- Run in real browsers
+- Support all test frameworks
+- Real-time progress feedback and beautiful report
+- Robust enough for production enviroment
+
 ## 1. Installation
 
 ### Install From npm
 
-    sudo npm install totoro-test -g
+    sudo npm install totoro -g
 
 ### Install From Github
 
 to get the latest function
 
     git clone git@github.com:totorojs/totoro-test.git
-    cd totoro-test
+    cd totoro
     sudo npm install -g
-
+ 
 ## 2. Quick Start
 
 1. gitclone
@@ -72,14 +79,7 @@ Adapter is used to report testing progress and result. Mocha, jasmine, yuitest a
 
     totoro-test --server
 
-## 6. Features
-
-- Tests run in real browsers
-- Support all test frameworks
-- Real-time progress feedback
-- Well formed tesging report
-
-## 7. About totoro-test
+## 6. About totoro-test
 
 totoro-test takes it's name from animated fantasy film "My Neighbor Totoro" directed by [Hayao Miyazaki](http://en.wikipedia.org/wiki/Hayao_Miyazaki).
 
