@@ -1,8 +1,8 @@
 {
-    "name": "totoro-test",
+    "name": "totoro",
     "version": "0.1.6",
     "description": "A simple, easy-to-use and stable front-end unit testing tool.",
-    "homepage": "https://github.com/totorojs/totoro-test",
+    "homepage": "https://github.com/totorojs/totoro",
     "keywords": [
         "front-end",
         "unit test",
@@ -34,10 +34,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:totorojs/totoro-test.git"
+        "url": "git@github.com:totorojs/totoro.git"
     },
     "bin": {
-        "totoro-test": "./bin/totoro-test"
+        "totoro-test": "./bin/totoro"
     },
     "preferGlobal": true
 }
