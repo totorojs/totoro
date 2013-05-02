@@ -37,7 +37,7 @@
         "url": "git@github.com:totorojs/totoro.git"
     },
     "bin": {
-        "totoro-test": "./bin/totoro"
+        "totoro": "./bin/totoro"
     },
     "preferGlobal": true
 }
