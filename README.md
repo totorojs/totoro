@@ -48,6 +48,8 @@ Then you should see a output as shown below:
 
 ### Specify Browsers
 
+    totoro --browsers=chrome,win
+
 
 ### View Avilable Browsers
 
@@ -77,11 +79,7 @@ For more usage, please run:
 
     totoro --help
     
-## 4. More Examples
-
-### Official Examples
-
-### Examples From totoro's Users
+## 4. Who Use totoro
 
 - SeaJS
 - Arale
