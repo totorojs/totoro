@@ -33,7 +33,7 @@ to get the latest function
  
 ## 2. Quick start
 
-For simplicity, we have prepared a testing example for you
+For simplicity, we have prepared a testing example for you:
 
     git clone git@github.com:totorojs/totoro.git
     cd examples/mocha
@@ -41,7 +41,7 @@ For simplicity, we have prepared a testing example for you
 
 Then you should see a output as shown below:
 
-![screen shot 2013-05-02 at 5 05 54 pm](https://f.cloud.github.com/assets/340282/453113/a0ddb208-b307-11e2-8841-c8d9f8318d99.png)
+![screen shot 2013-05-02 at 10 07 37 pm](https://f.cloud.github.com/assets/340282/454134/be965a46-b331-11e2-879f-c944277ef3d1.png)
 
     
 ## 3. Usage
@@ -49,6 +49,11 @@ Then you should see a output as shown below:
 ### Specify Browsers
 
 
+### View Avilable Browsers
+
+    totoro-test --list
+
+![totoro-test --list](https://f.cloud.github.com/assets/340282/401524/8bf080fc-a8dd-11e2-9188-5b0ff30280bb.png)
 
 ### Specify Runner Path
 
@@ -58,17 +63,20 @@ Then you should see a output as shown below:
 
 Adapter is used to report testing progress and result. Mocha, jasmine, yuitest and qunit adapters are built in. It is very easy to write a adapter for your own test framework.
 
-### View Avilable Browsers
-
-    totoro-test --list
-
-![totoro-test --list](https://f.cloud.github.com/assets/340282/401524/8bf080fc-a8dd-11e2-9188-5b0ff30280bb.png)
-
 ### Auto Generate Runner For CMD Module
 
 ### Test Online Runner
 
+Not implement, will coming soon.
 
+    totoro --runner http://path/to/runner
+
+### Specify Server
+
+For more usage, please run:
+
+    totoro --help
+    
 ## 4. More Examples
 
 ### Official Examples
