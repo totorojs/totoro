@@ -19,7 +19,6 @@
         "commander": "~1.1.1",
         "async": "~0.2.7",
         "express": "~3.1.0",
-        "underscore": "~1.4.4",
         "socket.io": "~0.9.14",
         "socket.io-client": "~0.9.11",
         "useragent":"~2.0.3",
