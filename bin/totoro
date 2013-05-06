@@ -6,7 +6,6 @@ var async = require('async')
 var path = require('path')
 require('colorful').colorful()
 
-var program = require('../lib/utils/program')
 
 var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
 var pkg = JSON.parse(pkgStr)
