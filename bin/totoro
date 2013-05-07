@@ -17,14 +17,13 @@ var pkg = JSON.parse(pkgStr)
 commander.helpInformation = function() {
     return [
         '',
-        '  A simple, easy-to-use and stable front-end unit testing tool'.to.bold.color,
+        '  A simple, easy-to-use and stable front-end unit testing tool.'.to.cyan.color,
         '',
-        '  Usage: ' + this._name + ' ' + this.usage(),
+        '  Usage: '.to.green.color,
+        '    ' + this._name + ' ' + this.usage(),
         '' + this.commandHelp(),
-        '  Options:',
-        '',
+        '  Options:'.to.green.color,
         '' + this.optionHelp().replace(/^/gm, '    '),
-        '',
         ''
     ].join('\n')
 }
@@ -39,31 +38,21 @@ commander
 commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
-    .option('--runner [s]', 'runner path [auto]')
-    .option('--browsers [s]', 'specify browsers to run test [*]', splitStr)
-    .option('--adapter [s]', 'specify report adapter [auto]')
-    .option('--timeout [n]', 'client timeout [5]')
+    .option('--runner', 'runner path')
+    .option('--charset', 'runner charset')
+    .option('--browsers', 'specify browsers to run test', splitStr)
+    .option('--adapter', 'specify report adapter')
+    .option('--timeout', 'client timeout')
     .option('--server', 'launch the server')
-    .option('--serverHost [s]', 'specify server host [10.15.52.87]')
-    .option('--serverPort [n]', 'specify server port [9999]')
+    .option('--serverHost', 'specify server host')
+    .option('--serverPort', 'specify server port')
     .option('--list', 'view available browsers')
 
 
 commander.on('--help', function() {
     console.log()
-    console.log('  ' + 'Examples:'.to.bold.cyan.color)
-    console.log()
-    console.log('    1. the simplest usage')
-    console.log('       $ ' + 'totoro-test'.to.green.color)
-    console.log()
-    console.log('    2. test specified runner')
-    console.log('       $ ' + 'totoro-test '.to.green.color + ' ' + '--runner'.to.cyan.color + ' path/to/runner.html')
-    console.log()
-    console.log('    3. view available browsers')
-    console.log('       $ ' + 'totoro-test '.to.green.color + ' ' + '--list'.to.cyan.color)
-    console.log()
-
-    console.log('    More info: ' + 'https://github.com/totorojs/totoro-test'.to.underline.color)
+    console.log('  ' + 'More info:'.to.green.color)
+    console.log('    ' + 'https://github.com/totorojs/totoro'.to.underline.color)
     console.log()
 });
 
