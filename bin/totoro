@@ -6,6 +6,10 @@ var async = require('async')
 var path = require('path')
 require('colorful').colorful()
 
+var Client = require('../lib/client/client')
+var Contractor = require('../lib/server/server')
+var list = require('../lib/client/list')
+var options = require('../lib/options-handler')
 
 var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
 var pkg = JSON.parse(pkgStr)
@@ -25,7 +29,7 @@ commander.helpInformation = function() {
     ].join('\n')
 }
 
-function list(val) {
+function splitStr(val) {
     return val.split(',')
 }
 
@@ -36,7 +40,7 @@ commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner [s]', 'runner path [auto]')
-    .option('--browsers [s]', 'specify browsers to run test [*]', list)
+    .option('--browsers [s]', 'specify browsers to run test [*]', splitStr)
     .option('--adapter [s]', 'specify report adapter [auto]')
     .option('--timeout [n]', 'client timeout [5]')
     .option('--server', 'launch the server')
@@ -72,4 +76,10 @@ if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
     process.exit(0)
 }
 
-require('../lib/actions/actions')(commander)
+if (commander.server) {
+    new Contractor(options.getServerCfg(commander))
+} else if (commander.list) {
+    list(options.getListCfg(commander))
+} else {
+    new Client(options.getClientCfg(commander))
+}
