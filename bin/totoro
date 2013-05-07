@@ -39,7 +39,6 @@ commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner', 'runner path')
-    .option('--charset', 'runner charset')
     .option('--browsers', 'specify browsers to run test', splitStr)
     .option('--adapter', 'specify report adapter')
     .option('--timeout', 'client timeout')
