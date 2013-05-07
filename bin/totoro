@@ -25,6 +25,10 @@ commander.helpInformation = function() {
     ].join('\n')
 }
 
+function list(val) {
+    return val.split(',')
+}
+
 commander
     .usage('[options]')
 
@@ -32,7 +36,7 @@ commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner [s]', 'runner path [auto]')
-    .option('--browsers [s]', 'specify browsers to run test [*]')
+    .option('--browsers [s]', 'specify browsers to run test [*]', list)
     .option('--adapter [s]', 'specify report adapter [auto]')
     .option('--timeout [n]', 'client timeout [5]')
     .option('--server', 'launch the server')
