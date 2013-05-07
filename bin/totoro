@@ -42,6 +42,8 @@ commander
     .option('--browsers', 'specify browsers to run test', splitStr)
     .option('--adapter', 'specify report adapter')
     .option('--timeout', 'client timeout')
+    .option('--clientHost', 'client server host')
+    .option('--clientPort', 'client server port')
     .option('--server', 'launch the server')
     .option('--serverHost', 'specify server host')
     .option('--serverPort', 'specify server port')
