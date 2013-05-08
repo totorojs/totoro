@@ -4,7 +4,7 @@
 
 A simple, easy-to-use and stable front-end unit testing tool.
 
-Latest version：v0.1.6 [Change Log](https://github.com/totorojs/totoro-test/wiki/change-log)
+Latest version：v0.1.6 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
 
 [中文版使用文档](README.cn.md)
 
@@ -44,7 +44,7 @@ Then you should see a output as shown below:
 ![screen shot 2013-05-02 at 10 07 37 pm](https://f.cloud.github.com/assets/340282/454134/be965a46-b331-11e2-879f-c944277ef3d1.png)
 
     
-## 3. Usage
+## 3. Examples
 
 ### Specify Browsers
 
@@ -55,7 +55,8 @@ Then you should see a output as shown below:
 
     totoro-test --list
 
-![totoro-test --list](https://f.cloud.github.com/assets/340282/401524/8bf080fc-a8dd-11e2-9188-5b0ff30280bb.png)
+![8bf080fc-a8dd-11e2-9188-5b0ff30280bb](https://f.cloud.github.com/assets/340282/475431/4ef88324-b78e-11e2-9a18-8958d5b0cea2.png)
+
 
 ### Specify Runner Path
 
@@ -64,8 +65,6 @@ Then you should see a output as shown below:
 ### Use Custom Adapter
 
 Adapter is used to report testing progress and result. Mocha, jasmine, yuitest and qunit adapters are built in. It is very easy to write a adapter for your own test framework.
-
-### Auto Generate Runner For CMD Module
 
 ### Test Online Runner
 
@@ -79,11 +78,16 @@ For more usage, please run:
 
     totoro --help
     
-## 4. Who Use totoro
+### Examples From totoro's Users
 
 - SeaJS
 - Arale
 - Handy
+
+## 4. Options
+
+- `verbose` 
+
 
 ## 5. Launch Your Own Server
 
