@@ -35,7 +35,7 @@
 
 简单起见，我们已经为你准备好了一个可供测试的例子：
 
-**注意**：默认的测试服务暂时仅阿里系可用，你可以更换任何可用的测试服务，详见 “配置项” 部分。
+**注意**：默认的测试服务暂时仅阿里系可用，你可以更换任何可用的测试服务。
 
     $ git clone git@github.com:totorojs/totoro.git
     $ cd totoro/examples/simple
