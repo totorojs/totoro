@@ -62,7 +62,7 @@
         mac/chrome,win/firefox //测试mac下的chrome和windows下的firefox
         ie/6,ie/7,ie/8,ie/9 //测试ie6789
 
-- `timeout`：客户端超时时间，单位为**分钟**，默认为 5。
+- `timeout`：客户端超时时间，单位为分钟，默认为 5。
 
 进行测试时，客户端会启动起一个 http 服务将 runner 变成可访问的 url 地址，以下 3 个配置项均跟此 http 服务有关：
 
