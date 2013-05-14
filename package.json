@@ -17,15 +17,10 @@
     },
     "dependencies": {
         "commander": "~1.1.1",
-        "async": "~0.2.7",
         "express": "~3.1.0",
-        "socket.io": "~0.9.14",
         "socket.io-client": "~0.9.11",
-        "useragent":"~2.0.3",
         "colorful": "~2.0.2",
-        "hogan.js": "~2.0.0",
-        "totoro-log": "~0.1.1",
-        "when": "~2.0.1"
+        "totoro-log": "~0.1.1"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
