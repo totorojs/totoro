@@ -5,8 +5,6 @@ var path = require('path')
 var commander = require('commander')
 var color = require('colorful')
 
-var handleCfg = require('../lib/handle-cfg')
-
 var pkgFile = path.join(__dirname, '..', 'package.json')
 var version = JSON.parse(fs.readFileSync(pkgFile)).version
 
@@ -45,12 +43,11 @@ commander
 
 if (commander.rawArgs.length === 3 &&
         (commander.rawArgs[2] === '-v' || commander.rawArgs[2] === '--version')) {
-    console.info('\n  ' + version + '\n')
+    console.info('\n  ' + color.cyan(version) + '\n')
     process.exit(0)
 }
 
 var cfg = getCfg(commander)
-handleCfg(cfg)
 
 if (cfg.list) {
     var list = require('../lib/list')
