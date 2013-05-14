@@ -31,6 +31,7 @@ commander
     .option('--runner [s]', 'runner path')
     .option('--browsers [s]', 'browsers to run test', split)
     .option('--adapter [s]', 'report adapter')
+    .option('--charset [s]', 'charset')
     .option('--timeout [n]', 'client timeout')
     .option('--clientHost [s]', 'client server host')
     .option('--clientPort [n]', 'client server port')
