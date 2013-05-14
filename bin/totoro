@@ -3,23 +3,23 @@
 var fs = require('fs')
 var path = require('path')
 var commander = require('commander')
-require('colorful').colorful()
+var color = require('colorful')
 
 var handleCfg = require('../lib/handle-cfg')
 
 commander.helpInformation = function() {
     return [
         '',
-        '  A simple, easy-to-use and stable front-end unit testing tool.'.to.cyan.color,
+        color.cyan('  A simple, easy-to-use and stable front-end unit testing tool.'),
         '',
-        '  Usage:'.to.green.color,
+        color.green('  Usage:'),
         '    ' + this._name + ' ' + this.usage(),
         '',
-        '  Options:'.to.green.color,
+        color.green('  Options:'),
         '' + this.optionHelp().replace(/^/gm, '    '),
         '',
-        '  More Info:'.to.green.color,
-        '    ' + 'https://github.com/totorojs/totoro'.to.underline.color,
+        color.green('  More Info:'),
+        '    ' + color.underline('https://github.com/totorojs/totoro'),
         '',
         ''
     ].join('\n')
