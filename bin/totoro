@@ -5,8 +5,7 @@ var path = require('path')
 var commander = require('commander')
 var color = require('colorful')
 
-var pkgFile = path.join(__dirname, '..', 'package.json')
-var version = JSON.parse(fs.readFileSync(pkgFile)).version
+
 
 commander.helpInformation = function() {
     return [
@@ -43,6 +42,8 @@ commander
 
 if (commander.rawArgs.length === 3 &&
         (commander.rawArgs[2] === '-v' || commander.rawArgs[2] === '--version')) {
+    var pkgFile = path.join(__dirname, '..', 'package.json')
+    var version = JSON.parse(fs.readFileSync(pkgFile)).version
     console.info('\n  ' + color.cyan(version) + '\n')
     process.exit(0)
 }
@@ -70,6 +71,5 @@ function getCfg(commander) {
             cfg[key] = commander[key]
         }
     })
-    cfg.version = version
     return cfg
 }
