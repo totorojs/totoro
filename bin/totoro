@@ -71,5 +71,6 @@ function getCfg(commander) {
             cfg[key] = commander[key]
         }
     })
+    ;delete cfg.version
     return cfg
 }
