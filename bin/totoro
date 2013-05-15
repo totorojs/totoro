@@ -48,6 +48,13 @@ if (commander.rawArgs.length === 3 &&
     process.exit(0)
 }
 
+/*
+ * NOTE
+ *
+ * we just make all options in proper format and collect them
+ * then continue to process them in corresponding methods rather than in this file
+ * because when totoro is used as a required module, it will perform better in this way
+ */
 var cfg = getCfg(commander)
 
 if (cfg.list) {
