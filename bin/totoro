@@ -6,7 +6,6 @@ var commander = require('commander')
 var color = require('colorful')
 
 
-
 commander.helpInformation = function() {
     return [
         '',
