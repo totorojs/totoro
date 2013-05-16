@@ -3,22 +3,22 @@
 var fs = require('fs')
 var path = require('path')
 var commander = require('commander')
-var color = require('colorful')
+var colorful = require('colorful')
 
 
 commander.helpInformation = function() {
     return [
         '',
-        color.cyan('  A simple, easy-to-use and stable front-end unit testing tool.'),
+        colorful.cyan('  A simple, easy-to-use and stable front-end unit testing tool.'),
         '',
-        color.green('  Usage:'),
+        colorful.green('  Usage:'),
         '    ' + this._name + ' ' + this.usage(),
         '',
-        color.green('  Options:'),
+        colorful.green('  Options:'),
         '' + this.optionHelp().replace(/^/gm, '    '),
         '',
-        color.green('  More Info:'),
-        '    ' + color.underline('https://github.com/totorojs/totoro'),
+        colorful.green('  More Info:'),
+        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
         '',
         ''
     ].join('\n')
@@ -43,7 +43,7 @@ if (commander.rawArgs.length === 3 &&
         (commander.rawArgs[2] === '-v' || commander.rawArgs[2] === '--version')) {
     var pkgFile = path.join(__dirname, '..', 'package.json')
     var version = JSON.parse(fs.readFileSync(pkgFile)).version
-    console.info('\n  ' + color.cyan(version) + '\n')
+    console.info('\n  ' + colorful.cyan(version) + '\n')
     process.exit(0)
 }
 
