@@ -42,11 +42,11 @@ commander
     .option('--browsers [s]', 'specify browsers to run test', splitStr)
     .option('--adapter [s]', 'specify report adapter')
     .option('--timeout [n]', 'client timeout')
-    .option('--clientHost [s]', 'client server host')
-    .option('--clientPort [n]', 'client server port')
+    .option('--client-host [s]', 'client server host')
+    .option('--client-port [n]', 'client server port')
     .option('--server [s]', 'launch the server')
-    .option('--serverHost [s]', 'specify server host')
-    .option('--serverPort [n]', 'specify server port')
+    .option('--server-host [s]', 'specify server host')
+    .option('--server-port [n]', 'specify server port')
     .option('--list', 'view available browsers')
 
 
