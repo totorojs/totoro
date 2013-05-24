@@ -30,6 +30,7 @@
         "type": "git",
         "url": "git@github.com:totorojs/totoro.git"
     },
+    "main":"./lib/client",
     "bin": {
         "totoro": "./bin/totoro"
     },
