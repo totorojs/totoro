@@ -32,19 +32,26 @@ commander
     .option('--adapter [s]', 'report adapter')
     .option('--charset [s]', 'charset')
     .option('--timeout [n]', 'client timeout')
-    .option('--clientHost [s]', 'client server host')
-    .option('--clientPort [n]', 'client server port')
-    .option('--serverHost [s]', 'specify server host')
-    .option('--serverPort [n]', 'specify server port')
+    .option('--client-host [s]', 'client server host')
+    .option('--client-port [n]', 'client server port')
+    .option('--server-host [s]', 'specify server host')
+    .option('--server-port [n]', 'specify server port')
     .option('--list', 'view available browsers')
-    .parse(process.argv)
 
-if (commander.rawArgs.length === 3 &&
-        (commander.rawArgs[2] === '-v' || commander.rawArgs[2] === '--version')) {
-    var pkgFile = path.join(__dirname, '..', 'package.json')
-    var version = JSON.parse(fs.readFileSync(pkgFile)).version
-    console.info('\n  ' + colorful.cyan(version) + '\n')
-    process.exit(0)
+commander.on('version', function() {
+    console.log()
+    var pkg = require('../package')
+    console.log(pkg.name + '  ' + colorful.cyan(pkg.version))
+    console.log()
+    process.exit()
+})
+
+// listen before parse
+commander.parse(process.argv)
+
+// commander option parsers
+function split(str) {
+    return str ? str.split(',') : []
 }
 
 /*
@@ -54,6 +61,7 @@ if (commander.rawArgs.length === 3 &&
  * then continue to process them in corresponding methods rather than in this file
  * because when totoro is used as a required module, it will perform better in this way
  */
+
 var cfg = getCfg(commander)
 
 if (cfg.list) {
@@ -64,19 +72,21 @@ if (cfg.list) {
     new Client(cfg)
 }
 
-
-function split(str) {
-    return str ? str.split(',') : []
-}
-
 function getCfg(commander) {
     var cfg = {}
-    commander.options.forEach(function(item, index, list) {
-        var key = item.long.substring(2)
+    commander.options.forEach(function(item) {
+        var key = camelcase(item.name())
         if(key in commander) {
-            cfg[key] = commander[key]
+            if (typeof commander[key] !== 'function') {
+                cfg[key] = commander[key]
+            }
         }
     })
-    ;delete cfg.version
     return cfg
+}
+
+function camelcase(flag) {
+    return flag.split('-').reduce(function(str, word){
+        return str + word[0].toUpperCase() + word.slice(1);
+    });
 }
