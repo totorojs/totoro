@@ -2,16 +2,11 @@ define(function(require) {
 
     var expect = require('expect')
 
-    describe('Test Suit', function() {
+    describe('A Test Suite', function() {
 
-        it('Test Unit', function() {
-            expect('assertion').to.be.a('string')
+        it('contains spec with an expectation', function() {
+            expect('totoro').to.be.a('string')
         })
 
-        describe('Sub Test Suit', function() {
-            it('Sub Test Unit', function() {
-                expect('sub assertion').to.be.a('string')
-            })
-        })
     })
 });
