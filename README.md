@@ -2,11 +2,9 @@
 
 # totoro
 
-简单、易用和稳定的前端单元测试工具。
+简单易用、稳定的前端单元测试工具。
 
-最新版本：v0.1.6 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
-
-[English Documentation](README.en.md)
+最新版本：v0.2.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
 
 ---
 
@@ -14,7 +12,7 @@
 
 - 在真实的浏览器中运行
 - 支持所有的测试框架
-- 实时进度反馈和漂亮的测试报告
+- 实时进度反馈和试报告
 - **足够健壮，适用于生产环境**
 
 ## 1. 安装
@@ -35,7 +33,9 @@
 
 简单起见，我们已经为你准备好了一个可供测试的例子：
 
-**注意**：默认的测试服务暂时仅阿里系可用，你可以更换任何可用的测试服务。
+### 注意
+
+工具默认提供的测试服务目前为阿里的内部服务，请通过 `--server-host` 和 `--server-port` 配置项更换其他可用测试服务，或 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
 
     $ git clone git@github.com:totorojs/totoro.git
     $ cd totoro/examples/simple
@@ -45,43 +45,107 @@
 
 ![screen shot 2013-05-08 at 4 00 26 pm](https://f.cloud.github.com/assets/340282/476620/b326ddb6-b7c3-11e2-94b7-4828df877218.png)
 
-- 小圆点为即时进度反馈，每个小圆点代表一个测试用例完成。成功显示为绿色，失败显示为红色。
-- 测试报告中，全部通过的浏览器，会以绿色字体输出显示，其中包含测试持续时间。如果有未通过或者超时的情况，则会以红色字体显示，并输出错误详情。
+- 小圆点为即时进度反馈。成功显示为绿色圆点，失败显示为红色小叉。
+- 测试报告中，成功的浏览器会以绿色字符输出显示，失败或超时的浏览器会以红色字符显示，并输出错误详情。
 
-## 3. 配置项
 
-所有的配置项均为可选，通常你并不需要使用它们。
+## 3. 命令行配置项
 
-- `verbose`：显示日志。
-- `runner`：指定要运行的 runner，接受相对路径和绝对路径。在你的项目目录中运行 totoro 命令，如果测试文件存放在 tests/ 或 test/ 子目录中，并且将 runner 命名为 runner.html 或 index.html，totoro 就能自动找到它。
-- `adapter`：指定报告适配器。用于将运行结果从服务端发送回客户端，已内置的适配器有 mocha, jasmine。其实自己写一个也很简单，可参考 `static/adapters/mocha.js`。
-- `browsers`：指定要测试的浏览器。以下为一些命令行的例子：
 
-        os/browser/version  //标准格式
-        chrome,ie  //测试 chrome 和 ie
-        mac/chrome,win/firefox //测试mac下的chrome和windows下的firefox
-        ie/6,ie/7,ie/8,ie/9 //测试ie6789
+#### 注意
 
-- `timeout`：客户端超时时间，单位为分钟，默认为 5。
+所有的配置项均为可选，除 `--server-host` 和 `--browsers` 外，其他配置项基本无需配置。
 
-进行测试时，客户端会启动起一个 http 服务将 runner 变成可访问的 url 地址，以下 3 个配置项均跟此 http 服务有关：
+#### --verbose
 
-- `clientRoot`：服务的根目录，接受相对路径和绝对路径。totoro 会检查 runner 中的相对引用以猜测根目录。
-- `clientHost`：默认为本机 ip。
-- `clientPort`：默认为 9998。
+显示 debug 日志。
 
-指定测试服务：
+默认：false
 
-- `serverHost`：服务端host，已提供一个默认服务的 host。
-- `srrverPort`：服务端port，默认为 9999。
+#### --runner
+
+测试 runner。接受本地路径和 url 两种形式。
+
+默认：自动查找当前目录，tests 或 test 子目录下的 runner.html 或 index.html 均可被识别。
+
+#### --adapter
+
+测试框架的适配器，用于发送测试报告。接受内置关键字、本地路径和 url 三种形式。
+
+已支持的内置关键字有：`mocha`, `jasmine`。
+
+自定义适配器写法可参考 [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js)。
+
+默认：如果 --runner 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 --runner 指定的是 url 则会自动扫描 runner 的内容尝试查找匹配的内置关键字。
+
+#### --browsers
+
+指定要测试的浏览器，多个以逗号分隔。例如：
+
+    chrome,firefox,safari,ie  //不指定版本
+    ie/6,ie/7,ie/8,ie/9  //指定版本
+    
+默认：`chrome,firefox,safari,ie/6,ie/7,ie/8,ie/9`
+
+**注意：下一个版本默认值会改为按一定规则选取测试服务端可用的浏览器。**
+
+#### --timeout
+
+客户端超时时间，单位为分钟。
+
+默认：5
+
+#### --list
+
+查看测试服务端可用的浏览器。
+
+#### --server-host
+
+测试服务 host。
+
+默认：阿里的内部host
+
+#### --server-port
+
+测试服务 port。
+
+默认：9999
+
+#### --client-host
+
+测试时，如果指定的 runner 或 adapter 为本地路径，则会启动一个 http 服务将本地路径转换成可访问的 url ，以下两个配置项也跟此服务有关。
+
+客户端服务 host。
+
+默认：本机 ip
+
+#### --client-port
+
+客户端服务端口。
+
+默认：9998
+
+#### --client-root
+
+客户端服务的根目录，接受相对路径和绝对路径。
+
+默认：根据 runner 和 adapter 进行猜测。
+
 
 ## 4. 配置文件
 
-你可以通过 3 种方式指定上述配置项：命令行参数，totoro-config.json 和全局配置。这 3 种配置方式优先级依次降低。其中：
+除了命令行配置项，你还可以通过 totoro-config.json 和全局配置文件进行配置。
 
+这 3 种配置方式优先级依次降低。
+
+需要注意的是：
+
+- 配置文件的配置项使用的是 **首字母小写的驼峰式命名**，如 `serverHost`
 - totoro-config.json 必须位于 totoro 命令运行时所在的目录。
-- 全局配置文件位于 ~/.totoro/config.json。仅支持配置 serverHost 和 serverPort。
-
+- 全局配置文件位于:
+    - mac: ~/.totoro/config.json
+    - win7: C:\Users\{{username}}
+    - win xp: C:\Documents and Settings\{{username}}
 
 ## 5. 关于
 

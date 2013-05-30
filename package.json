@@ -1,6 +1,6 @@
 {
     "name": "totoro",
-    "version": "0.1.6",
+    "version": "0.2.0",
     "description": "A simple, easy-to-use and stable front-end unit testing tool.",
     "homepage": "https://github.com/totorojs/totoro",
     "keywords": [
@@ -17,15 +17,11 @@
     },
     "dependencies": {
         "commander": "~1.1.1",
-        "async": "~0.2.7",
         "express": "~3.1.0",
-        "socket.io": "~0.9.14",
         "socket.io-client": "~0.9.11",
-        "useragent":"~2.0.3",
-        "colorful": "~2.0.2",
-        "hogan.js": "~2.0.0",
-        "totoro-log": "~0.1.0",
-        "when": "~2.0.1"
+        "colorful": "~2.1.0",
+        "totoro-log": "~0.1.1",
+        "totoro-common": "~0.1.0"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
@@ -35,6 +31,7 @@
         "type": "git",
         "url": "git@github.com:totorojs/totoro.git"
     },
+    "main":"./lib/client",
     "bin": {
         "totoro": "./bin/totoro"
     },

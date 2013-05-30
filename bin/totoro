@@ -1,71 +1,57 @@
 #!/usr/bin/env node
 
 var fs = require('fs')
-var commander = require('commander')
-var async = require('async')
 var path = require('path')
-require('colorful').colorful()
+var commander = require('commander')
+var colorful = require('colorful')
+var common = require('totoro-common')
 
-var Client = require('../lib/client/client')
-var Contractor = require('../lib/server/server')
-var list = require('../lib/client/list')
-var options = require('../lib/options-handler')
+var Client = require('../lib/client')
 
-var pkgStr = fs.readFileSync(path.join(module.filename, '../../package.json'))
-var pkg = JSON.parse(pkgStr)
 
 commander.helpInformation = function() {
     return [
         '',
-        '  A simple, easy-to-use and stable front-end unit testing tool.'.to.cyan.color,
+        colorful.cyan('  A simple, easy-to-use and stable front-end unit testing tool.'),
         '',
-        '  Usage: '.to.green.color,
+        colorful.green('  Usage:'),
         '    ' + this._name + ' ' + this.usage(),
-        '' + this.commandHelp(),
-        '  Options:'.to.green.color,
+        '',
+        colorful.green('  Options:'),
         '' + this.optionHelp().replace(/^/gm, '    '),
+        '',
+        colorful.green('  More Info:'),
+        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
+        '',
         ''
     ].join('\n')
 }
-
-function splitStr(val) {
-    return val.split(',')
-}
-
-commander
-    .usage('[options]')
 
 commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner [s]', 'runner path')
-    .option('--browsers [s]', 'specify browsers to run test', splitStr)
-    .option('--adapter [s]', 'specify report adapter')
+    .option('--browsers [s]', 'browsers to run test', common.split)
+    .option('--adapter [s]', 'report adapter')
+    .option('--charset [s]', 'charset')
     .option('--timeout [n]', 'client timeout')
     .option('--client-host [s]', 'client server host')
     .option('--client-port [n]', 'client server port')
-    .option('--server [s]', 'launch the server')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .option('--list', 'view available browsers')
 
-
-commander.on('--help', function() {
+commander.on('version', function() {
     console.log()
-    console.log('  ' + 'More info:'.to.green.color)
-    console.log('    ' + 'https://github.com/totorojs/totoro'.to.underline.color)
+    var pkg = require('../package')
+    console.log(pkg.name + '  ' + colorful.cyan(pkg.version))
     console.log()
-});
+    process.exit()
+})
 
-
+// listen before parse
 commander.parse(process.argv)
 
-// no argument
-if (!commander.args[0]) {
-  process.stdout.write(commander.helpInformation());
-  commander.emit('--help');
-  process.exit();
-}
 
 if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
         commander.rawArgs[2] === '--version')) {
@@ -73,10 +59,12 @@ if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
     process.exit(0)
 }
 
-if (commander.server) {
-    new Contractor(options.getServerCfg(commander))
-} else if (commander.list) {
-    list(options.getListCfg(commander))
-} else {
-    new Client(options.getClientCfg(commander))
-}
+/*
+ * NOTE
+ *
+ * we just make all options in proper format and collect them
+ * then continue to process them in corresponding methods rather than in this file
+ * because when totoro is used as a required module, it will perform better in this way
+ */
+
+new Client(common.getCfg(commander))
