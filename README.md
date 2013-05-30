@@ -6,8 +6,6 @@
 
 最新版本：v0.2.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
 
-[English Documentation](README.en.md)
-
 ---
 
 ## 0. 特性
