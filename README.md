@@ -84,10 +84,8 @@
 
     chrome,firefox,safari,ie  //不指定版本
     ie/6,ie/7,ie/8,ie/9  //指定版本
-    
-默认：`chrome,firefox,safari,ie/6,ie/7,ie/8,ie/9`
 
-**注意：下一个版本默认值会改为按一定规则选取测试服务端可用的浏览器。**
+默认：自动选取测试服务端可用的浏览器。
 
 #### --timeout
 
