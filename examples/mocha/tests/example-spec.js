@@ -196,4 +196,4 @@ define(function(require) {
             expect(endTime - startTime).to.be.lessThan(250)
         })
     })
-});
+})

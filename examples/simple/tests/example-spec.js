@@ -9,4 +9,4 @@ define(function(require) {
         })
 
     })
-});
+})
