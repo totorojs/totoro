@@ -44,7 +44,7 @@ commander
 commander.on('version', function() {
     console.log()
     var pkg = require('../package')
-    console.log(pkg.name + '  ' + colorful.cyan(pkg.version))
+    console.log('  ' + colorful.cyan(pkg.version))
     console.log()
     process.exit()
 })
