@@ -16,16 +16,16 @@
         "node": ">= 0.8.17"
     },
     "dependencies": {
-        "commander": "~1.1.1",
-        "express": "~3.1.0",
-        "socket.io-client": "~0.9.11",
-        "colorful": "~2.1.0",
-        "totoro-log": "~0.1.1",
-        "totoro-common": "~0.1.0"
+        "commander": "1.1.1",
+        "express": "3.1.0",
+        "socket.io-client": "0.9.11",
+        "colorful": "2.1.0",
+        "totoro-log": "0.1.1",
+        "totoro-common": "0.1.0"
     },
     "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-contrib-jshint": "~0.3.0"
+        "grunt": "0.4.1",
+        "grunt-contrib-jshint": "0.3.0"
     },
     "repository": {
         "type": "git",
