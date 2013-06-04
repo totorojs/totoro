@@ -7,6 +7,8 @@
         <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.css" />
         <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
         <script src="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.js"></script>
+        <script src="assets/blanket.min.js" ></script>
+        <script src="../src/simple.js"  data-cover></script>
     </head>
     <body>
         <div id="mocha"></div>
@@ -15,10 +17,11 @@
                 mocha.ui('bdd')
                 seajs.config({
                     alias:{
-                        "expect":"gallery/expect/0.2.0/expect"
+                        expect: 'gallery/expect/0.2.0/expect',
+                        simple: '../src/simple'
                     }
                 })
-                seajs.use(["./example-spec.js"], function() {
+                seajs.use(["./simple-spec.js"], function() {
                     mocha.run()
                 })
             })()
