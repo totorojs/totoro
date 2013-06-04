@@ -2,8 +2,8 @@
 
 You just need to write a light adapter :)
 
-Note: this sample is a little complex, you may need to wait a minute to get the result
+Note: You can specify it with --adapter option. If not specified, totoro will see if there is a file named **totoro-adapter**
 
     $ git clone git@github.com:seajs/seajs.git
     $ cd seajs
-    $ totoro --adapter=tests/totoro-adapter.js
+    $ totoro
