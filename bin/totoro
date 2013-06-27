@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-console.info(1)
 var fs = require('fs')
 var path = require('path')
 var commander = require('commander')
