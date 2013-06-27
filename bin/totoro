@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+console.info(1)
 var fs = require('fs')
 var path = require('path')
 var commander = require('commander')
@@ -37,6 +38,7 @@ commander
     .option('--timeout [n]', 'client timeout')
     .option('--client-host [s]', 'client server host')
     .option('--client-port [n]', 'client server port')
+    .option('--client-root [s]', 'specify client root dir')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .option('--list', 'view available browsers')
