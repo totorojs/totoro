@@ -36,6 +36,7 @@ commander
     .option('--adapter [s]', 'report adapter')
     .option('--charset [s]', 'charset')
     .option('--timeout [n]', 'client timeout')
+    .option('--client-root [s]', 'client server root')
     .option('--client-host [s]', 'client server host')
     .option('--client-port [n]', 'client server port')
     .option('--client-root [s]', 'specify client root dir')

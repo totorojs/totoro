@@ -1,6 +1,6 @@
 {
     "name": "totoro",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "A simple, easy-to-use and stable front-end unit testing tool.",
     "homepage": "https://github.com/totorojs/totoro",
     "keywords": [

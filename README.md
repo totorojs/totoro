@@ -142,8 +142,8 @@
 - totoro-config.json 必须位于 totoro 命令运行时所在的目录。
 - 全局配置文件位于:
     - mac: ~/.totoro/config.json
-    - win7: C:\Users\{{username}}
-    - win xp: C:\Documents and Settings\{{username}}
+    - win7: C:\Users\\{{username}}
+    - win xp: C:\Documents and Settings\\{{username}}
 
 ## 5. 关于
 
