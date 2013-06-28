@@ -50,6 +50,40 @@ commander.on('version', function() {
     process.exit()
 })
 
+commander.command('config')
+    .description(' Get and set totoro gloal options')
+    .option('--client-host [s]', 'set or get client server host')
+    .option('--client-port [n]', 'set or get client server port')
+    .option('--server-host [s]', 'set or get specify server host')
+    .option('--server-port [n]', 'set or get specify server port')
+    .parse(process.argv)
+    .action(function(cmd, options) {
+        require('../lib/config')(common.getCfg(commander))
+        process.exit(0)
+    }).on('--help', function() {
+        console.log('  Examples:');
+        console.log()
+        console.log('    $ totoro config --server-host=0.0.0.0')
+        console.log('    $ totoro config --server-host')
+        console.log('    $ totoro config')
+    }).helpInformation = function() {
+        return [
+            '',
+            colorful.cyan(' ' + this.description()),
+            '',
+            colorful.green('  Usage:'),
+            '    ' + this._name + ' ' + this.usage(),
+            '',
+            colorful.green('  Options:'),
+            '' + this.optionHelp().replace(/^/gm, '    '),
+            '',
+            colorful.green('  More Info:'),
+            '    ' + colorful.underline('https://github.com/totorojs/totoro/issues/68'),
+            '',
+            ''
+        ].join('\n')
+    }
+
 // listen before parse
 commander.parse(process.argv)
 
