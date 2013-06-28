@@ -93,10 +93,6 @@
 
 默认：5
 
-#### --list
-
-查看测试服务端可用的浏览器。
-
 #### --server-host
 
 测试服务 host。
@@ -129,12 +125,27 @@
 
 默认：根据 runner 和 adapter 进行猜测。
 
+#### list
+
+查看测试服务端可用的浏览器。
+
 
 ## 4. 配置文件
 
 除了命令行配置项，你还可以通过 totoro-config.json 和全局配置文件进行配置。
 
 这 3 种配置方式优先级依次降低。
+
+### 全局配置的设置
+```
+totoro config --server-host=10.15.52.87
+totoro config --server-port=9999
+```
+
+### 全局配置的读取
+```
+totoro config
+```
 
 需要注意的是：
 
