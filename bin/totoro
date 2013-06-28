@@ -38,7 +38,6 @@ commander
     .option('--client-root [s]', 'client server root')
     .option('--client-host [s]', 'client server host')
     .option('--client-port [n]', 'client server port')
-    .option('--client-root [s]', 'specify client root dir')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .option('--list', 'view available browsers')
