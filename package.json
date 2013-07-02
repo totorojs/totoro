@@ -16,7 +16,7 @@
         "node": ">= 0.8.17"
     },
     "dependencies": {
-        "commander": "1.1.1",
+        "commander": "1.2.0",
         "express": "3.1.0",
         "socket.io-client": "0.9.11",
         "colorful": "2.1.0",
