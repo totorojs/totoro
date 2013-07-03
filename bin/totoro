@@ -22,38 +22,17 @@ commander
     .option('--client-port [n]', 'client server port')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
+    .on('version', function() {
+        console.log()
+        var pkg = require('../package')
+        console.log('  ' + colorful.cyan(pkg.version))
+        console.log()
+        process.exit()
+    }).helpInformation = helpInfo
 
-commander.on('version', function() {
-    console.log()
-    var pkg = require('../package')
-    console.log('  ' + colorful.cyan(pkg.version))
-    console.log()
-    process.exit()
-})
-
-commander.helpInformation = function() {
-    return [
-        '',
-        colorful.cyan('  ' + this.description()),
-        '',
-        colorful.green('  Usage:'),
-        '    ' + this._name + ' ' + this.usage(),
-        '',
-        colorful.green('  Commands:'),
-        '    ' + this.commandHelp().replace(/^\n  Commands:\n$/gm, ''),
-        
-        colorful.green('  Options:'),
-        '' + this.optionHelp().replace(/^/gm, '    '),
-        '',
-        colorful.green('  More Info:'),
-        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
-        '',
-        ''
-    ].join('\n')
-}
 
 commander.command('config')
-    .description(' Get and set totoro gloal options')
+    .description('Get and set totoro gloal options')
     .option('--client-host [s]', 'set or get client server host')
     .option('--client-port [n]', 'set or get client server port')
     .option('--server-host [s]', 'set or get specify server host')
@@ -62,58 +41,20 @@ commander.command('config')
         totoro.config(common.getCfg(commander))
         process.exit(0)
     }).on('--help', function() {
-        console.log('  Examples:')
-        console.log('    1. set config')
+        console.log(colorful.green('  Examples:'))
         console.log('    $ totoro config --server-host=0.0.0.0')
-        console.log('')
-        console.log('    2. delete config')
         console.log('    $ totoro config --server-host')
-        console.log('')
-        console.log('    3. view config')
         console.log('    $ totoro config')
-        return [
-            '',
-            colorful.cyan(' ' + this.description()),
-            '',
-            colorful.green('  Usage:'),
-            '    ' + this._name + ' ' + this.usage(),
-            '',
-            colorful.green('  Options:'),
-            '' + this.optionHelp().replace(/^/gm, '    '),
-            '',
-            colorful.green('  More Info:'),
-            '    ' + colorful.underline('https://github.com/totorojs/totoro/issues/68'),
-            '',
-            ''
-        ].join('\n')
-    })
+        console.log()
+    }).helpInformation = helpInfo
 
 commander.command('list')
-    .description(' view available browsers')
+    .description('View available browsers')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .action(function(cmd, options) {
         totoro.list(common.getCfg(commander))
-    }).on('--help', function() {
-        console.log('  Examples:')
-        console.log('    $ totoro list')
-    }).helpInformation = function() {
-        return [
-            '',
-            colorful.cyan(' ' + this.description()),
-            '',
-            colorful.green('  Usage:'),
-            '    ' + this._name + ' ' + this.usage(),
-            '',
-            colorful.green('  Options:'),
-            '' + this.optionHelp().replace(/^/gm, '    '),
-            '',
-            colorful.green('  More Info:'),
-            '    ' + colorful.underline('https://github.com/totorojs/totoro'),
-            '',
-            ''
-        ].join('\n')
-    }
+    }).helpInformation = helpInfo
 
 
 // listen before parse
@@ -129,4 +70,29 @@ commander.parse(process.argv)
 
 if (commander.rawArgs.indexOf('list') < 0 && commander.rawArgs.indexOf('config') < 0 ) {
     new totoro.Client(common.getCfg(commander))
+}
+
+function helpInfo() {
+    var commandHelp = ''
+    if (this.commands.length) {
+        commandHelp = '\n' +
+            colorful.green('  Commands:') +
+            '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
+    }
+    
+    return [
+        '',
+        colorful.cyan('  ' + this.description()),
+        '',
+        colorful.green('  Usage:'),
+        '    ' + this._name + ' ' + this.usage(),
+        commandHelp,
+        colorful.green('  Options:'),
+        '' + this.optionHelp().replace(/^/gm, '    '),
+        '',
+        colorful.green('  More Info:'),
+        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
+        '',
+        ''
+    ].join('\n')
 }
