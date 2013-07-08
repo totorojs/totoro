@@ -33,12 +33,15 @@ commander
 
 commander.command('config')
     .description('Get and set totoro gloal options')
-    .option('--client-host [s]', 'set or get client server host')
-    .option('--client-port [n]', 'set or get client server port')
-    .option('--server-host [s]', 'set or get specify server host')
-    .option('--server-port [n]', 'set or get specify server port')
-    .action(function(cmd, options) {
-        totoro.config(common.getCfg(commander))
+    .option('--verbose [b]', 'show debug log', null)
+    .option('--client-host [s]', 'set or get client server host', null)
+    .option('--client-port [n]', 'set or get client server port', null)
+    .option('--server-host [s]', 'set or get specify server host', null)
+    .option('--server-port [n]', 'set or get specify server port', null)
+    .action(function(cmd) {
+        cmd = arguments[arguments.length - 1]
+        cmd.parse(process.argv)
+        totoro.config(common.getCfg(cmd))
     }).on('--help', function() {
         console.log(colorful.green('  Examples:'))
         console.log('    $ totoro config --server-host=0.0.0.0')
