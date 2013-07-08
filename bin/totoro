@@ -27,7 +27,7 @@ commander
         var pkg = require('../package')
         console.log('  ' + colorful.cyan(pkg.version))
         console.log()
-        process.exit()
+        process.exit(0)
     }).helpInformation = helpInfo
 
 
@@ -39,7 +39,6 @@ commander.command('config')
     .option('--server-port [n]', 'set or get specify server port')
     .action(function(cmd, options) {
         totoro.config(common.getCfg(commander))
-        process.exit(0)
     }).on('--help', function() {
         console.log(colorful.green('  Examples:'))
         console.log('    $ totoro config --server-host=0.0.0.0')
@@ -67,7 +66,6 @@ commander.parse(process.argv)
  * then continue to process them in corresponding methods rather than in this file
  * because when totoro is used as a required module, it will perform better in this way
  */
-
 if (commander.rawArgs.indexOf('list') < 0 && commander.rawArgs.indexOf('config') < 0 ) {
     new totoro.Client(common.getCfg(commander))
 }
