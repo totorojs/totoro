@@ -8,26 +8,8 @@ var common = require('totoro-common')
 
 var totoro = require('../index')
 
-
-commander.helpInformation = function() {
-    return [
-        '',
-        colorful.cyan('  A simple, easy-to-use and stable front-end unit testing tool.'),
-        '',
-        colorful.green('  Usage:'),
-        '    ' + this._name + ' ' + this.usage(),
-        '',
-        colorful.green('  Options:'),
-        '' + this.optionHelp().replace(/^/gm, '    '),
-        '',
-        colorful.green('  More Info:'),
-        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
-        '',
-        ''
-    ].join('\n')
-}
-
 commander
+    .description('A simple, easy-to-use and stable front-end unit testing tool.')
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner [s]', 'runner path')
@@ -40,87 +22,45 @@ commander
     .option('--client-port [n]', 'client server port')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
+    .on('version', function() {
+        console.log()
+        var pkg = require('../package')
+        console.log('  ' + colorful.cyan(pkg.version))
+        console.log()
+        process.exit(0)
+    }).helpInformation = helpInfo
 
-commander.on('version', function() {
-    console.log()
-    var pkg = require('../package')
-    console.log('  ' + colorful.cyan(pkg.version))
-    console.log()
-    process.exit()
-})
 
 commander.command('config')
-    .description(' Get and set totoro gloal options')
-    .option('--client-host [s]', 'set or get client server host')
-    .option('--client-port [n]', 'set or get client server port')
-    .option('--server-host [s]', 'set or get specify server host')
-    .option('--server-port [n]', 'set or get specify server port')
-    .action(function(cmd, options) {
-        totoro.config(common.getCfg(commander))
-        process.exit(0)
+    .description('Get and set totoro gloal options')
+    .option('--verbose [b]', 'show debug log', null)
+    .option('--client-host [s]', 'set or get client server host', null)
+    .option('--client-port [n]', 'set or get client server port', null)
+    .option('--server-host [s]', 'set or get specify server host', null)
+    .option('--server-port [n]', 'set or get specify server port', null)
+    .action(function(cmd) {
+        cmd = arguments[arguments.length - 1]
+        cmd.parse(process.argv)
+        totoro.config(common.getCfg(cmd))
     }).on('--help', function() {
-        console.log('  Examples:')
-        console.log('    1. set config')
+        console.log(colorful.green('  Examples:'))
         console.log('    $ totoro config --server-host=0.0.0.0')
-        console.log('    $ totoro config --server-host')
-        console.log('')
-        console.log('    2. get config')
+        console.log('    $ totoro config --server-host=""')
         console.log('    $ totoro config')
-    }).helpInformation = function() {
-        return [
-            '',
-            colorful.cyan(' ' + this.description()),
-            '',
-            colorful.green('  Usage:'),
-            '    ' + this._name + ' ' + this.usage(),
-            '',
-            colorful.green('  Options:'),
-            '' + this.optionHelp().replace(/^/gm, '    '),
-            '',
-            colorful.green('  More Info:'),
-            '    ' + colorful.underline('https://github.com/totorojs/totoro/issues/68'),
-            '',
-            ''
-        ].join('\n')
-    }
+        console.log()
+    }).helpInformation = helpInfo
 
 commander.command('list')
-    .description(' view available browsers')
+    .description('View available browsers')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .action(function(cmd, options) {
         totoro.list(common.getCfg(commander))
-    }).on('--help', function() {
-        console.log('  Examples:')
-        console.log('    $ totoro list')
-    }).helpInformation = function() {
-        return [
-            '',
-            colorful.cyan(' ' + this.description()),
-            '',
-            colorful.green('  Usage:'),
-            '    ' + this._name + ' ' + this.usage(),
-            '',
-            colorful.green('  Options:'),
-            '' + this.optionHelp().replace(/^/gm, '    '),
-            '',
-            colorful.green('  More Info:'),
-            '    ' + colorful.underline('https://github.com/totorojs/totoro'),
-            '',
-            ''
-        ].join('\n')
-    }
+    }).helpInformation = helpInfo
 
 
 // listen before parse
 commander.parse(process.argv)
-
-
-if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
-        commander.rawArgs[2] === '--version')) {
-    console.info(pkg.version)
-    process.exit(0)
-}
 
 /*
  * NOTE
@@ -129,7 +69,31 @@ if (commander.rawArgs.length === 3 && (commander.rawArgs[2] === '-v' ||
  * then continue to process them in corresponding methods rather than in this file
  * because when totoro is used as a required module, it will perform better in this way
  */
-
 if (commander.rawArgs.indexOf('list') < 0 && commander.rawArgs.indexOf('config') < 0 ) {
     new totoro.Client(common.getCfg(commander))
+}
+
+function helpInfo() {
+    var commandHelp = ''
+    if (this.commands.length) {
+        commandHelp = '\n' +
+            colorful.green('  Commands:') +
+            '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
+    }
+
+    return [
+        '',
+        colorful.cyan('  ' + this.description()),
+        '',
+        colorful.green('  Usage:'),
+        '    ' + this._name + ' ' + this.usage(),
+        commandHelp,
+        colorful.green('  Options:'),
+        '' + this.optionHelp().replace(/^/gm, '    '),
+        '',
+        colorful.green('  More Info:'),
+        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
+        '',
+        ''
+    ].join('\n')
 }
