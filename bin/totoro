@@ -45,7 +45,7 @@ commander.command('config')
     }).on('--help', function() {
         console.log(colorful.green('  Examples:'))
         console.log('    $ totoro config --server-host=0.0.0.0')
-        console.log('    $ totoro config --server-host')
+        console.log('    $ totoro config --server-host=""')
         console.log('    $ totoro config')
         console.log()
     }).helpInformation = helpInfo
@@ -80,7 +80,7 @@ function helpInfo() {
             colorful.green('  Commands:') +
             '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
     }
-    
+
     return [
         '',
         colorful.cyan('  ' + this.description()),
