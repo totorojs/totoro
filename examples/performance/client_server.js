@@ -12,7 +12,7 @@ var app = express()
 var cfg = {
     clientHost: common.getExternalIpAddress(),
     clientPort: 9998,
-    serverHost: common.getExternalIpAddress(),
+    serverHost: '10.15.52.87',
     serverPort: 9996
 }
 
