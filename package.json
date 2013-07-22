@@ -8,9 +8,9 @@
         "unit test",
         "automation"
     ],
-    "author": "kangpangpang <kangpangpang@gmail.com>",
+    "author": "fool2fish <fool2fish@gmail.com>",
     "contributors": [
-        "fool2fish <fool2fish@gmail.com>"
+        "kangpangpang <kangpangpang@gmail.com>"
     ],
     "engines": {
         "node": ">= 0.8.17"
@@ -20,7 +20,7 @@
         "express": "3.1.0",
         "socket.io-client": "0.9.11",
         "colorful": "2.1.0",
-        "totoro-log": "0.1.1",
+        "tracer": "0.5.1",
         "totoro-common": "0.1.1"
     },
     "devDependencies": {
