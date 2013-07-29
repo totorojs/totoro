@@ -113,13 +113,13 @@
 
 默认：本机 ip
 
-#### --client-port
+#### --client-port [deprecated]
 
 客户端服务端口。
 
 默认：9998
 
-#### --client-root
+#### --client-root [deprecated]
 
 客户端服务的根目录，接受相对路径和绝对路径。
 
