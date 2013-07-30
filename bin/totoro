@@ -18,8 +18,6 @@ commander
     .option('--charset [s]', 'charset')
     .option('--timeout [n]', 'client timeout')
     .option('--client-root [s]', 'client server root')
-    .option('--client-host [s]', 'client server host')
-    .option('--client-port [n]', 'client server port')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .on('version', function() {
@@ -34,8 +32,6 @@ commander
 commander.command('config')
     .description('Get and set totoro gloal options')
     .option('--verbose [b]', 'show debug log', null)
-    .option('--client-host [s]', 'set or get client server host', null)
-    .option('--client-port [n]', 'set or get client server port', null)
     .option('--server-host [s]', 'set or get specify server host', null)
     .option('--server-port [n]', 'set or get specify server port', null)
     .action(function(cmd) {
