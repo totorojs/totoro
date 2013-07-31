@@ -1,6 +1,9 @@
-![totoro - 前端质量保证工具集](https://f.cloud.github.com/assets/340282/401517/4563cedc-a8dd-11e2-814d-36494351adfa.jpg)
+![totoro - 简单易用、稳定的前端单元测试工具](https://f.cloud.github.com/assets/340282/401517/4563cedc-a8dd-11e2-814d-36494351adfa.jpg)
 
 # totoro
+
+
+[![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 
 简单易用、稳定的前端单元测试工具。
 
