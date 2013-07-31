@@ -108,7 +108,7 @@
 
 默认：9999
 
-#### --client-host
+#### --client-host [deprecated]
 
 测试时，如果指定的 runner 或 adapter 为本地路径，则会启动一个 http 服务将本地路径转换成可访问的 url ，以下两个配置项也跟此服务有关。
 
@@ -122,7 +122,7 @@
 
 默认：9998
 
-#### --client-root [deprecated]
+#### --client-root
 
 客户端服务的根目录，接受相对路径和绝对路径。
 
