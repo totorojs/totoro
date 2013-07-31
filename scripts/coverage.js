@@ -1,17 +1,26 @@
-function cleanJSON(data) {
-    data = data.replace(/^[^{]*({)/g, '$1');
-    if (exports.outputJSON) {
-        fs.writeFileSync(exports.outputJSON, data)
-    }
-    return JSON.parse(data)
-}
-
+var format = require('util').format;
 var data = ''
+
 process.stdin.on('data', function(chunk) {
     data += chunk
 })
 
 process.stdin.on('end', function() {
-    data = cleanJSON(data)
-    console.log(data.coverage)
-});
+    data = data.replace(/^[^{]*({)/g, '$1')
+    data = JSON.parse(data)
+
+    console.log('Coverage:')
+    data.files.sort(function(a, b) {
+        return a.coverage - b.coverage
+    }).forEach(function(item) {
+        console.log(format('%s%% - %s', pad(item.coverage), item.filename))
+    })
+})
+
+
+function pad(num) {
+    num = num.toFixed(2)
+    var len = 9 - num.length
+    return new Array(len).join(' ') + num
+}
+
