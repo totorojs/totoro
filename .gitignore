@@ -4,3 +4,4 @@
 node_modules/
 *.swp
 logs/
+lib-cov/

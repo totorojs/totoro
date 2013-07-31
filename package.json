@@ -25,6 +25,9 @@
         "totoro-common": "0.1.2"
     },
     "devDependencies": {
+        "mocha": "1.12.0",
+        "expect.js": "0.2.0",
+        "sinon": "1.7.3",
         "grunt": "0.4.1",
         "grunt-contrib-jshint": "0.3.0"
     },
@@ -32,9 +35,11 @@
         "type": "git",
         "url": "git@github.com:totorojs/totoro.git"
     },
-    "main":"./lib/client",
     "bin": {
         "totoro": "./bin/totoro"
+    },
+    "scripts": {
+        "test": "mocha tests/"
     },
     "preferGlobal": true
 }
