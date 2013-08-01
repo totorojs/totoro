@@ -31,9 +31,8 @@ commander
 
 commander.command('config')
     .description('Get and set totoro gloal options')
-    .option('--verbose [b]', 'show debug log', null)
-    .option('--server-host [s]', 'set or get specify server host', null)
-    .option('--server-port [n]', 'set or get specify server port', null)
+    .option('--server-host [s]', 'set or get specify server host')
+    .option('--server-port [n]', 'set or get specify server port')
     .action(function(cmd) {
         cmd = arguments[arguments.length - 1]
         cmd.parse(process.argv)
