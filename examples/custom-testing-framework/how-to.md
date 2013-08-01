@@ -9,5 +9,5 @@ Note: You can specify it with --adapter option. If not specified, totoro will tr
     $ totoro
 
 # run online seajs
-    $ node totoro--runner=http://seajs.github.io/seajs/tests/runner.html  --adapter=http://seajs.github.io/seajs/tests/totoro-adapter.js
+    $ totoro --runner=http://seajs.github.io/seajs/tests/runner.html  --adapter=http://seajs.github.io/seajs/tests/totoro-adapter.js
 
