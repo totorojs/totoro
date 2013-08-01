@@ -26,18 +26,8 @@ describe('Config', function() {
 
     })
 
-    it('Write config', function(done) {
-        var e = new EventEmitter();
-        console.log = function(data) {
-            e.emit('data', data)
-        }
-        config({
+    it('Write config', function() {
 
-        })
-        e.on('data', function(data) {
-            expect(data)
-            done()
-        })
     })
 
     it('Delete config', function() {
