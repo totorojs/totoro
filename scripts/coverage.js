@@ -15,6 +15,7 @@ process.stdin.on('end', function() {
     }).forEach(function(item) {
         console.log(format('%s%% - %s', pad(item.coverage), item.filename))
     })
+    console.log()
 })
 
 
