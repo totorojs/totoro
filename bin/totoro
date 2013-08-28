@@ -6,7 +6,7 @@ var commander = require('commander')
 var colorful = require('colorful')
 var common = require('totoro-common')
 
-var totoro = require('../index')
+var Client = require('../index')
 
 commander
     .description('A simple, easy-to-use and stable front-end unit testing tool.')
@@ -36,7 +36,7 @@ commander.command('config')
     .action(function(cmd) {
         cmd = arguments[arguments.length - 1]
         cmd.parse(process.argv)
-        totoro.config(common.getCfg(cmd))
+        Client.config(common.getCfg(cmd))
     }).on('--help', function() {
         console.log(colorful.green('  Examples:'))
         console.log('    $ totoro config --server-host=0.0.0.0')
@@ -50,7 +50,7 @@ commander.command('list')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .action(function(cmd, options) {
-        totoro.list(common.getCfg(commander))
+        Client.list(common.getCfg(commander))
     }).helpInformation = helpInfo
 
 
@@ -65,7 +65,7 @@ commander.parse(process.argv)
  * because when totoro is used as a required module, it will perform better in this way
  */
 if (commander.rawArgs.indexOf('list') < 0 && commander.rawArgs.indexOf('config') < 0 ) {
-    new totoro.Client(common.getCfg(commander))
+    new Client(common.getCfg(commander))
 }
 
 function helpInfo() {
