@@ -1,37 +1,70 @@
 'use strict';
 
+var path = require('path')
 var expect = require('expect.js')
 var shelljs = require('shelljs')
-var EventEmitter = require('events').EventEmitter;
-var log = console.log
+var rewire = require('rewire')
+var common = require('totoro-common')
 
-var config = require('../lib/config')
+var config = rewire('../lib/config')
+
+var globalCfgPath = path.join(common.home, '.totoro', 'config.json')
+var globalCfg = common.readCfgFile(globalCfgPath)
+
+var logCache = ''
+config.__set__({
+    console: {
+        log: function (msg) {
+            if (typeof msg === 'undefined') {
+                msg = '\n'
+            }
+            logCache += msg
+        }
+    }
+})
 
 
-describe('Config', function() {
+describe('config', function() {
 
-    beforeEach(function() {
-        console.log = function() {}
+    it('list config', function() {
+        common.writeCfgFile(globalCfgPath, {
+            serverHost: '127.0.0.1'
+        })
+        config()
+        expect(logCache).to.be('\n  server-host=127.0.0.1\n')
+
     })
 
-    afterEach(function() {
-        console.log = log;
+    it('list empty config', function() {
+        common.writeCfgFile(globalCfgPath, {})
+        config()
+        expect(logCache).to.be('\n  No global configuration.\n')
     })
 
-    it('List config', function() {
-
+    it('modify config', function() {
+        common.writeCfgFile(globalCfgPath, {
+            serverHost: '127.0.0.1'
+        })
+        config({serverHost: '0.0.0.0'})
+        config()
+        expect(logCache).to.be('\n  server-host=0.0.0.0\n')
     })
 
-    it('List empty config', function() {
-
+    it('delete config', function() {
+        common.writeCfgFile(globalCfgPath, {
+            serverHost: '127.0.0.1'
+        })
+        config({serverHost: ''})
+        config()
+        expect(logCache).to.be('\n  No global configuration.\n')
     })
 
-    it('Write config', function() {
-
+    afterEach(function(){
+        logCache = ''
     })
 
-    it('Delete config', function() {
-
+    after(function(){
+        common.writeCfgFile(globalCfgPath, globalCfg)
     })
 
 })
