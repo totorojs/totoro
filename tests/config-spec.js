@@ -2,7 +2,6 @@
 
 var path = require('path')
 var expect = require('expect.js')
-var shelljs = require('shelljs')
 var rewire = require('rewire')
 var common = require('totoro-common')
 
