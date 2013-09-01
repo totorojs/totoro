@@ -20,6 +20,7 @@ commander
     .option('--client-root [s]', 'client server root')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
+    .option('--skip-coverage', 'skip code jcoverage')
     .on('version', function() {
         console.log()
         var pkg = require('../package')
