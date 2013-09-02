@@ -19,7 +19,7 @@ describe('get-repo', function() {
     it('_getInfo', function(done) {
         var _getInfo = getRepo.__get__('getInfo')
         _getInfo('git', process.cwd(), function(repo) {
-            expect(repo).to.be('git@github.com:totorojs/totoro.git')
+            expect(repo).to.match(/github\.com.totorojs\/totoro\.git/)
             done()
         })
     })
@@ -41,7 +41,7 @@ describe('get-repo', function() {
 
         it('runner is local file without package.json', function(done) {
             getRepo(path.join(__dirname, '..', 'examples', 'syntax-error', 'tests', 'runner.html'), function(repo) {
-                expect(repo).to.be('git@github.com:totorojs/totoro.git')
+                expect(repo).to.match(/github\.com.totorojs\/totoro\.git/)
                 done()
             })
         })
