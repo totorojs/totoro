@@ -31,6 +31,7 @@ describe('handle-cfg', function() {
 
     })
 
+
     it('_handleClientRoot', function() {
         var _handleClientRoot = handleCfg.__get__('handleClientRoot')
 
@@ -41,6 +42,108 @@ describe('handle-cfg', function() {
         var _ = handleCfg.__get__('')
     })
     */
+
+    describe('_findRunner', function() {
+        var _findRunner = handleCfg.__get__('findRunner')
+
+        it('runner is ./runner.html', function() {
+            var cwd = process.cwd()
+            process.chdir(__dirname)
+
+            var runner = 'runner.html'
+            fs.writeFileSync(runner, '')
+            var rt = _findRunner()
+
+            expect(rt).to.be(path.resolve(runner))
+            expect(logCache).to.match(/Found runner <.+runner\.html>/)
+
+            fs.unlinkSync(runner)
+            process.chdir(cwd)
+        })
+
+        it('runner is ./index.html', function() {
+            var cwd = process.cwd()
+            process.chdir(__dirname)
+
+            var runner = 'index.html'
+            fs.writeFileSync(runner, '')
+            var rt = _findRunner()
+
+            expect(rt).to.be(path.resolve(runner))
+            expect(logCache).to.match(/Found runner <.+index\.html>/)
+
+            fs.unlinkSync(runner)
+            process.chdir(cwd)
+        })
+
+        it('runner is ./test/runner.html', function() {
+            var cwd = process.cwd()
+            var tempDir = path.join(__dirname, 'temp')
+            fs.mkdirSync(tempDir)
+            process.chdir(tempDir)
+
+            fs.mkdirSync('test')
+            var runner = path.join('test', 'runner.html')
+            fs.writeFileSync(runner, '')
+            var rt = _findRunner()
+
+            expect(rt).to.be(path.resolve(runner))
+            expect(logCache).to.match(/Found runner <.+runner\.html>/)
+
+            fs.unlinkSync(runner)
+            fs.rmdirSync('test')
+            process.chdir(cwd)
+            fs.rmdirSync(tempDir)
+        })
+
+        it('runner is ./tests/index.html', function() {
+            var cwd = process.cwd()
+            var tempDir = path.join(__dirname, 'temp')
+            fs.mkdirSync(tempDir)
+            process.chdir(tempDir)
+
+            fs.mkdirSync('tests')
+            var runner = path.join('tests', 'index.html')
+            fs.writeFileSync(runner, '')
+            var rt = _findRunner()
+
+            expect(rt).to.be(path.resolve(runner))
+            expect(logCache).to.match(/Found runner <.+index\.html>/)
+
+            fs.unlinkSync(runner)
+            fs.rmdirSync('tests')
+            process.chdir(cwd)
+            fs.rmdirSync(tempDir)
+        })
+
+        it('not found test dir', function() {
+            var cwd = process.cwd()
+            var tempDir = path.join(__dirname, 'temp')
+            fs.mkdirSync(tempDir)
+            process.chdir(tempDir)
+
+            var rt = _findRunner()
+
+            expect(rt).to.be(undefined)
+            expect(logCache).to.be('Not found test dir.')
+
+            process.chdir(cwd)
+            fs.rmdirSync(tempDir)
+        })
+
+        it('not found runner', function() {
+            var cwd = process.cwd()
+            process.chdir(__dirname)
+
+            var rt = _findRunner()
+
+            expect(rt).to.be(undefined)
+            expect(logCache).to.be('Not found runner.')
+
+            process.chdir(cwd)
+        })
+    })
+
 
     describe('_handleAdapter', function() {
         var _handleAdapter = handleCfg.__get__('handleAdapter')
@@ -58,6 +161,7 @@ describe('handle-cfg', function() {
                     runner: runnerPath,
                     adapter: adapterUrl
                 })
+
                 expect(logCache).to.be('Runner is file, can not specify a url adapter.')
             })
 
@@ -66,6 +170,7 @@ describe('handle-cfg', function() {
                     runner: runnerUrl,
                     adapter: adapterPath
                 })
+
                 expect(logCache).to.match(/Runner is url, can not specify a file adapter\./)
             })
 
@@ -74,6 +179,7 @@ describe('handle-cfg', function() {
                     runner: runnerPath,
                     adapter: adapterPath
                 })
+
                 expect(logCache).to.match(/Specified adapter <.+> dose not exist\./)
             })
 
@@ -83,7 +189,9 @@ describe('handle-cfg', function() {
                     runner: runnerPath,
                     adapter: invalidAdapterPath
                 })
+
                 expect(logCache).to.match(/Specified adapter <.+> is not a js file\./)
+
                 fs.unlinkSync(invalidAdapterPath)
             })
 
@@ -94,7 +202,9 @@ describe('handle-cfg', function() {
                 }
                 fs.writeFileSync(adapterPath, '')
                 _handleAdapter(cfg)
+
                 expect(cfg.adapter).to.be(path.resolve(adapterPath))
+
                 fs.unlinkSync(adapterPath)
             })
         })
@@ -102,9 +212,11 @@ describe('handle-cfg', function() {
         it('not specified adapter', function() {
             var cfg = {runner: runnerPath}
             _handleAdapter(cfg)
+
             expect(logCache).to.be('Not found adapter file, will auto decide.')
         })
     })
+
 
     describe('_findAdapter', function() {
         var _findAdapter = handleCfg.__get__('findAdapter')
@@ -115,12 +227,15 @@ describe('handle-cfg', function() {
         it('with adapter file', function() {
             fs.writeFileSync(adapterPath, '')
             _findAdapter({runner: runnerPath})
+
             expect(logCache).to.match(/Found adapter file <.+>/)
+
             fs.unlinkSync(adapterPath)
         })
 
         it('without adapter file', function() {
             _findAdapter({runner: runnerPath})
+
             expect(logCache).to.be('Not found adapter file, will auto decide.')
         })
     })
@@ -131,6 +246,7 @@ describe('handle-cfg', function() {
 
         var dir = path.join('path', 'to','a')
         var f = path.join('path', 'b.js')
+
         expect(_relative(dir, f)).to.be('../../b.js')
     })
 
