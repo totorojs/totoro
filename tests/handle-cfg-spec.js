@@ -28,20 +28,145 @@ handleCfg.__set__({
 describe('handle-cfg', function() {
 
     it('handleCfg', function() {
+        var cfg = {
+            runner: 'http://aralejs.org/base/tests/runner.html',
+            clientRoot: '..',
+            clientHost: '127.0.0.1',
+            clientPort: 9998
+        }
 
+        handleCfg(cfg)
+
+        expect(cfg.runner).to.be('http://aralejs.org/base/tests/runner.html')
+        expect(cfg.clientRoot).to.be(undefined)
+        expect(cfg.clientServer).to.be(undefined)
+        expect(cfg.clientPort).to.be(undefined)
     })
 
 
-    it('_handleClientRoot', function() {
+    describe('_handleClientRoot', function() {
         var _handleClientRoot = handleCfg.__get__('handleClientRoot')
 
+        describe('runner is file', function() {
+            var proj = path.join(__dirname, '..', 'examples', 'simple')
+            var runner = path.join(proj, 'tests', 'runner.html')
+
+            it('specified clientRoot', function() {
+                var cfg = {
+                    runner: runner,
+                    clientRoot: path.join(proj, 'tests')
+                }
+                _handleClientRoot(cfg)
+
+                expect(cfg.clientRoot).to.be(proj)
+            })
+
+            it('not specified clientRoot', function() {
+                var adapter = path.join(__dirname, 'totoro-adapter.js')
+                fs.writeFileSync(adapter, '')
+                var cfg = {
+                    runner: runner,
+                    adapter: adapter
+                }
+                _handleClientRoot(cfg)
+
+                expect(cfg.clientRoot).to.be(path.join(__dirname, '..'))
+
+                fs.unlinkSync(adapter)
+            })
+        })
+
+        it('runner is url', function() {
+            var cfg = {
+                runner: 'http://aralejs.org/base/tests/runner.html'
+            }
+            _handleClientRoot(cfg)
+
+            expect(cfg.clientRoot).to.be(undefined)
+            expect(logCache).to.be('None of runner or adapter is existed file, not need clientRoot.')
+        })
     })
 
-    /*
-    it('_', function() {
-        var _ = handleCfg.__get__('')
+
+    describe('_findRunnerRoot', function() {
+        var _findRunnerRoot = handleCfg.__get__('findRunnerRoot')
+
+        it('no relative link was out of project', function() {
+            var proj = path.join(__dirname, '..', 'examples', 'simple')
+            var runner = path.join(proj, 'tests', 'runner.html')
+            var rt = _findRunnerRoot(runner)
+
+            expect(rt).to.be(proj)
+        })
+
+        it.skip('relative link was out of project', function() {
+
+        })
     })
-    */
+
+
+    it('_commonRoot', function() {
+        var _commonRoot = handleCfg.__get__('commonRoot')
+        var dir1 = path.join('path', 'to', 'dir1')
+        var dir2 = path.join('path', 'to', 'dir2')
+
+        it('both dir are specified', function() {
+            var rt = _commonRoot(dir1, dir2)
+            expect(rt).to.be(path.resolve('path', 'to'))
+        })
+
+        it('only one dir is specified', function() {
+            var rt1 = _commonRoot(dir1, null)
+            expect(rt1).to.be(path.resolve(dir1))
+
+            var rt2 = _commonRoot(null, dir2)
+            expect(rt2).to.be(path.resolve(dir2))
+        })
+    })
+
+
+    describe('_handleRunner', function() {
+        var _handleRunner = handleCfg.__get__('handleRunner')
+
+        it('specified runner as local file', function() {
+            var runner = 'runner.html'
+            var cwd = process.cwd()
+            process.chdir(__dirname)
+            fs.writeFileSync(runner, '')
+            var cfg = {runner: runner}
+            _handleRunner(cfg)
+
+            expect(cfg.runner).to.be(path.resolve(runner))
+
+            fs.unlinkSync(runner)
+            process.chdir(cwd)
+        })
+
+        it('specified runner not existed', function() {
+            var cwd = process.cwd()
+            process.chdir(__dirname)
+            var cfg = {runner: 'runner.html'}
+            _handleRunner(cfg)
+
+            expect(logCache).to.match(/Specified runner <runner\.html> is not available\./)
+
+            process.chdir(cwd)
+        })
+
+        it('not specified runner', function() {
+            var cwd = process.cwd()
+            process.chdir(__dirname)
+            var cfg = {}
+            _handleRunner(cfg)
+
+            expect(cfg.runner).to.be(undefined)
+            expect(logCache).to.be('Not found runner.')
+
+            process.chdir(cwd)
+        })
+
+    })
+
 
     describe('_findRunner', function() {
         var _findRunner = handleCfg.__get__('findRunner')
