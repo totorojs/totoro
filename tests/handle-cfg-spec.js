@@ -105,14 +105,20 @@ describe('handle-cfg', function() {
     })
 
 
-    it('_commonRoot', function() {
+    describe('_commonRoot', function() {
         var _commonRoot = handleCfg.__get__('commonRoot')
         var dir1 = path.join('path', 'to', 'dir1')
         var dir2 = path.join('path', 'to', 'dir2')
+        var dir3 = '/usr/local/lib/node_modules/seatools/lib/tools'
 
         it('both dir are specified', function() {
             var rt = _commonRoot(dir1, dir2)
             expect(rt).to.be(path.resolve('path', 'to'))
+        })
+
+        it('two dirs are in different disk', function() {
+            var rt = _commonRoot(dir1, dir3)
+            expect(rt).to.be(path.sep)
         })
 
         it('only one dir is specified', function() {
