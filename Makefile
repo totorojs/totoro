@@ -1,7 +1,7 @@
 all: test coverage jshint
 
 test:
-	@mocha tests
+	@mocha tests --reporter spec
 	@$(MAKE) coverage cov-args=json-cov | node scripts/coverage.js
 
 cov-args = html-cov > coverage.html
