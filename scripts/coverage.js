@@ -9,13 +9,13 @@ process.stdin.on('end', function() {
     data = data.replace(/^[^{]*({)/g, '$1')
     data = JSON.parse(data)
 
-    console.log('Coverage:')
+    console.log()
     data.files.sort(function(a, b) {
         return a.coverage - b.coverage
     }).forEach(function(item) {
         console.log(format('%s%% - %s', pad(item.coverage), item.filename))
     })
-    console.log()
+    console.log('\n \033[36m see more details: coverage.html \033[0m')
 })
 
 
