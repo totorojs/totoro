@@ -1,8 +1,8 @@
 {
-  "name": "simple",
+  "name": "gbk",
   "family": "totoro",
   "version": "0.0.1",
-  "description": "A simple sample.",
+  "description": "A gbk sample.",
   "homepage": "https://github.com/totorojs/totoro",
   "repository": {
     "type": "git",
