@@ -26,6 +26,14 @@ module.exports = function(grunt) {
         },
 
         shell: {
+            installMocha: {
+                command: 'npm install mocha -g'
+            },
+
+            installJscoverage: {
+                command: 'npm install jscoverage -g'
+            },
+
             coverage: {
                 options: {
                     stdout: true,
@@ -55,7 +63,18 @@ module.exports = function(grunt) {
     })
 
 
+    grunt.registerTask('beforeCoverage', 'install mocha and jscoverage', function() {
+        if (shelljs.exec('mocha --version', {silent: true}).code !== 0) {
+            grunt.task.run('shell:installMocha')
+        }
+
+        if (shelljs.exec('jscoverage --version', {silent: true}).code !== 0) {
+            grunt.task.run('shell:installJscoverage')
+        }
+    })
+
+
     grunt.registerTask('default', ['jshint', 'test', 'coverage'])
     grunt.registerTask('test', ['mochaTest'])
-    grunt.registerTask('coverage', ['shell:coverage'])
+    grunt.registerTask('coverage', ['beforeCoverage', 'shell:coverage'])
 };
