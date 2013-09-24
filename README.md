@@ -6,7 +6,7 @@
 
 简单易用、稳定的前端单元测试工具。
 
-最新版本：v0.3.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
+最新版本：v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
 
 ---
 
@@ -128,6 +128,19 @@ totoro 默认提供的测试服务目前为阿里的内部服务(稍后会提供
 测试时，客户端可能会起一个临时的 HTTP 服务，该选项这个服务的根目录，接受相对路径和绝对路径。
 
 默认：根据 runner 和 adapter 进行猜测。
+
+#### --skip-coverage
+
+关闭代码覆盖率检查.
+
+默认：开启
+
+#### --verbose
+
+显示更详细的信息:
+ - debug 日志
+ - 如果启用测试代码覆盖率, 将会显示没有覆盖到行的详细信息.
+
 
 ### 3.2 totoro list
 
