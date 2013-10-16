@@ -173,7 +173,7 @@ totoro config --server-host=10.15.52.87 --server-port=''
 以下为一个配置文件的例子：
 
     {
-        "browsers": ["chrome", "ie/10.0"]
+        "browsers": ["chrome", "ie/10.0"],
         "serverHost": "127.0.0.1",
         "serverPort": 9999
     }
