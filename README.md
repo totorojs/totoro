@@ -74,11 +74,6 @@ totoro 默认提供的测试服务目前为阿里的内部服务(稍后会提供
 
 ### 3.1 totoro
 
-#### --verbose
-
-显示 debug 日志。
-
-默认：false
 
 #### --runner
 
@@ -140,6 +135,8 @@ totoro 默认提供的测试服务目前为阿里的内部服务(稍后会提供
 显示更详细的信息:
  - debug 日志
  - 如果启用测试代码覆盖率, 将会显示没有覆盖到行的详细信息.
+ 
+默认：false
 
 
 ### 3.2 totoro list
@@ -176,7 +173,7 @@ totoro config --server-host=10.15.52.87 --server-port=''
 以下为一个配置文件的例子：
 
     {
-        "browsers": ["chrome", "ie/10.0"]
+        "browsers": ["chrome", "ie/10.0"],
         "serverHost": "127.0.0.1",
         "serverPort": 9999
     }
