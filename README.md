@@ -14,7 +14,8 @@
 
 - 在真实的浏览器中运行
 - 支持所有的测试框架
-- 实时进度反馈和测试报告
+- 支持调试
+- 自动测试覆盖率
 - **足够健壮，适用于生产环境**
 
 ## 1. 安装
@@ -39,9 +40,9 @@
 
 简单起见，我们已经为你准备好了一个可供测试的例子：
 
-#### 注意
+### 注意：测试前请先使用 `totoro config --server-host={{yourServerHost}}` 来指定测试服务
 
-totoro 默认提供的测试服务目前为阿里的内部服务(稍后会提供公共服务)，请通过 `--server-host` 和 `--server-port` 配置项更换其他可用测试服务，或 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
+默认为阿里巴巴集团的内部测试服务，你可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
 
     $ git clone git@github.com:totorojs/totoro.git
     $ cd totoro/examples/simple
@@ -135,7 +136,7 @@ totoro 默认提供的测试服务目前为阿里的内部服务(稍后会提供
 显示更详细的信息:
  - debug 日志
  - 如果启用测试代码覆盖率, 将会显示没有覆盖到行的详细信息.
- 
+
 默认：false
 
 
