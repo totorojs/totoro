@@ -21,6 +21,7 @@ commander
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
     .option('--skip-coverage', 'skip code jcoverage')
+    .option('--code [s]', 'executes the specified code')
     .on('version', function() {
         console.log()
         var pkg = require('../package')
