@@ -43,7 +43,7 @@
 ### 注意：测试前请先指定测试服务
 
 
-    totoro config --server-host={{yourServerHost}}
+    $ totoro config --server-host={{yourServerHost}}
 
 
 默认为阿里巴巴集团的内部测试服务，你也可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
