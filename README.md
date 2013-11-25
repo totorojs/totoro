@@ -40,9 +40,13 @@
 
 简单起见，我们已经为你准备好了一个可供测试的例子：
 
-### 注意：测试前请先使用 `totoro config --server-host={{yourServerHost}}` 来指定测试服务
+### 注意：测试前请先指定测试服务
 
-默认为阿里巴巴集团的内部测试服务，你可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
+
+    totoro config --server-host={{yourServerHost}}
+
+
+默认为阿里巴巴集团的内部测试服务，你也可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
 
     $ git clone git@github.com:totorojs/totoro.git
     $ cd totoro/examples/simple
@@ -90,7 +94,7 @@
 
 自定义适配器写法可参考 [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js)。
 
-默认：如果 --runner 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 --runner 指定的是 url 则会自动扫描 runner 的内容尝试查找匹配的内置关键字。
+默认：如果 `--runner` 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 --runner 指定的是 url 则会自动扫描 runner 的内容尝试查找匹配的内置关键字。
 
 #### --browsers
 
