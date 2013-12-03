@@ -8,6 +8,8 @@
 
 [![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 
+[English edition](README.md)
+
 ---
 
 ## 0. 特性
@@ -22,7 +24,7 @@
 
 ### node 版本要求
 
->= 0.8.17
+\>= 0.8.17
 
 ### 从 npm 安装
 
