@@ -179,7 +179,7 @@ Above command clear the `--server-port` value.
 
 ## 4. Config File
 
-If you prefer using a config file to cli options, you can place `totoro-config.json` in the CWD.
+If you need a config file, just place `totoro-config.json` in the CWD.
 
 The priority level of all config ways are: `command line > config file > totoro config > default config`
 
