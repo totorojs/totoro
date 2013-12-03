@@ -24,7 +24,7 @@ Latest stable version：v0.4.0 [Change Log](https://github.com/totorojs/totoro/w
 
 ### Node requirement
 
-\>= 0.8.17
+\>= 0.10.12
 
 ### Install from npm
 
