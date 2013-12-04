@@ -2,184 +2,199 @@
 
 # totoro
 
+A simple & stable front-end unit testing tool.
+
+Latest stable version：v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
+
 [![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 
-简单易用、稳定的前端单元测试工具。
-
-最新版本：v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
+[中文版使用文档](README.zh.md)
 
 ---
 
-## 0. 特性
+## 0. Features
 
-- 在真实的浏览器中运行
-- 支持所有的测试框架
-- 支持调试
-- 自动测试覆盖率
-- **足够健壮，适用于生产环境**
+- Run in real browsers
+- Support all test frameworks
+- Support debug
+- Auto testing coverage
+- **Robust enough for actual combat**
 
-## 1. 安装
+## 1. Installation
 
-### node 版本要求
+### Node requirement
 
-    >= 0.8.17
+\>= 0.10.12
 
-### 从 npm 安装
+### Install from npm
 
-    $ sudo npm install totoro -g
+```
+$ npm install totoro -g
+```
 
-### 从 Github 安装
+If it not works, you may add `sudo` before the command, as follows.
 
-可以体验开发中的最新功能
+### Install from github
 
-    $ git clone git@github.com:totorojs/totoro.git
-    $ cd totoro
-    $ sudo npm install -g
+To get the latest function (may not be stable)
 
-## 2. 快速上手
+```
+$ git clone git@github.com:totorojs/totoro.git
+$ cd totoro
+$ npm install -g
+```
 
-简单起见，我们已经为你准备好了一个可供测试的例子：
+## 2. Quick Start
 
-### 注意：测试前请先使用 `totoro config --server-host={{yourServerHost}}` 来指定测试服务
+For simplicity, we have already prepared an example for you:
 
-默认为阿里巴巴集团的内部测试服务，你可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
+### Important: please specify a server first !
 
-    $ git clone git@github.com:totorojs/totoro.git
-    $ cd totoro/examples/simple
-    $ totoro
+```
+$ totoro config --server-host={{yourServerHost}}
+```
 
-如无意外，你将看到如下结果：
+The default value is a internal server for Alibaba group, you can [launch your own server](https://github.com/totorojs/totoro-server).
 
-![screen shot 2013-08-01 at 2 12 53 pm](https://f.cloud.github.com/assets/340282/891944/7c099544-fa71-11e2-828b-5da8c0566834.png)
+We are planning to supply an open service, hmm...
 
-- 小圆点为即时进度反馈。成功显示为绿色圆点，失败显示为红色小叉。
-- 单个浏览器测试结果中包含运行时间和测试覆盖率。
-- 测试成功的浏览器会以绿色字符输出显示，失败或超时的浏览器会以红色字符显示，并输出错误详情。
+```
+$ git clone git@github.com:totorojs/totoro.git
+$ cd examples/mocha
+$ totoro
+```
 
-#### 推荐的项目目录结构
+Then you should see a output as shown below:
 
-    project-dir/
-        dist/
-        src/ or lib/
-        tests/ or test/
-            runner.html or index.html
+![totoro-result](https://f.cloud.github.com/assets/340282/891944/7c099544-fa71-11e2-828b-5da8c0566834.png)
 
-其中：
+- Green dot means a test case passed, red cross means a test case failed.
+- Every browser supplies it's own run time and testing coverage.
+- If all test cases passed, will report in green color, or will report in red color with detailed error message.
 
-- 你需要在 project-dir/ 目录运行 `totoro` 命令
-- dist/ 为编译或打包后的输出目录
-- src/ 或 lib/ 为源码目录
-- tests/ 或 test/ 为测试目录，其中的 runner.html 或 index.html 都能被识别为 runner
+#### Recommended directory structure
 
-## 3. 命令行配置项
+Generally, if your test is a local file and the directory structure of your project is as bellow, you can run `totoro` without any config.
+
+```
+project-dir/
+  dist/
+  src/ or lib/
+  tests/ or test/
+    runner.html or index.html
+```
+
+## 3. Cli Options
+
+All options are optional.
 
 ### 3.1 totoro
 
-
 #### --runner
 
-测试 runner。接受本地路径和 url 两种形式。
+Test runner. Accept local file and URL.
 
-默认：自动查找当前目录，tests 或 test 子目录下的 runner.html 或 index.html 均可被识别。
+Default: auto search in the CWD, `runner.html` or `index.html` in subdirectory `test/` or `tests/` could be recognized.
 
 #### --adapter
 
-测试框架的适配器，用于发送测试报告。接受内置关键字、本地路径和 url 三种形式。
+Test framework's adapter, used to send report to server. Accept built-in keywords, local file and URL.
 
-已支持的内置关键字有：`mocha`, `jasmine`。
+Built-in keywords: `mocha`, `jasmine`.
 
-自定义适配器写法可参考 [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js)。
+It is very easy to write an adapter for custom test framework, you could refer to [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js).
 
-默认：如果 --runner 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 --runner 指定的是 url 则会自动扫描 runner 的内容尝试查找匹配的内置关键字。
+Default: if `--runner` is local file, `totoro` will see if there is `totoro-adapter.js` in the same directory , if not found or `--runner` is URL, [totoro-server](https://github.com/totorojs/totoro-server) will try to find out matched keyword according to `--runner` content.
 
 #### --browsers
 
-指定要测试的浏览器，多个以逗号分隔。例如：
+Specify a comman-delimited list of browser names. For example:
 
-    chrome,firefox,safari,ie  //不指定版本
-    ie/6,ie/7,ie/8,ie/9  //指定版本
+```
+chrome,firefox,safari,ie  //just specify browser names
+ie/6,ie/7,ie/8,ie/9  //specify browser names and versions
+```
 
-默认：自动选取测试服务端可用的桌面浏览器。
+Default: all available desktop browsers.
 
 #### --timeout
 
-客户端超时时间，单位为分钟。
+Specifies the client timeout in minutes.
 
-默认：5
+Default：5
 
 #### --server-host
 
-测试服务 host。
+totoro-server host。
 
-默认：阿里的内部host
+Default: internal server host for Alibaba group.
 
 #### --server-port
 
-测试服务 port。
+totoro-server port。
 
-默认：9999
+Default: 9999
 
 #### --client-root
 
-测试时，客户端可能会起一个临时的 HTTP 服务，该选项这个服务的根目录，接受相对路径和绝对路径。
+If assign a local file to `--runner`, `totoro` need to launch a temporary HTTP server for testing, `--client-root` is the root of this server.
 
-默认：根据 runner 和 adapter 进行猜测。
+Default: if necessary, guess a path according to `--runner` and `--adapter`.
 
 #### --skip-coverage
 
-关闭代码覆盖率检查.
+No need testing coverage.
 
-默认：开启
+Default: false
 
 #### --verbose
 
-显示更详细的信息:
- - debug 日志
- - 如果启用测试代码覆盖率, 将会显示没有覆盖到行的详细信息.
+Show more info.
 
-默认：false
-
+Default: false
 
 ### 3.2 totoro list
 
-显示当前可用的测试浏览器。配置项可通过 `totoro list -h` 查看。
+Show all available browsers of specified server.
 
-![screen shot 2013-08-01 at 2 30 49 pm](https://f.cloud.github.com/assets/340282/892035/ed628190-fa73-11e2-9810-3403502514b2.png)
+![totoro list](https://f.cloud.github.com/assets/340282/892035/ed628190-fa73-11e2-9810-3403502514b2.png)
 
+### 3.3 totoro config
 
-### 3.3 tororo config
+Read or write global config.
 
-读取或者设置全局配置。配置项可通过 `totoro config -h` 查看。
-
-#### 读取全局配置
-
-```
-totoro config
-```
-
-#### 设置全局配置
+#### Read global config
 
 ```
-totoro config --server-host=10.15.52.87 --server-port=''
+$ totoro config
 ```
 
-将 server-host 设置为 10.15.52.87，将 server-port 置空。
+#### Write global config
 
-## 4. 配置文件
+```
+$ totoro config --server-host=10.15.52.87 --server-port=''
+```
 
-除了命令行配置项和全局配置，你还可以为你的项目建立名为 `totoro-config.json` 的配置文件，放在项目根目录下。
+Above command clear the `--server-port` value.
 
-这 3 种配置方式的优先级为：命令行 > 配置文件 > 全局配置 > 内置默认配置。
+## 4. Config File
 
-以下为一个配置文件的例子：
+If you need a config file, just place `totoro-config.json` in the CWD.
 
-    {
-        "browsers": ["chrome", "ie/10.0"],
-        "serverHost": "127.0.0.1",
-        "serverPort": 9999
-    }
+The priority level of all config ways are: `command line > config file > totoro config > default config`
+
+Below is an example for config file:
+
+```
+{
+  "browsers": ["chrome", "ie/10.0"],
+  "serverHost": "127.0.0.1",
+  "serverPort": 9999
+}
+```
+
+## 5. About
+
+totoro takes it's name from animated fantasy film "My Neighbor Totoro" directed by [Hayao Miyazaki](http://en.wikipedia.org/wiki/Hayao_Miyazaki).
 
 
-## 5. 关于
-
-totoro 的名字来自于宫崎骏导演的奇幻动画电影《龙猫》。
