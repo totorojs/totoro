@@ -13,7 +13,7 @@ commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner [s]', 'runner path')
-    .option('--code [s]', 'expression or file path to run')
+    .option('--code [s]', 'single expression or file path to run')
     .option('--browsers [s]', 'browsers to run test', common.split)
     .option('--adapter [s]', 'report adapter')
     .option('--charset [s]', 'charset')
