@@ -13,6 +13,7 @@ commander
     .option('-v, --version', 'output the version number')
     .option('--verbose', 'show debug log')
     .option('--runner [s]', 'runner path')
+    .option('--code [s]', 'single expression or file path to run')
     .option('--browsers [s]', 'browsers to run test', common.split)
     .option('--adapter [s]', 'report adapter')
     .option('--charset [s]', 'charset')
@@ -20,13 +21,19 @@ commander
     .option('--client-root [s]', 'client server root')
     .option('--server-host [s]', 'specify server host')
     .option('--server-port [n]', 'specify server port')
-    .option('--skip-coverage', 'skip code jcoverage')
+    .option('--skip-coverage', 'skip code js coverage')
     .on('version', function() {
         console.log()
         var pkg = require('../package')
         console.log('  ' + colorful.cyan(pkg.version))
         console.log()
         process.exit(0)
+    }).on('--help', function() {
+        console.log(colorful.green('  Examples:'))
+        console.log('    $ totoro')
+        console.log('    $ totoro --runner=url/to/runner')
+        console.log('    $ totoro --code=document.getElementsByClassName')
+        console.log()
     }).helpInformation = helpInfo
 
 
