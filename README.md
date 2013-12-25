@@ -96,6 +96,17 @@ Test runner. Accept local file and URL.
 
 Default: auto search in the CWD, `runner.html` or `index.html` in subdirectory `test/` or `tests/` could be recognized.
 
+#### --code
+
+A convenient way to debug. Accept **single** JS expression, local file or URL. totoro will return the calculated value of expression or all output of console.log() in JS file. For example:
+
+```
+$ totoro --code document.getElementsByClassName
+$ totoro --code examples/code/code.js  // this file already exists, try it!
+```
+
+Be mind that `--code` and `--runner` are mutually exclusive!
+
 #### --adapter
 
 Test framework's adapter, used to send report to server. Accept built-in keywords, local file and URL.

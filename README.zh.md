@@ -18,7 +18,7 @@
 - 支持所有的测试框架
 - 支持调试
 - 自动测试覆盖率
-- **足够健壮，不是一个玩具模型**
+- **足够健壮，可用于实战**
 
 ## 1. 安装
 
@@ -91,13 +91,24 @@ project-dir/
 
 #### --runner
 
-测试 runner。接受本地路径和 url 两种形式。
+测试 runner。接受本地文件和 URL。
 
 默认：自动查找当前目录，`tests` 或 `test` 子目录下的 `runner.html` 或 `index.html` 均可被识别。
 
+#### --code
+
+方便的 debug 途径。接受 **单个** 表达式、 JS 文件和 URL。totoro 将返回指定表达式计算的值或 JS 文件中所有 console.log() 输出结果。例如：
+
+```
+$ totoro --code document.getElementsByClassName
+$ totoro --code examples/code/code.js  // 我们真的准备了这个例子，试试看！
+```
+
+注意： `--code` 和 `--runner` 是互斥的选项！
+
 #### --adapter
 
-测试框架的适配器，用于发送测试报告。接受内置关键字、本地路径和 url 三种形式。
+测试框架的适配器，用于发送测试报告。接受内置关键字、本地路径和 URL。
 
 已支持的内置关键字有：`mocha`, `jasmine`。
 
