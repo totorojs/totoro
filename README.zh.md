@@ -155,7 +155,9 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 #### --client-root
 
-如果 `--runner` 是一个本地文件，`totoro` 在测试时会起一个临时的 HTTP 服务，该选项这个服务的根目录，接受相对路径和绝对路径。
+如果 `--runner` 是一个本地文件，`totoro` 在测试时会起一个临时的 HTTP 服务，该选项指定这个服务的根目录，接受相对路径和绝对路径。
+
+[参见更多详情](https://github.com/totorojs/totoro/wiki/clientRoot-option.zh)
 
 默认：根据 `--runner` 和 `--adapter` 进行猜测。
 

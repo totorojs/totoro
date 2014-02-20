@@ -150,6 +150,8 @@ Default: 9999
 
 If assign a local file to `--runner`, `totoro` need to launch a temporary HTTP server for testing, `--client-root` is the root of this server.
 
+[See more detail](https://github.com/totorojs/totoro/wiki/clientRoot-option)
+
 Default: if necessary, guess a path according to `--runner` and `--adapter`.
 
 #### --skip-coverage
