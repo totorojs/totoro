@@ -60,7 +60,7 @@ We are planning to supply an open service, hmm...
 
 ```
 $ git clone git@github.com:totorojs/totoro.git
-$ cd examples/mocha
+$ cd totoro/examples/simple
 $ totoro
 ```
 
@@ -69,7 +69,7 @@ Then you should see a output as shown below:
 ![totoro-result](https://f.cloud.github.com/assets/340282/891944/7c099544-fa71-11e2-828b-5da8c0566834.png)
 
 - Green dot means a test case passed, red cross means a test case failed.
-- Every browser supplies it's own run time and testing coverage.
+- Every browser supplies it's own run time and testing coverage (if your test has source code, and `totoro` can recognize).
 - If all test cases passed, will report in green color, or will report in red color with detailed error message.
 
 #### Recommended directory structure
