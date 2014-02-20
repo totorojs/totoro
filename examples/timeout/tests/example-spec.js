@@ -1,5 +1,8 @@
 define(function(require) {
     var expect = require('expect')
+
+    console.log('This test has a test case needs to run 10 seconds.')
+
     describe('A Test Suite', function() {
         this.timeout(30000)
         it('A Test Case', function(done) {
