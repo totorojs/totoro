@@ -16,10 +16,11 @@ gallery/mocha/1.9.0/mocha.js"></script>
                 mocha.ui('bdd')
                 seajs.config({
                     alias:{
-                        "expect":"gallery/expect/0.2.0/expect"
+                        expect: 'gallery/expect/0.2.0/expect',
+                        example: '../src/example'
                     }
                 })
-                seajs.use(["./example-spec.js"], function() {
+                seajs.use(['./example-spec.js'], function() {
                     mocha.run()
                 })
             })()

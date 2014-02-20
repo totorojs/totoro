@@ -2,7 +2,7 @@ define(function(require) {
 
     var expect = require('expect')
 
-    var test = require('../src/test')
+    var test = require('example')
 
     describe('Test Suit', function() {
 
