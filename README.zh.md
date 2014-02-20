@@ -29,7 +29,15 @@
 ### 从 npm 安装
 
 ```
-$ npm install totoro -g
+$ npm install totoro
+```
+
+如果安装失败，你可能需要在命令前面加上 `sudo` 。
+
+网速慢的国内用户可以使用下列命令安装：
+
+```
+npm install totoro --registry=http://r.cnpmjs.org
 ```
 
 ### 从 Github 安装
