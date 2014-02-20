@@ -1,10 +1,10 @@
 define(function(require) {
     var expect = require('expect')
-    var simple = require('simple')
+    var example = require('example')
 
     describe('GBK ²âÊÔÌ×¼ş', function() {
         it('A GBK ²âÊÔÓÃÀı', function() {
-            expect(simple()).to.be('A simple sample.')
+            expect(example()).to.be('A simple sample.')
         })
     })
 })
