@@ -12,7 +12,7 @@ var pkg = require('../package')
 commander
     .description(pkg.description)
     .option('-v, --version', 'output the version number')
-    .option('--debug', 'show debug log')
+    .option('-d, --debug', 'show debug log')
     .option('--verbose', 'show more info')
     .option('--runner [s]', 'runner path')
     .option('--code [s]', 'single expression or file path to run')
