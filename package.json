@@ -22,7 +22,7 @@
         "colorful": "2.1.0",
         "tracer": "0.5.1",
         "request": "2.21.0",
-        "totoro-common": "0.1.4"
+        "totoro-common": "0.1.5"
     },
     "devDependencies": {
     "grunt": "0.4.1",
