@@ -26,7 +26,6 @@ commander
     .option('--skip-coverage', 'skip code js coverage')
     .on('version', function() {
         console.log()
-        v
         console.log('  ' + colorful.cyan(pkg.version))
         console.log()
         process.exit(0)
