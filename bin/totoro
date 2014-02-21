@@ -7,9 +7,10 @@ var colorful = require('colorful')
 var common = require('totoro-common')
 
 var Client = require('../index')
+var pkg = require('../package')
 
 commander
-    .description('A simple, easy-to-use and stable front-end unit testing tool.')
+    .description(pkg.description)
     .option('-v, --version', 'output the version number')
     .option('--debug', 'show debug log')
     .option('--verbose', 'show more info')
@@ -25,7 +26,7 @@ commander
     .option('--skip-coverage', 'skip code js coverage')
     .on('version', function() {
         console.log()
-        var pkg = require('../package')
+        v
         console.log('  ' + colorful.cyan(pkg.version))
         console.log()
         process.exit(0)
@@ -96,7 +97,7 @@ function helpInfo() {
         '' + this.optionHelp().replace(/^/gm, '    '),
         '',
         colorful.green('  More Info:'),
-        '    ' + colorful.underline('https://github.com/totorojs/totoro'),
+        '    ' + colorful.underline(pkg.homepage),
         '',
         ''
     ].join('\n')

@@ -1,11 +1,11 @@
 {
     "name": "totoro",
     "version": "0.4.0",
-    "description": "A simple, easy-to-use and stable front-end unit testing tool.",
+    "description": "A simple and stable front-end unit test tool.",
     "homepage": "https://github.com/totorojs/totoro",
     "keywords": [
         "front end",
-        "unit testing",
+        "unit test",
         "automation"
     ],
     "author": "fool2fish <fool2fish@gmail.com>",
