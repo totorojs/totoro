@@ -1,7 +1,7 @@
 (function() {
   mocha.reporter(function(runner) {
     var report = totoro.report
-    var id = location.href.match(/runner\/([^/]+)\//)[1]
+    var id = totoro.getOrderId(location.href)
 
     var stats = {
       suites: 0,
