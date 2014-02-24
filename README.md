@@ -4,7 +4,7 @@
 
 A simple & stable front-end unit testing tool.
 
-Latest stable version：v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
+Latest stable version: v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
 
 [![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 
@@ -51,7 +51,7 @@ For simplicity, we have already prepared an example for you:
 ### Important: please specify a server first !
 
 ```
-$ totoro config --server-host={{yourServerHost}}
+$ totoro config --host={{totoroServerHost}}
 ```
 
 The default value is a internal server for Alibaba group, you can [launch your own server](https://github.com/totorojs/totoro-server).
@@ -132,25 +132,25 @@ Default: all available desktop browsers.
 
 Specifies the client timeout in minutes.
 
-Default：5
+Default: 5
 
-#### --server-host
+#### --host
 
-totoro-server host。
+totoro-server host.
 
 Default: internal server host for Alibaba group.
 
-#### --server-port
+#### --port
 
-totoro-server port。
+totoro-server port.
 
 Default: 9999
 
-#### --client-root
+#### --root
 
-If assign a local file to `--runner`, `totoro` need to launch a temporary HTTP server for testing, `--client-root` is the root of this server.
+If assign a local file to `--runner`, `totoro` need to launch a temporary HTTP server for testing, `--root` is the root of this server.
 
-[See more detail](https://github.com/totorojs/totoro/wiki/clientRoot-option)
+[See more detail](https://github.com/totorojs/totoro/wiki/root-option)
 
 Default: if necessary, guess a path according to `--runner` and `--adapter`.
 
@@ -185,10 +185,10 @@ $ totoro config
 #### Write global config
 
 ```
-$ totoro config --server-host=10.15.52.87 --server-port=''
+$ totoro config --host=10.15.52.87 --port=''
 ```
 
-Above command clear the `--server-port` value.
+Above command clear the `--port` value.
 
 ## 4. Config File
 
@@ -201,8 +201,8 @@ Below is an example for config file:
 ```
 {
   "browsers": ["chrome", "ie/10.0"],
-  "serverHost": "127.0.0.1",
-  "serverPort": 9999
+  "host": "127.0.0.1",
+  "port": 9999
 }
 ```
 

@@ -56,7 +56,7 @@ $ sudo npm install -g
 ### 注意：测试前请先指定测试服务
 
 ```
-$ totoro config --server-host={{yourServerHost}}
+$ totoro config --host={{totoroServerHost}}
 ```
 
 默认为阿里巴巴集团的内部测试服务，你也可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
@@ -141,23 +141,23 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 默认：5
 
-#### --server-host
+#### --host
 
 测试服务 host。
 
 默认：阿里的内部host
 
-#### --server-port
+#### --port
 
 测试服务 port。
 
 默认：9999
 
-#### --client-root
+#### --root
 
 如果 `--runner` 是一个本地文件，`totoro` 在测试时会起一个临时的 HTTP 服务，该选项指定这个服务的根目录，接受相对路径和绝对路径。
 
-[参见更多详情](https://github.com/totorojs/totoro/wiki/clientRoot-option.zh)
+[参见更多详情](https://github.com/totorojs/totoro/wiki/root-option.zh)
 
 默认：根据 `--runner` 和 `--adapter` 进行猜测。
 
@@ -196,7 +196,7 @@ $ totoro config
 #### 设置全局配置
 
 ```
-totoro config --server-host=10.15.52.87 --server-port=''
+totoro config --host=10.15.52.87 --port=''
 ```
 
 将 server-host 设置为 10.15.52.87，将 server-port 置空。
@@ -212,8 +212,8 @@ totoro config --server-host=10.15.52.87 --server-port=''
 ```
 {
   "browsers": ["chrome", "ie/10.0"],
-  "serverHost": "127.0.0.1",
-  "serverPort": 9999
+  "host": "127.0.0.1",
+  "port": 9999
 }
 ```
 
