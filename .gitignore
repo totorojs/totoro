@@ -6,3 +6,4 @@ node_modules/
 logs/
 lib-cov/
 coverage.html
+.idea
