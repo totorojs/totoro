@@ -97,13 +97,13 @@ project-dir/
 ### 3.1 totoro
 
 
-#### --runner
+#### -R, --runner
 
 测试 runner。接受本地文件和 URL。
 
 默认：自动查找当前目录，`tests` 或 `test` 子目录下的 `runner.html` 或 `index.html` 均可被识别。
 
-#### --code
+#### -C, --code
 
 方便的 debug 途径。接受 **单个** 表达式、 JS 文件和 URL。totoro 将返回指定表达式计算的值或 JS 文件中所有 console.log() 输出结果。例如：
 
@@ -114,17 +114,7 @@ $ totoro --code examples/code/code.js  // 我们真的准备了这个例子，�
 
 注意： `--code` 和 `--runner` 是互斥的选项！
 
-#### --adapter
-
-测试框架的适配器，用于发送测试报告。接受内置关键字、本地路径和 URL。
-
-已支持的内置关键字有：`mocha`, `jasmine`。
-
-自定义适配器写法可参考 [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js)。
-
-默认：如果 `--runner` 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 `--runner` 指定的是 url 则 `totoro-server` 会自动扫描 `--runner` 的内容尝试查找匹配的内置关键字。
-
-#### --browsers
+#### -b, --browsers
 
 指定要测试的浏览器，多个以逗号分隔。例如：
 
@@ -135,31 +125,47 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 默认：自动选取测试服务端可用的桌面浏览器。
 
-#### --timeout
+#### -a, --adapter
+
+测试框架的适配器，用于发送测试报告。接受内置关键字、本地路径和 URL。
+
+已支持的内置关键字有：`mocha`, `jasmine`。
+
+自定义适配器写法可参考 [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js)。
+
+默认：如果 `--runner` 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 `--runner` 指定的是 url 则 `totoro-server` 会自动扫描 `--runner` 的内容尝试查找匹配的内置关键字。
+
+#### -c, --charset
+
+文件编码
+
+默认： 'utf8'
+
+#### -t, --timeout
 
 客户端超时时间，单位为分钟。
 
 默认：5
 
-#### --host
-
-测试服务 host。
-
-默认：阿里的内部host
-
-#### --port
-
-测试服务 port。
-
-默认：9999
-
-#### --root
+#### -O, --root
 
 如果 `--runner` 是一个本地文件，`totoro` 在测试时会起一个临时的 HTTP 服务，该选项指定这个服务的根目录，接受相对路径和绝对路径。
 
 [参见更多详情](https://github.com/totorojs/totoro/wiki/root-option.zh)
 
 默认：根据 `--runner` 和 `--adapter` 进行猜测。
+
+#### -H, --host
+
+测试服务 host。
+
+默认：阿里的内部host
+
+#### -P, --port
+
+测试服务 port。
+
+默认：9999
 
 #### --skip-coverage
 

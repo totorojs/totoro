@@ -90,13 +90,13 @@ All options are optional.
 
 ### 3.1 totoro
 
-#### --runner
+#### -R, --runner
 
 Test runner. Accept local file and URL.
 
 Default: auto search in the CWD, `runner.html` or `index.html` in subdirectory `test/` or `tests/` could be recognized.
 
-#### --code
+#### -C, --code
 
 A convenient way to debug. Accept **single** JS expression, local file or URL. totoro will return the calculated value of expression or all output of console.log() in JS file. For example:
 
@@ -107,17 +107,7 @@ $ totoro --code examples/code/code.js  // this file already exists, try it!
 
 Be mind that `--code` and `--runner` are mutually exclusive!
 
-#### --adapter
-
-Test framework's adapter, used to send report to server. Accept built-in keywords, local file and URL.
-
-Built-in keywords: `mocha`, `jasmine`.
-
-It is very easy to write an adapter for custom test framework, you could refer to [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js).
-
-Default: if `--runner` is local file, `totoro` will see if there is `totoro-adapter.js` in the same directory , if not found or `--runner` is URL, [totoro-server](https://github.com/totorojs/totoro-server) will try to find out matched keyword according to `--runner` content.
-
-#### --browsers
+#### -b, --browsers
 
 Specify a comman-delimited list of browser names. For example:
 
@@ -128,31 +118,47 @@ ie/6,ie/7,ie/8,ie/9  //specify browser names and versions
 
 Default: all available desktop browsers.
 
-#### --timeout
+#### -a, --adapter
+
+Test framework's adapter, used to send report to server. Accept built-in keywords, local file and URL.
+
+Built-in keywords: `mocha`, `jasmine`.
+
+It is very easy to write an adapter for custom test framework, you could refer to [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js).
+
+Default: if `--runner` is local file, `totoro` will see if there is `totoro-adapter.js` in the same directory , if not found or `--runner` is URL, [totoro-server](https://github.com/totorojs/totoro-server) will try to find out matched keyword according to `--runner` content.
+
+#### -c, --charset
+
+Specifies charset.
+
+Default: 'utf8'
+
+#### -t, --timeout
 
 Specifies the client timeout in minutes.
 
 Default: 5
 
-#### --host
-
-totoro-server host.
-
-Default: internal server host for Alibaba group.
-
-#### --port
-
-totoro-server port.
-
-Default: 9999
-
-#### --root
+#### -O, --root
 
 If assign a local file to `--runner`, `totoro` need to launch a temporary HTTP server for testing, `--root` is the root of this server.
 
 [See more detail](https://github.com/totorojs/totoro/wiki/root-option)
 
 Default: if necessary, guess a path according to `--runner` and `--adapter`.
+
+#### -H, --host
+
+totoro-server host.
+
+Default: internal server host for Alibaba group.
+
+#### -P, --port
+
+totoro-server port.
+
+Default: 9999
 
 #### --skip-coverage
 
