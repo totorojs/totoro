@@ -16,7 +16,6 @@ Latest stable version: v0.4.0 [Change Log](https://github.com/totorojs/totoro/wi
 
 - Run in real browsers
 - Support all test frameworks
-- Support debug
 - Auto testing coverage
 - **Robust enough for actual combat**
 
