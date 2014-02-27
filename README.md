@@ -4,7 +4,7 @@
 
 A simple & stable front-end unit testing tool.
 
-Latest stable version: v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
+Latest stable version: v0.5.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log)
 
 [![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 

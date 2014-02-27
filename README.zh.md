@@ -4,7 +4,7 @@
 
 简单易用、稳定的前端单元测试工具。
 
-最新版本：v0.4.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log.zh)
+最新版本：v0.5.0 [Change Log](https://github.com/totorojs/totoro/wiki/change-log.zh)
 
 [![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 
