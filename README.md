@@ -123,6 +123,8 @@ Test framework's adapter, used to send report to server. Accept built-in keyword
 
 Built-in keywords: `mocha`, `jasmine`.
 
+If specifies `no`, totoro won\'t try to detect and insert any adapter, it\'s thought that user handle it by themself.
+
 It is very easy to write an adapter for custom test framework, you could refer to [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js).
 
 Default: if `--runner` is local file, `totoro` will see if there is `totoro-adapter.js` in the same directory , if not found or `--runner` is URL, [totoro-server](https://github.com/totorojs/totoro-server) will try to find out matched keyword according to `--runner` content.

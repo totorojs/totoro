@@ -130,6 +130,8 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 已支持的内置关键字有：`mocha`, `jasmine`。
 
+如指定为 `no`，则 totoro 不会尝试探测和插入适配器，认为用户会自行加载。
+
 自定义适配器写法可参考 [static/adapters/mocha.js](https://github.com/totorojs/totoro/blob/master/static/adapters/mocha.js)。
 
 默认：如果 `--runner` 指定的是本地路径，则会先查看 runner 所在的位置是否有 `totoro-adapter.js`；如果没找到或者 `--runner` 指定的是 url 则 `totoro-server` 会自动扫描 `--runner` 的内容尝试查找匹配的内置关键字。
