@@ -48,8 +48,8 @@ commander.command('config')
         Client.config(common.getCfg(cmd))
     }).on('--help', function() {
         console.log(colorful.green('  Examples:'))
-        console.log('    $ totoro config --server-host=0.0.0.0')
-        console.log('    $ totoro config --server-host=""')
+        console.log('    $ totoro config --host=0.0.0.0')
+        console.log('    $ totoro config --host=""')
         console.log('    $ totoro config')
         console.log()
     }).helpInformation = helpInfo
