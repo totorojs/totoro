@@ -53,9 +53,9 @@ For simplicity, we have already prepared an example for you:
 $ totoro config --host={{totoroServerHost}}
 ```
 
-The default value is a internal server for Alibaba group, you can [launch your own server](https://github.com/totorojs/totoro-server).
+For now the default test server is internal for Alibaba group only, you can [launch your own server](https://github.com/totorojs/totoro-server).
 
-We are planning to supply an open service, hmm...
+We are planning to supply a public service, hmm...
 
 ```
 $ git clone git@github.com:totorojs/totoro.git
