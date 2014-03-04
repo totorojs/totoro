@@ -22,6 +22,7 @@ commander
     .option('-O, --root [s]', 'client server root')
     .option('-H, --host [s]', 'specify server host')
     .option('-P, --port [n]', 'specify server port')
+    .option('--no-catch', 'not terminate the test when window.onerror')
     .option('--skip-coverage', 'skip code js coverage')
     .option('--verbose', 'show more info')
     .on('version', function() {
