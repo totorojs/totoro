@@ -1,10 +1,5 @@
-define(function(require, exports) {
-    var obj = {
-        str: 'hello',
-        b,2
-    }
-
-    exports.say = function() {
-        return obj.str
+define(function(require, exports, module) {
+    module.exports = function() {
+        return 'A simple sample.'
     }
 })
