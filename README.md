@@ -161,6 +161,10 @@ totoro-server port.
 
 Default: 9999
 
+#### --no-catch
+
+Won't terminate test when window.onerror.
+
 #### --skip-coverage
 
 No need testing coverage.

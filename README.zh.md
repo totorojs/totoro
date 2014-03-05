@@ -168,6 +168,10 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 默认：9999
 
+#### --no-catch
+
+当 window.onerror 时，不主动捕获异常并结束测试。
+
 #### --skip-coverage
 
 跳过代码覆盖率检查.
