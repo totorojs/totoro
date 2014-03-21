@@ -40,9 +40,9 @@ commander
 
 
 commander.command('config')
-    .description('Get and set totoro gloal options')
-    .option('-H, --host [s]', 'set or get specify server host')
-    .option('-P, --port [n]', 'set or get specify server port')
+    .description('Get and set global options')
+    .option('-H, --host [s]', 'set or get server host')
+    .option('-P, --port [n]', 'set or get erver port')
     .action(function(cmd) {
         cmd = arguments[arguments.length - 1]
         cmd.parse(process.argv)
