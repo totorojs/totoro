@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Runner</title>
-        <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/totoro/jasmine/1.3.1/jasmine.css" />
-        <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
-        <script src="http://assets.spmjs.org/totoro/jasmine/1.3.1/jasmine.js"></script>
-        <script src="http://assets.spmjs.org/totoro/jasmine/1.3.1/jasmine-html.js"></script>
-    </head>
-    <body>
-        <script>
-            (function() {
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Runner</title>
+    <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/totoro/jasmine/1.3.1/jasmine.css" />
+    <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
+    <script src="http://assets.spmjs.org/totoro/jasmine/1.3.1/jasmine.js"></script>
+    <script src="http://assets.spmjs.org/totoro/jasmine/1.3.1/jasmine-html.js"></script>
+  </head>
+  <body>
+    <script>
+      (function() {
+        seajs.config({
+          alias:{
+            "$":"gallery/jquery/1.7.2/jquery"
+          }
+        })
 
-                seajs.config({
-                    alias:{
-                        "$":"gallery/jquery/1.7.2/jquery"
-                    }
-                })
+        var jasmineEnv = jasmine.getEnv();
+        jasmineEnv.updateInterval = 1000;
 
-                var jasmineEnv = jasmine.getEnv();
-                jasmineEnv.updateInterval = 1000;
+        var htmlReporter = new jasmine.HtmlReporter();
+        jasmineEnv.addReporter(htmlReporter);
 
-                var htmlReporter = new jasmine.HtmlReporter();
-                jasmineEnv.addReporter(htmlReporter);
-
-                seajs.use(["./example-spec.js"], function(m) {
-                    jasmineEnv.execute();
-                })
-            })()
-        </script>
-    </body>
+        seajs.use(["./example-spec.js"], function(m) {
+          jasmineEnv.execute();
+        })
+      })()
+    </script>
+  </body>
 </html>

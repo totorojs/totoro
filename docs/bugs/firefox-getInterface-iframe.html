@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Firefox: window.getInterface</title>
-    </head>
-    <body>
-        <p>I am an iframe.</p>
-        <p>When window.getInterface is available, an alert will be triggered.</p>
-        <script>
-            (function(){
-                var start = new Date().getTime()
-                var t = setInterval(function(){
-                    if(window.getInterface){
-                        var end = new Date().getTime()
-                        clearInterval(t)
-                        alert('in iframe, window.getInterface is available in ' + (end-start) + ' miniseconds.')
-                    }
-                },20)
-            })()
-        </script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>Firefox: window.getInterface</title>
+  </head>
+  <body>
+    <p>I am an iframe.</p>
+    <p>When window.getInterface is available, an alert will be triggered.</p>
+    <script>
+      (function(){
+        var start = new Date().getTime()
+        var t = setInterval(function(){
+          if(window.getInterface){
+            var end = new Date().getTime()
+            clearInterval(t)
+            alert('in iframe, window.getInterface is available in ' + (end-start) + ' miniseconds.')
+          }
+        },20)
+      })()
+    </script>
+  </body>
 </html>

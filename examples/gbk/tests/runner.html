@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="gbk">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Runner</title>
-        <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.css" />
-        <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
-        <script src="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.js"></script>
-    </head>
-    <body>
-        <div id="mocha"></div>
-        <script>
-            (function() {
-                mocha.ui('bdd')
-                seajs.config({
-                    alias:{
-                        expect: 'gallery/expect/0.2.0/expect',
-                        example: '../src/example'
-                    }
-                })
-                seajs.use(["./example-spec.js"], function() {
-                    mocha.run()
-                })
-            })()
-        </script>
-    </body>
+  <head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Runner</title>
+    <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.css" />
+    <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
+    <script src="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script>
+      (function() {
+        mocha.ui('bdd')
+        seajs.config({
+          alias:{
+            expect: 'gallery/expect/0.2.0/expect',
+            example: '../src/example'
+          }
+        })
+        seajs.use(["./example-spec.js"], function() {
+          mocha.run()
+        })
+      })()
+    </script>
+  </body>
 </html>

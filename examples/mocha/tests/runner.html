@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Runner</title>
-        <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.css" />
-        <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
-        <script src="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.js"></script>
-    </head>
-    <body>
-        <div id="mocha"></div>
-        <script>
-            (function() {
-                mocha.ui('bdd')
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Runner</title>
+    <link type="text/css" rel="stylesheet" charset="utf-8" href="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.css" />
+    <script src="http://assets.spmjs.org/seajs/seajs/2.0.0/sea.js"></script>
+    <script src="http://assets.spmjs.org/gallery/mocha/1.9.0/mocha.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script>
+      (function() {
+        mocha.ui('bdd')
 
-                seajs.config({
-                    alias:{
-                        "$":"jquery/jquery/1.7.2/jquery",
-                        "expect":"gallery/expect/0.2.0/expect",
-                        "sinon":"gallery/sinon/1.6.0/sinon",
-                        "event-simulate":"totoro/event-simulate/1.0.0/event-simulate"}}
-                )
-                seajs.use(["./example-spec.js"], function() {
-                    mocha.run()
-                })
-            })()
-        </script>
-    </body>
+        seajs.config({
+          alias:{
+            "$":"jquery/jquery/1.7.2/jquery",
+            "expect":"gallery/expect/0.2.0/expect",
+            "sinon":"gallery/sinon/1.6.0/sinon",
+            "event-simulate":"totoro/event-simulate/1.0.0/event-simulate"}}
+        )
+        seajs.use(["./example-spec.js"], function() {
+          mocha.run()
+        })
+      })()
+    </script>
+  </body>
 </html>
