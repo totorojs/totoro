@@ -28,7 +28,7 @@ Latest stable version: v0.5.x [Change Log](https://github.com/totorojs/totoro/wi
 ### Install from npm
 
 ```
-$ npm install totoro
+$ npm install totoro -g
 ```
 
 If it not works, you may add `sudo` before the command, as follows.

@@ -28,7 +28,7 @@
 ### 从 npm 安装
 
 ```
-$ npm install totoro
+$ npm install totoro -g
 ```
 
 如果安装失败，你可能需要在命令前面加上 `sudo` 。
