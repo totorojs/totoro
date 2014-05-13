@@ -4,9 +4,10 @@
     "description": "A simple and stable front-end testing tool.",
     "homepage": "https://github.com/totorojs/totoro",
     "keywords": [
-        "front end",
-        "unit test",
-        "automation"
+        "front-end",
+        "cross-browser",
+        "testing",
+        "tool"
     ],
     "author": "fool2fish <fool2fish@gmail.com>",
     "contributors": [
