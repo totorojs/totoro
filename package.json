@@ -1,7 +1,7 @@
 {
     "name": "totoro",
     "version": "0.6.0",
-    "description": "A simple and stable front-end testing tool.",
+    "description": "A simple and stable cross-browser testing tool.",
     "homepage": "https://github.com/totorojs/totoro",
     "keywords": [
         "front-end",

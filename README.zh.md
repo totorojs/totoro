@@ -2,7 +2,7 @@
 
 # totoro
 
-简单易用、稳定的前端单元测试工具。
+简单易用、稳定的跨浏览器测试工具。
 
 最新版本：v0.5.x [Change Log](https://github.com/totorojs/totoro/wiki/change-log.zh)
 
