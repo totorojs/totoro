@@ -4,7 +4,7 @@
 
 A simple and stable cross-browser testing tool.
 
-Latest stable version: v0.5.x [Change Log](https://github.com/totorojs/totoro/releases)
+Latest stable version: v1.0.1 [Change Log](https://github.com/totorojs/totoro/releases)
 
 [![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
 
