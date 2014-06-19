@@ -14,7 +14,7 @@
     "kangpangpang <kangpangpang@gmail.com>"
   ],
   "engines": {
-    "node": ">= 0.8.17"
+    "node": ">= 0.10.12"
   },
   "dependencies": {
     "commander": "1.2.0",
