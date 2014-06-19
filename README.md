@@ -27,7 +27,7 @@ Latest stable version: v1.0.1 [Change Log](https://github.com/totorojs/totoro/re
 
 ### Install from npm
 
-```
+```sh
 $ npm install totoro -g
 ```
 
@@ -37,9 +37,8 @@ If it not works, you may add `sudo` before the command, as follows.
 
 To get the latest function (may not be stable)
 
-```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro
+```sh
+$ git clone https://github.com/totorojs/totoro && cd totoro
 $ npm install -g
 ```
 
@@ -49,7 +48,7 @@ For simplicity, we have already prepared an example for you:
 
 ### Important: please specify a server first !
 
-```
+```sh
 $ totoro config --host={{totoroServerHost}}
 ```
 
@@ -57,9 +56,8 @@ For now the default test server is internal for Alibaba group only, you can [lau
 
 We are planning to supply a public service, hmm...
 
-```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro/examples/simple
+```sh
+$ git clone https://github.com/totorojs/totoro && cd totoro/examples/simple
 $ totoro
 ```
 
@@ -99,7 +97,7 @@ Default: auto search in the CWD, `runner.html` or `index.html` in subdirectory `
 
 A convenient way to debug. Accept **single** JS expression, local file or URL. totoro will return the calculated value of expression or all output of console.log() in JS file. For example:
 
-```
+```sh
 $ totoro --code document.getElementsByClassName
 $ totoro --code examples/code/code.js  // this file already exists, try it!
 ```
@@ -189,13 +187,13 @@ Read or write global config.
 
 #### Read global config
 
-```
+```sh
 $ totoro config
 ```
 
 #### Write global config
 
-```
+```sh
 $ totoro config --host=10.15.52.87 --port=''
 ```
 
@@ -209,7 +207,7 @@ The priority level of all config ways are: `command line > config file > totoro 
 
 Below is an example for config file:
 
-```
+```json
 {
   "browsers": ["chrome", "ie/10.0"],
   "host": "127.0.0.1",
@@ -220,5 +218,3 @@ Below is an example for config file:
 ## 5. About
 
 totoro takes it's name from animated fantasy film "My Neighbor Totoro" directed by [Hayao Miyazaki](http://en.wikipedia.org/wiki/Hayao_Miyazaki).
-
-

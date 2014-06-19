@@ -27,42 +27,45 @@
 
 ### 从 npm 安装
 
-```
-$ npm install totoro -g
-```
-
-如果安装失败，你可能需要在命令前面加上 `sudo` 。
-
-网速慢的国内用户可以使用下列命令安装：
-
-```
-npm install totoro --registry=http://r.cnpmjs.org
+```sh
+$ npm install -g totoro
 ```
 
-### 从 Github 安装
+如果安装失败，提示没有权限，你可能需要在命令前面加上 `sudo` 。
 
-可以体验开发中的最新功能
+### 从淘宝的源上安装
 
+如果官方源不稳定（你懂的），推荐从淘宝的源上安装：
+
+```sh
+$ npm install -g totoro --registry=http://registry.npm.taobao.org
 ```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro
+
+> 推荐安装 `cnpm`，然后用 `cnpm install` 代替 `npm install`
+
+### 从 GitHub 安装
+
+> 可以体验正在开发中的最新功能
+
+```sh
+$ git clone https://github.com/totorojs/totoro && cd totoro
 $ sudo npm install -g
 ```
+
 ## 2. 快速上手
 
 简单起见，我们已经为你准备好了一个可供测试的例子：
 
 ### 注意：测试前请先指定测试服务
 
-```
+```sh
 $ totoro config --host={{totoroServerHost}}
 ```
 
 默认为阿里巴巴集团的内部测试服务，你也可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
 
-```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro/examples/simple
+```sh
+$ git clone https://github.com/totorojs/totoro && cd totoro/examples/simple
 $ totoro
 ```
 
@@ -95,7 +98,6 @@ project-dir/
 
 ### 3.1 totoro
 
-
 #### -R, --runner
 
 测试 runner。接受本地文件和 URL。
@@ -106,7 +108,7 @@ project-dir/
 
 方便的 debug 途径。接受 **单个** 表达式、 JS 文件和 URL。totoro 将返回指定表达式计算的值或 JS 文件中所有 console.log() 输出结果。例如：
 
-```
+```sh
 $ totoro --code document.getElementsByClassName
 $ totoro --code examples/code/code.js  // 我们真的准备了这个例子，试试看！
 ```
@@ -200,14 +202,14 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 #### 读取全局配置
 
-```
+```sh
 $ totoro config
 ```
 
 #### 设置全局配置
 
-```
-totoro config --host=10.15.52.87 --port=''
+```sh
+$ totoro config --host=10.15.52.87 --port=''
 ```
 
 将 server-host 设置为 10.15.52.87，将 server-port 置空。
@@ -220,7 +222,7 @@ totoro config --host=10.15.52.87 --port=''
 
 以下为一个配置文件的例子：
 
-```
+```json
 {
   "browsers": ["chrome", "ie/10.0"],
   "host": "127.0.0.1",
