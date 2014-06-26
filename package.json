@@ -26,7 +26,7 @@
         "totoro-common": "0.1.5"
     },
     "devDependencies": {
-    "grunt": "0.4.1",
+        "grunt": "0.4.1",
         "grunt-shell": "0.2.2",
         "grunt-mocha-test": "0.6.2",
         "grunt-contrib-jshint": "0.3.0",
