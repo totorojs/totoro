@@ -10,11 +10,15 @@ var handleCfg = rewire('../lib/handle-cfg')
 
 var logCache = ''
 function log(msg) {
-  if (typeof msg === 'undefined') {
-    msg = '\n'
+  if (arguments.length) {
+    for (var i = 0; i < arguments.length; i++) {
+      logCache += arguments[i]
+    }
+  } else {
+    logCache += '\n'
   }
-  logCache += msg
 }
+
 handleCfg.__set__({
   logger: {
     info: log,
@@ -29,51 +33,26 @@ describe('handle-cfg', function() {
 
   it('handleCfg', function() {
     var cfg = {
-      runner: 'http://aralejs.org/base/tests/runner.html',
-      clientRoot: '..',
-      clientHost: '127.0.0.1',
-      clientPort: 9998
+      runner: 'http://aralejs.org/base/tests/runner.html'
     }
 
     handleCfg(cfg)
-
     expect(cfg.runner).to.be('http://aralejs.org/base/tests/runner.html')
-    expect(cfg.clientRoot).to.be(undefined)
-    expect(cfg.clientServer).to.be(undefined)
-    expect(cfg.clientPort).to.be(undefined)
   })
 
 
   describe('_handleClientRoot', function() {
     var _handleClientRoot = handleCfg.__get__('handleClientRoot')
 
-    describe('runner is file', function() {
-      var proj = path.join(__dirname, '..', 'examples', 'simple')
-      var runner = path.join(proj, 'tests', 'runner.html')
-
-      it('specified clientRoot', function() {
-        var cfg = {
-          runner: runner,
-          clientRoot: path.join(proj, 'tests')
-        }
-        _handleClientRoot(cfg)
-
-        expect(cfg.clientRoot).to.be(proj)
-      })
-
-      it('not specified clientRoot', function() {
-        var adapter = path.join(__dirname, 'totoro-adapter.js')
-        fs.writeFileSync(adapter, '')
-        var cfg = {
-          runner: runner,
-          adapter: adapter
-        }
-        _handleClientRoot(cfg)
-
-        expect(cfg.clientRoot).to.be(path.join(__dirname, '..'))
-
-        fs.unlinkSync(adapter)
-      })
+    it('runner is file', function() {
+      var projDir = path.join(__dirname, '..', 'examples', 'simple')
+      var testDir = path.join(projDir,  'tests')
+      var runner = path.join(testDir, 'runner.html')
+      var cfg = {
+        runner: runner
+      }
+      _handleClientRoot(cfg)
+      expect(cfg.root).to.be(projDir)
     })
 
     it('runner is url', function() {
@@ -82,8 +61,8 @@ describe('handle-cfg', function() {
       }
       _handleClientRoot(cfg)
 
-      expect(cfg.clientRoot).to.be(undefined)
-      expect(logCache).to.be('None of runner or adapter is existed file, not need clientRoot.')
+      expect(cfg.root).to.be(undefined)
+      expect(logCache).to.be('None of runner or adapter is existed file, not need root.')
     })
   })
 
@@ -105,27 +84,27 @@ describe('handle-cfg', function() {
   })
 
 
-  describe('_commonRoot', function() {
-    var _commonRoot = handleCfg.__get__('commonRoot')
+  describe('_leastCommonRoot', function() {
+    var _leastCommonRoot = handleCfg.__get__('leastCommonRoot')
     var dir1 = path.join('path', 'to', 'dir1')
     var dir2 = path.join('path', 'to', 'dir2')
     var dir3 = '/usr/local/lib/node_modules/seatools/lib/tools'
 
     it('both dir are specified', function() {
-      var rt = _commonRoot(dir1, dir2)
+      var rt = _leastCommonRoot(dir1, dir2)
       expect(rt).to.be(path.resolve('path', 'to'))
     })
 
     it('two dirs are in different disk', function() {
-      var rt = _commonRoot(dir1, dir3)
+      var rt = _leastCommonRoot(dir1, dir3)
       expect(rt).to.be(path.sep)
     })
 
     it('only one dir is specified', function() {
-      var rt1 = _commonRoot(dir1, null)
+      var rt1 = _leastCommonRoot(dir1, null)
       expect(rt1).to.be(path.resolve(dir1))
 
-      var rt2 = _commonRoot(null, dir2)
+      var rt2 = _leastCommonRoot(null, dir2)
       expect(rt2).to.be(path.resolve(dir2))
     })
   })
@@ -344,7 +323,7 @@ describe('handle-cfg', function() {
       var cfg = {runner: runnerPath}
       _handleAdapter(cfg)
 
-      expect(logCache).to.be('Not found adapter file, will auto decide.')
+      expect(logCache).to.be('Not found adapter file, will decide automatically.')
     })
   })
 
@@ -367,7 +346,7 @@ describe('handle-cfg', function() {
     it('without adapter file', function() {
       _findAdapter({runner: runnerPath})
 
-      expect(logCache).to.be('Not found adapter file, will auto decide.')
+      expect(logCache).to.be('Not found adapter file, will decide automatically.')
     })
   })
 
