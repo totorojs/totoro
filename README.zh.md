@@ -28,26 +28,30 @@
 ### 从 npm 安装
 
 ```
-$ npm install totoro -g
+$ npm install -g totoro
 ```
 
-如果安装失败，你可能需要在命令前面加上 `sudo` 。
+如果安装失败，提示没有权限，你可能需要在命令前面加上 `sudo` 。
 
-网速慢的国内用户可以使用下列命令安装：
+### 从淘宝的源上安装
 
-```
-npm install totoro --registry=http://r.cnpmjs.org
-```
-
-### 从 Github 安装
-
-可以体验开发中的最新功能
+如果官方源不稳定（你懂的），推荐从淘宝的源上安装：
 
 ```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro
+$ npm install -g totoro --registry=http://registry.npm.taobao.org
+```
+
+> 推荐安装 `cnpm`，然后用 `cnpm install` 代替 `npm install`
+
+### 从 GitHub 安装
+
+> 可以体验正在开发中的最新功能
+
+```
+$ git clone https://github.com/totorojs/totoro && cd totoro
 $ sudo npm install -g
 ```
+
 ## 2. 快速上手
 
 简单起见，我们已经为你准备好了一个可供测试的例子：
@@ -61,8 +65,7 @@ $ totoro config --host={{totoroServerHost}}
 默认为阿里巴巴集团的内部测试服务，你也可以 [启动自己的测试服务](https://github.com/totorojs/totoro-server)。
 
 ```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro/examples/simple
+$ git clone https://github.com/totorojs/totoro && cd totoro/examples/simple
 $ totoro
 ```
 
@@ -94,7 +97,6 @@ project-dir/
 ## 3. 命令行配置项
 
 ### 3.1 totoro
-
 
 #### -R, --runner
 
@@ -207,7 +209,7 @@ $ totoro config
 #### 设置全局配置
 
 ```
-totoro config --host=10.15.52.87 --port=''
+$ totoro config --host=10.15.52.87 --port=''
 ```
 
 将 server-host 设置为 10.15.52.87，将 server-port 置空。

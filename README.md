@@ -38,8 +38,7 @@ If it not works, you may add `sudo` before the command, as follows.
 To get the latest function (may not be stable)
 
 ```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro
+$ git clone https://github.com/totorojs/totoro && cd totoro
 $ npm install -g
 ```
 
@@ -58,8 +57,7 @@ For now the default test server is internal for Alibaba group only, you can [lau
 We are planning to supply a public service, hmm...
 
 ```
-$ git clone git@github.com:totorojs/totoro.git
-$ cd totoro/examples/simple
+$ git clone https://github.com/totorojs/totoro && cd totoro/examples/simple
 $ totoro
 ```
 
@@ -220,5 +218,3 @@ Below is an example for config file:
 ## 5. About
 
 totoro takes it's name from animated fantasy film "My Neighbor Totoro" directed by [Hayao Miyazaki](http://en.wikipedia.org/wiki/Hayao_Miyazaki).
-
-

@@ -1,53 +1,53 @@
 {
-    "name": "totoro",
-    "version": "1.0.1",
-    "description": "A simple and stable cross-browser testing tool.",
-    "homepage": "https://github.com/totorojs/totoro",
-    "keywords": [
-        "front-end",
-        "cross-browser",
-        "testing",
-        "tool"
-    ],
-    "author": "fool2fish <fool2fish@gmail.com>",
-    "contributors": [
-        "kangpangpang <kangpangpang@gmail.com>"
-    ],
-    "engines": {
-        "node": ">= 0.8.17"
-    },
-    "dependencies": {
-        "commander": "1.2.0",
-        "express": "3.1.0",
-        "socket.io-client": "0.9.11",
-        "colorful": "2.1.0",
-        "tracer": "0.5.1",
-        "request": "2.21.0",
-        "totoro-common": "0.1.5",
-        "fstream": "0.1.28",
-        "tar": "0.1.20",
-        "ignore": "2.2.14"
-    },
-    "devDependencies": {
-        "grunt": "0.4.1",
-        "grunt-shell": "0.2.2",
-        "grunt-mocha-test": "0.6.2",
-        "grunt-contrib-jshint": "0.3.0",
-        "mocha": "1.12.0",
-        "expect.js": "0.2.0",
-        "sinon": "1.7.3",
-        "shelljs": "0.1.4",
-        "rewire": "1.1.3"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:totorojs/totoro.git"
-    },
-    "bin": {
-        "totoro": "./bin/totoro"
-    },
-    "scripts": {
-        "test": "mocha tests/"
-    },
-    "preferGlobal": true
+  "name": "totoro",
+  "version": "1.0.1",
+  "description": "A simple and stable cross-browser testing tool.",
+  "homepage": "https://github.com/totorojs/totoro",
+  "keywords": [
+    "front-end",
+    "cross-browser",
+    "testing",
+    "tool"
+  ],
+  "author": "fool2fish <fool2fish@gmail.com>",
+  "contributors": [
+    "kangpangpang <kangpangpang@gmail.com>"
+  ],
+  "engines": {
+    "node": ">= 0.8.17"
+  },
+  "dependencies": {
+    "commander": "1.2.0",
+    "express": "3.1.0",
+    "socket.io-client": "0.9.11",
+    "colorful": "2.1.0",
+    "tracer": "0.5.1",
+    "request": "2.21.0",
+    "totoro-common": "0.1.5",
+    "fstream": "0.1.28",
+    "tar": "0.1.20",
+    "ignore": "2.2.14"
+  },
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-shell": "0.2.2",
+    "grunt-mocha-test": "0.6.2",
+    "grunt-contrib-jshint": "0.3.0",
+    "mocha": "1.12.0",
+    "expect.js": "0.2.0",
+    "sinon": "1.7.3",
+    "shelljs": "0.1.4",
+    "rewire": "1.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:totorojs/totoro.git"
+  },
+  "bin": {
+    "totoro": "./bin/totoro"
+  },
+  "scripts": {
+    "test": "mocha tests/"
+  },
+  "preferGlobal": true
 }
