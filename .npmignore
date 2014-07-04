@@ -1,0 +1,8 @@
+docs/
+examples/
+scripts/
+tests/
+.travis.yml
+.jshintrc
+.jshintignore
+
