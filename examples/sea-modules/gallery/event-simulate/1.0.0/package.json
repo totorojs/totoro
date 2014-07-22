@@ -1,0 +1,15 @@
+{
+    "family": "gallery",
+    "name": "event-simulate",
+    "version": "1.0.0",
+    "package": "https://github.com/totorojs/event-simulate/blob/master/package.json",
+    "description": "Event simulate",
+    "tag": "infrastructure",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/totorojs/event-simulate"
+    },
+    "spm": {
+      "output": [ "event-simulate.js" ]
+    }
+}
