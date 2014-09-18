@@ -4,26 +4,26 @@ var fs = require('fs')
 var path = require('path')
 var commander = require('commander')
 var colorful = require('colorful')
-var common = require('totoro-common')
+var utilx = require('utilx')
 
 var Client = require('../index')
 var pkg = require('../package')
 
 commander
   .description(pkg.description)
-  .option('-v, --version', 'output the version number')
+  .option('-v, --version', 'output version number')
   .option('-d, --debug', 'show debug log')
-  .option('-R, --runner [s]', 'runner path')
+  .option('-D, --data [s]', 'runner path or any info required when run the test')
   .option('-C, --code [s]', 'single expression or file path to run')
-  .option('-b, --browsers [s]', 'browsers to run test', common.split)
+  .option('-l, --labors [s]', 'labors run the test, split by comma', utilx.split)
   .option('-a, --adapter [s]', 'report adapter')
   .option('-c, --charset [s]', 'charset')
-  .option('-t, --timeout [n]', 'client timeout')
+  .option('-t, --timeout [n]', 'server timeout, in minute')
   .option('-O, --root [s]', 'client server root')
   .option('-H, --host [s]', 'specify server host')
   .option('-P, --port [n]', 'specify server port')
-  .option('--skip-coverage', 'skip code js coverage')
-  .option('--verbose', 'show more info')
+  .option('--no-proxy', 'don\'t convert option --data if it is a url')
+  .option('--no-coverage', 'skip coverage')
   .on('version', function() {
     console.log()
     console.log('  ' + colorful.cyan(pkg.version))
@@ -32,10 +32,10 @@ commander
   }).on('--help', function() {
     console.log(colorful.green('  Examples:'))
     console.log('    $ totoro')
-    console.log('    $ totoro --runner=url/to/runner')
+    console.log('    $ totoro --data=url/to/runner')
     console.log('    $ totoro --code=document.getElementsByClassName')
     console.log()
-  }).helpInformation = helpInfo
+  }).helpInformation = utilx.cGetHelp(pkg)
 
 
 commander.command('config')
@@ -45,59 +45,30 @@ commander.command('config')
   .action(function(cmd) {
     cmd = arguments[arguments.length - 1]
     cmd.parse(process.argv)
-    Client.config(common.getCfg(cmd))
+    Client.config(utilx.cGetCfg(cmd))
   }).on('--help', function() {
     console.log(colorful.green('  Examples:'))
-    console.log('    $ totoro config --server-host=0.0.0.0')
-    console.log('    $ totoro config --server-host=""')
+    console.log('    $ totoro config --host=0.0.0.0')
+    console.log('    $ totoro config --host=""')
     console.log('    $ totoro config')
     console.log()
-  }).helpInformation = helpInfo
+  }).helpInformation = utilx.cGetHelp(pkg)
 
 commander.command('list')
   .description('View available browsers')
   .option('-H, --host [s]', 'specify server host')
   .option('-P, --port [n]', 'specify server port')
   .action(function(cmd, options) {
-    Client.list(common.getCfg(commander))
-  }).helpInformation = helpInfo
+    Client.list(utilx.cGetCfg(commander))
+  }).helpInformation = utilx.cGetHelp(pkg)
 
 
 // listen before parse
 commander.parse(process.argv)
 
-/*
- * NOTE
- *
- * we just make all options in proper format and collect them
- * then continue to process them in corresponding methods rather than in this file
- * because when totoro is used as a required module, it will perform better in this way
- */
+
 if (commander.rawArgs.indexOf('list') < 0 && commander.rawArgs.indexOf('config') < 0 ) {
-  new Client(common.getCfg(commander))
+  new Client(utilx.cGetCfg(commander))
 }
 
-function helpInfo() {
-  var commandHelp = ''
-  if (this.commands.length) {
-    commandHelp = '\n' + 
-                  colorful.green('  Commands:') +
-                  '    ' + this.commandHelp().replace(/\n  Commands:\n/gm, '')
-  }
 
-  return [
-    '',
-    colorful.cyan('  ' + this.description()),
-    '',
-    colorful.green('  Usage:'),
-    '    ' + this._name + ' ' + this.usage(),
-    commandHelp,
-    colorful.green('  Options:'),
-    '' + this.optionHelp().replace(/^/gm, '    '),
-    '',
-    colorful.green('  More Info:'),
-    '    ' + colorful.underline(pkg.homepage),
-    '',
-    ''
-  ].join('\n')
-}
