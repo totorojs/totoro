@@ -21,7 +21,7 @@
     "express": "~4.9.0",
     "socket.io-client": "~1.1.0",
     "colorful": "~2.1.0",
-    "utilx": "~0.0.7",
+    "utilx": "~0.0.8",
 
     "tracer": "0.5.1",
     "request": "2.21.0",

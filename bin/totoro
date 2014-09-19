@@ -13,7 +13,7 @@ commander
   .description(pkg.description)
   .option('-v, --version', 'output version number')
   .option('-d, --debug', 'show debug log')
-  .option('-D, --data [s]', 'runner path or any info required when run the test')
+  .option('-R, --runner [s]', 'runner path or any info required when run the test')
   .option('-C, --code [s]', 'single expression or file path to run')
   .option('-l, --labors [s]', 'labors run the test, split by comma', utilx.split)
   .option('-a, --adapter [s]', 'report adapter')
@@ -22,7 +22,7 @@ commander
   .option('-O, --root [s]', 'client server root')
   .option('-H, --host [s]', 'specify server host')
   .option('-P, --port [n]', 'specify server port')
-  .option('--no-proxy', 'don\'t convert option --data if it is a url')
+  .option('--no-proxy', 'don\'t proxy option --data if it is a url')
   .option('--no-coverage', 'skip coverage')
   .on('version', function() {
     console.log()
@@ -32,7 +32,7 @@ commander
   }).on('--help', function() {
     console.log(colorful.green('  Examples:'))
     console.log('    $ totoro')
-    console.log('    $ totoro --data=url/to/runner')
+    console.log('    $ totoro --runner=url/to/runner')
     console.log('    $ totoro --code=document.getElementsByClassName')
     console.log()
   }).helpInformation = utilx.cGetHelp(pkg)
