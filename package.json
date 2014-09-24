@@ -22,10 +22,8 @@
     "socket.io-client": "~1.1.0",
     "colorful": "~2.1.0",
     "utilx": "~0.0.8",
-
-    "tracer": "0.5.1",
-    "request": "2.21.0",
-    "totoro-common": "0.1.5",
+    "tracer": "~0.7.3",
+    "request": "~2.44.0",
     "fstream": "0.1.28",
     "tar": "0.1.20",
     "ignore": "2.2.14"
