@@ -1,7 +1,6 @@
 (function() {
   mocha.reporter(function(runner) {
     var report = totoro.report
-    var id = totoro.getOrderId(location.href)
 
     var stats = {
       suites: 0,
@@ -26,7 +25,6 @@
       var medium = test.slow() / 2
       var speed = duration > test.slow() ? 'slow' : duration > medium ? 'medium' : 'fast'
       report({
-        orderId: id,
         action: 'pass',
         info: {
           parent: getSuiteName(test.parent),
@@ -40,7 +38,6 @@
     runner.on('fail', function(test, err) {
       stats.failures++
       report({
-        orderId: id,
         action: 'fail',
         info: {
           parent: getSuiteName(test.parent),
@@ -53,7 +50,6 @@
     runner.on('pending', function(test) {
       stats.pending++
       report({
-        orderId: id,
         action: 'pending',
         info: {
           parent: getSuiteName(test.parent),
@@ -73,7 +69,6 @@
     runner.on('end', function() {
       stats.duration = new Date() - start
       report({
-        orderId: id,
         action: 'end',
         info: stats
       })
@@ -91,6 +86,5 @@
     return name
   }
 
-  console.log('A message comes from "tests/totoro-adapter.js" .')
 })()
 
