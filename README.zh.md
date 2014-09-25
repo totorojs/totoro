@@ -4,9 +4,7 @@
 
 简单易用、稳定的跨浏览器测试工具。
 
-最新版本：v1.0.1 [Change Log](https://github.com/totorojs/totoro/releases)
-
-[![building status](https://travis-ci.org/totorojs/totoro.png?branch=master)](https://travis-ci.org/totorojs/totoro)
+最新版本：v2.0 [Change Log](https://github.com/totorojs/totoro/releases)
 
 [English edition](README.md)
 
