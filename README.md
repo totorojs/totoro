@@ -63,9 +63,8 @@ Then you should see a output as shown below:
 
 ![totoro-result](https://f.cloud.github.com/assets/340282/891944/7c099544-fa71-11e2-828b-5da8c0566834.png)
 
-- Green dot means a test case passed, red cross means a test case failed.
-- Every browser supplies it's own run time and testing coverage (if your test has source code, and `totoro` can recognize).
 - If all test cases passed, will report in green color, or will report in red color with detailed error message.
+- Every browser supplies it's own run time and testing coverage (if your test has source code, and `totoro` can recognize).
 
 #### Recommended directory structure
 
@@ -96,15 +95,16 @@ Default: auto search in the CWD, `runner.html` or `index.html` in subdirectory `
 A convenient way to debug. Accept **single** JS expression, local file or URL. totoro will return the calculated value of expression or all output of console.log() in JS file. For example:
 
 ```
-$ totoro --code document.getElementsByClassName
+$ totoro --code document.body
+$ totoro --code "console.log(document.body)"
 $ totoro --code examples/code/code.js  // this file already exists, try it!
 ```
 
 Be mind that `--code` and `--runner` are mutually exclusive!
 
-#### -b, --browsers
+#### -l, --labors
 
-Specify a comman-delimited list of browser names. For example:
+Specify a comman-delimited list of app names, typically be browsers. For example:
 
 ```
 chrome,firefox,safari,ie  //just specify browser names
@@ -157,19 +157,15 @@ totoro-server port.
 
 Default: 9999
 
-#### --no-catch
+#### --no-proxy
 
-Won't terminate test when window.onerror.
-
-#### --skip-coverage
-
-No need testing coverage.
+Won't convert the runner if it is a URL
 
 Default: false
 
-#### --verbose
+#### --no-coverage
 
-Show more info.
+No need testing coverage.
 
 Default: false
 

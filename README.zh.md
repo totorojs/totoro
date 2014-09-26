@@ -4,7 +4,7 @@
 
 简单易用、稳定的跨浏览器测试工具。
 
-最新版本：v2.0 [Change Log](https://github.com/totorojs/totoro/releases)
+最新稳定版本：v2.0 [Change Log](https://github.com/totorojs/totoro/releases)
 
 [English edition](README.md)
 
@@ -71,9 +71,8 @@ $ totoro
 
 ![totoro-result](https://f.cloud.github.com/assets/340282/891944/7c099544-fa71-11e2-828b-5da8c0566834.png)
 
-- 小圆点为即时进度反馈。成功显示为绿色圆点，失败显示为红色小叉。
-- 单个浏览器测试结果中包含运行时间和测试覆盖率（如果你的测试有源码，且 `totoro` 能识别）。
 - 测试成功的浏览器会以绿色字符输出显示，失败或超时的浏览器会以红色字符显示，并输出错误详情。
+
 
 #### 推荐的项目目录结构
 
@@ -98,7 +97,7 @@ project-dir/
 
 #### -R, --runner
 
-测试 runner。接受本地文件和 URL。
+运行测试必须的数据，通常为本地文件路径或 URL。
 
 默认：自动查找当前目录，`tests` 或 `test` 子目录下的 `runner.html` 或 `index.html` 均可被识别。
 
@@ -107,15 +106,16 @@ project-dir/
 方便的 debug 途径。接受 **单个** 表达式、 JS 文件和 URL。totoro 将返回指定表达式计算的值或 JS 文件中所有 console.log() 输出结果。例如：
 
 ```
-$ totoro --code document.getElementsByClassName
+$ totoro --code document.body
+$ totoro --code "console.log(document.body)"
 $ totoro --code examples/code/code.js  // 我们真的准备了这个例子，试试看！
 ```
 
 注意： `--code` 和 `--runner` 是互斥的选项！
 
-#### -b, --browsers
+#### -l, --labors
 
-指定要测试的浏览器，多个以逗号分隔。例如：
+指定要运行测试的的应用名称，通常为浏览器，多个以逗号分隔。例如：
 
 ```
 chrome,firefox,safari,ie  //不指定版本
@@ -168,21 +168,15 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 默认：9999
 
-#### --no-catch
+#### --no-proxy
 
-当 window.onerror 时，不主动捕获异常并结束测试。
-
-#### --skip-coverage
-
-跳过代码覆盖率检查.
+不对 runner 指定的 URL 进行域名转换
 
 默认：false
 
-#### --verbose
+#### --no-coverage
 
-显示更详细的信息:
- - debug 日志
- - 如果启用测试代码覆盖率, 将会显示没有覆盖到行的详细信息.
+跳过代码覆盖率检查.
 
 默认：false
 
