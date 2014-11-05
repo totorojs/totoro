@@ -173,7 +173,7 @@ Default: false
 
 Show all available browsers of specified server.
 
-![totoro list](https://f.cloud.github.com/assets/340282/892035/ed628190-fa73-11e2-9810-3403502514b2.png)
+![totoro list](https://cloud.githubusercontent.com/assets/340282/4914476/157003d2-64c3-11e4-9f4c-33fc2ec495a7.png)
 
 ### 3.3 totoro config
 

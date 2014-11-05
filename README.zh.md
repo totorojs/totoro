@@ -185,7 +185,7 @@ ie/6,ie/7,ie/8,ie/9  //指定版本
 
 显示当前可用的测试浏览器。配置项可通过 `totoro list -h` 查看。
 
-![totoro list](https://f.cloud.github.com/assets/340282/892035/ed628190-fa73-11e2-9810-3403502514b2.png)
+![totoro list](https://cloud.githubusercontent.com/assets/340282/4914476/157003d2-64c3-11e4-9f4c-33fc2ec495a7.png)
 
 
 ### 3.3 tororo config
