@@ -4,7 +4,6 @@ var fs = require('fs')
 var path = require('path')
 var expect = require('expect.js')
 var rewire = require('rewire')
-//var common = require('totoro-common')
 
 var handleCfg = rewire('../lib/handle-cfg')
 
@@ -45,14 +44,14 @@ describe('handle-cfg', function() {
     var _handleClientRoot = handleCfg.__get__('handleClientRoot')
 
     it('runner is file', function() {
-      var projDir = path.join(__dirname, '..', 'examples', 'simple')
-      var testDir = path.join(projDir,  'tests')
+      var root = path.join(__dirname, '..', 'examples')
+      var testDir = path.join(root, 'simple', 'tests')
       var runner = path.join(testDir, 'runner.html')
       var cfg = {
         runner: runner
       }
       _handleClientRoot(cfg)
-      expect(cfg.root).to.be(projDir)
+      expect(cfg.root).to.be(root)
     })
 
     it('runner is url', function() {
@@ -62,7 +61,7 @@ describe('handle-cfg', function() {
       _handleClientRoot(cfg)
 
       expect(cfg.root).to.be(undefined)
-      expect(logCache).to.be('None of runner or adapter is existed file, not need root.')
+      expect(logCache).to.be('None of runner or adapter is file, not need root.')
     })
   })
 
@@ -71,11 +70,11 @@ describe('handle-cfg', function() {
     var _findRunnerRoot = handleCfg.__get__('findRunnerRoot')
 
     it('no relative link was out of project', function() {
-      var proj = path.join(__dirname, '..', 'examples', 'simple')
-      var runner = path.join(proj, 'tests', 'runner.html')
+      var root = path.join(__dirname, '..', 'examples')
+      var runner = path.join(root, 'simple', 'tests', 'runner.html')
       var rt = _findRunnerRoot(runner)
 
-      expect(rt).to.be(proj)
+      expect(rt).to.be(root)
     })
 
     it.skip('relative link was out of project', function() {
@@ -133,8 +132,7 @@ describe('handle-cfg', function() {
       var cfg = {runner: 'runner.html'}
       _handleRunner(cfg)
 
-      expect(logCache).to.match(/Specified runner <runner\.html> is not available\./)
-
+      expect(cfg.runner).to.be('runner.html')
       process.chdir(cwd)
     })
 
@@ -269,40 +267,31 @@ describe('handle-cfg', function() {
       it('runner is file but adapter is url', function() {
         _handleAdapter({
           runner: runnerPath,
-          adapter: adapterUrl
+          adapter: adapterUrl,
+          proxy: true
         })
 
-        expect(logCache).to.be('Runner is file, can not specify a url adapter.')
+        expect(logCache).to.be('Runner is a file, the adapter cannot be a url.')
       })
 
       it('runner is url but adapter is file', function() {
         _handleAdapter({
           runner: runnerUrl,
-          adapter: adapterPath
+          adapter: adapterPath,
+          proxy: true
         })
 
-        expect(logCache).to.match(/Runner is url, can not specify a file adapter\./)
+        expect(logCache).to.match(/Runner is a url, the adapter cannot be a file\.Specified adapter <.+> dose not exist\./)
       })
 
       it('adapter not exist', function() {
         _handleAdapter({
           runner: runnerPath,
-          adapter: adapterPath
+          adapter: adapterPath,
+          proxy: true
         })
 
         expect(logCache).to.match(/Specified adapter <.+> dose not exist\./)
-      })
-
-      it('adapter is not js file', function() {
-        fs.writeFileSync(invalidAdapterPath, '')
-        _handleAdapter({
-          runner: runnerPath,
-          adapter: invalidAdapterPath
-        })
-
-        expect(logCache).to.match(/Specified adapter <.+> is not a js file\./)
-
-        fs.unlinkSync(invalidAdapterPath)
       })
 
       it('adapter is valid', function() {
@@ -320,7 +309,7 @@ describe('handle-cfg', function() {
     })
 
     it('not specified adapter', function() {
-      var cfg = {runner: runnerPath}
+      var cfg = {runner: runnerPath, proxy: true}
       _handleAdapter(cfg)
 
       expect(logCache).to.be('Not found adapter file, will decide automatically.')
@@ -348,16 +337,6 @@ describe('handle-cfg', function() {
 
       expect(logCache).to.be('Not found adapter file, will decide automatically.')
     })
-  })
-
-
-  it('_relative', function() {
-    var _relative = handleCfg.__get__('relative')
-
-    var dir = path.join('path', 'to','a')
-    var f = path.join('path', 'b.js')
-
-    expect(_relative(dir, f)).to.be('../../b.js')
   })
 
 

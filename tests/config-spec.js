@@ -3,12 +3,12 @@
 var path = require('path')
 var expect = require('expect.js')
 var rewire = require('rewire')
-var common = require('totoro-common')
+var utilx = require('utilx')
 
 var config = rewire('../lib/config')
 
-var globalCfgPath = path.join(common.home, '.totoro', 'config.json')
-var globalCfg = common.readCfgFile(globalCfgPath)
+var globalCfgPath = path.join(utilx.home, '.totoro', 'config.json')
+var globalCfg = utilx.readJSON(globalCfgPath)
 
 var logCache = ''
 config.__set__({
@@ -26,7 +26,7 @@ config.__set__({
 describe('config', function() {
 
   it('list config', function() {
-    common.writeCfgFile(globalCfgPath, {
+    utilx.writeJSON(globalCfgPath, {
       serverHost: '127.0.0.1'
     })
     config()
@@ -35,13 +35,13 @@ describe('config', function() {
   })
 
   it('list empty config', function() {
-    common.writeCfgFile(globalCfgPath, {})
+    utilx.writeJSON(globalCfgPath, {})
     config()
     expect(logCache).to.be('\n  No global configuration.\n')
   })
 
   it('modify config', function() {
-    common.writeCfgFile(globalCfgPath, {
+    utilx.writeJSON(globalCfgPath, {
       serverHost: '127.0.0.1'
     })
     config({serverHost: '0.0.0.0'})
@@ -50,7 +50,7 @@ describe('config', function() {
   })
 
   it('delete config', function() {
-    common.writeCfgFile(globalCfgPath, {
+    utilx.writeJSON(globalCfgPath, {
       serverHost: '127.0.0.1'
     })
     config({serverHost: ''})
@@ -63,7 +63,7 @@ describe('config', function() {
   })
 
   after(function(){
-    common.writeCfgFile(globalCfgPath, globalCfg)
+    utilx.writeJSON(globalCfgPath, globalCfg)
   })
 
 })
