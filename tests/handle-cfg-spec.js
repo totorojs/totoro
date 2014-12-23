@@ -4,6 +4,8 @@ var fs = require('fs')
 var path = require('path')
 var expect = require('expect.js')
 var rewire = require('rewire')
+var utilx = require('utilx')
+var clientHost = utilx.getExternalIpAddress()
 
 var handleCfg = rewire('../lib/handle-cfg')
 
@@ -42,6 +44,7 @@ describe('handle-cfg', function() {
 
   describe('_handleClientRoot', function() {
     var _handleClientRoot = handleCfg.__get__('handleClientRoot')
+    var _handleRunner = handleCfg.__get__('handleRunner')
 
     it('runner is file', function() {
       var root = path.join(__dirname, '..', 'examples')
@@ -62,6 +65,24 @@ describe('handle-cfg', function() {
 
       expect(cfg.root).to.be(undefined)
       expect(logCache).to.be('None of runner or adapter is file, not need root.')
+    })
+
+    it('runner is localhost url', function() {
+      var cfg = {
+        runner: 'http://localhost/base/tests/runner.html'
+      }
+
+      _handleRunner(cfg)
+      expect(cfg.runner.indexOf(clientHost) > -1).to.be.ok();
+    })
+
+    it('runner is localhost url', function() {
+      var cfg = {
+        runner: 'http://127.0.0.1/base/tests/runner.html'
+      }
+
+      _handleRunner(cfg)
+      expect(cfg.runner.indexOf(clientHost) > -1).to.be.ok();
     })
   })
 
