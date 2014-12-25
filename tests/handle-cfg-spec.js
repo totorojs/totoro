@@ -73,7 +73,8 @@ describe('handle-cfg', function() {
       }
 
       _handleRunner(cfg)
-      expect(cfg.runner.indexOf(clientHost) > -1).to.be.ok();
+      expect(cfg.runner.indexOf(clientHost) > -1).to.be.ok()
+      expect(cfg.runner).to.be('http://' + clientHost + '/base/tests/runner.html')
     })
 
     it('runner is localhost url', function() {
@@ -82,7 +83,8 @@ describe('handle-cfg', function() {
       }
 
       _handleRunner(cfg)
-      expect(cfg.runner.indexOf(clientHost) > -1).to.be.ok();
+      expect(cfg.runner.indexOf(clientHost) > -1).to.be.ok()
+      expect(cfg.runner).to.be('http://' + clientHost + '/base/tests/runner.html')
     })
   })
 
