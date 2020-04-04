@@ -259,13 +259,13 @@ define("gallery/event-simulate/1.0.0/event-simulate-debug", [ "$-debug" ], funct
      * @param {int} detail (Optional) The number of times the mouse button has
      *      been used. The default value is 1.
      * @param {int} screenX (Optional) The x-coordinate on the screen at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} screenY (Optional) The y-coordinate on the screen at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} clientX (Optional) The x-coordinate on the client at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} clientY (Optional) The y-coordinate on the client at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {Boolean} ctrlKey (Optional) Indicates if one of the CTRL keys
      *      is pressed while the event is firing. The default is false.
      * @param {Boolean} altKey (Optional) Indicates if one of the ALT keys
@@ -528,13 +528,13 @@ define("gallery/event-simulate/1.0.0/event-simulate-debug", [ "$-debug" ], funct
      * @param {int} detail (Optional) Specifies some detail information about 
      *      the event depending on the type of event.
      * @param {int} screenX (Optional) The x-coordinate on the screen at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} screenY (Optional) The y-coordinate on the screen at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} clientX (Optional) The x-coordinate on the client at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} clientY (Optional) The y-coordinate on the client at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {Boolean} ctrlKey (Optional) Indicates if one of the CTRL keys
      *      is pressed while the event is firing. The default is false.
      * @param {Boolean} altKey (Optional) Indicates if one of the ALT keys
@@ -645,13 +645,13 @@ define("gallery/event-simulate/1.0.0/event-simulate-debug", [ "$-debug" ], funct
      * @param {int} detail (Optional) Specifies some detail information about 
      *      the event depending on the type of event.
      * @param {int} screenX (Optional) The x-coordinate on the screen at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} screenY (Optional) The y-coordinate on the screen at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} clientX (Optional) The x-coordinate on the client at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {int} clientY (Optional) The y-coordinate on the client at which
-     *      point the event occured. The default is 0.
+     *      point the event occurred. The default is 0.
      * @param {Boolean} ctrlKey (Optional) Indicates if one of the CTRL keys
      *      is pressed while the event is firing. The default is false.
      * @param {Boolean} altKey (Optional) Indicates if one of the ALT keys
