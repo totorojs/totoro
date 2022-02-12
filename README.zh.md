@@ -36,7 +36,7 @@ $ npm install -g totoro
 如果官方源不稳定（你懂的），推荐从淘宝的源上安装：
 
 ```
-$ npm install -g totoro --registry=http://registry.npm.taobao.org
+$ npm install -g totoro --registry=https://registry.npmmirror.com
 ```
 
 > 推荐安装 `cnpm`，然后用 `cnpm install` 代替 `npm install`
